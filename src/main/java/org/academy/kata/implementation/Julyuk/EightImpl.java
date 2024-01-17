@@ -28,7 +28,9 @@ public class EightImpl implements Eight {
     }
 
     public double TwoDecimalPlaces(double number) {
-        return 0;
+        double result = Math.round(number * 100);
+        result /= 100;
+        return result;
     }
 
     public int[] divisibleBy(int[] numbers, int divider) {
