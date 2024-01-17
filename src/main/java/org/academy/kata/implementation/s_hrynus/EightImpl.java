@@ -2,6 +2,8 @@ package org.academy.kata.implementation.s_hrynus;
 
 import org.academy.kata.Eight;
 
+import java.util.stream.IntStream;
+
 public class EightImpl implements Eight {
     public int liters(double time) {
         return 0;
@@ -16,7 +18,10 @@ public class EightImpl implements Eight {
     }
 
     public int[] squareOrSquareRoot(int[] array) {
-        return new int[0];
+        return IntStream.of(array)
+                .map(x -> (int) (Math.sqrt(x) == (int) Math.sqrt(x)
+                        ? Math.sqrt(x) : Math.pow(x, 2)))
+                .toArray();
     }
 
     public int[] countPositivesSumNegatives(int[] input) {
