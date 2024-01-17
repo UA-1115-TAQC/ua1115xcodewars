@@ -2,9 +2,16 @@ package org.academy.kata.implementation.Julyuk;
 
 import org.academy.kata.Eight;
 
+import java.lang.Math;
+
 public class EightImpl implements Eight {
     public int liters(double time) {
-        return 0;
+        if (time > 0) {
+            int result = (int) Math.floor(time * 0.5);
+            return result;
+        } else {
+            throw new IllegalArgumentException("Time must be a positive number");
+        }
     }
 
     public double getVolumeOfCuboid(double length, double width, double height) {
