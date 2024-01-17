@@ -2,6 +2,8 @@ package org.academy.kata.implementation.Zakotiuk;
 
 import org.academy.kata.Eight;
 
+import java.text.DecimalFormat;
+
 public class EightImpl implements Eight {
     public int liters(double time) {
         return (int) (time * 0.5);
@@ -12,7 +14,9 @@ public class EightImpl implements Eight {
     }
 
     public float mpgToKPM(float mpg) {
-        return 0;
+        float kpl = mpg * (float) 1.609344 / (float) 4.54609188;
+        DecimalFormat df = new DecimalFormat("#.##"); // Форматування до двох знаків після коми
+        return Float.parseFloat(df.format(kpl));
     }
 
     public int[] squareOrSquareRoot(int[] array) {
