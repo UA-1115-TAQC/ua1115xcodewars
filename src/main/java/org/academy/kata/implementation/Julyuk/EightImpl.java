@@ -1,6 +1,8 @@
 package org.academy.kata.implementation.Julyuk;
 
 import org.academy.kata.Eight;
+import java.lang.Math;
+import java.math.BigInteger;
 
 public class EightImpl implements Eight {
     public int liters(double time) {
@@ -36,6 +38,24 @@ public class EightImpl implements Eight {
     }
 
     public boolean am_i_wilson(double n) {
-        return false;
+
+        if (n == 1 || n == 0) {
+            return false;
+        } else {
+            for (int i = 2; i * i <= n; i++) {
+                if (n % i == 0) {
+                    return false;
+                }
+            }
+
+        }
+
+        BigInteger factorial = BigInteger.ONE;
+        for (long i = 2; i < n; i++) {
+            factorial = factorial.multiply(BigInteger.valueOf(i));
+        }
+
+        BigInteger result = factorial.add(BigInteger.ONE).mod(BigInteger.valueOf((long) (n * n)));
+        return result.equals(BigInteger.ZERO);
     }
 }
