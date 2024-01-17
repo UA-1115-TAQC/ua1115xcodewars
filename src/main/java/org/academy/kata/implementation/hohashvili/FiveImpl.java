@@ -5,8 +5,30 @@ import org.academy.kata.Five;
 import java.math.BigInteger;
 
 public class FiveImpl implements Five {
+
+
+    private static boolean isPrime(long num) {
+        if (num < 2) { return false; }
+        for (long i = 2; i <= Math.sqrt(num); i++) {
+            if (num % i == 0) {
+                return false;
+            }
+        }
+        return true;
+    }
     public long[] gap(int g, long m, long n) {
-        return new long[0];
+        long prevNum = 0;
+        long[] result = {0,0};
+        for (long i = m; i <= n; i++) {
+            if (isPrime(i)) {
+                if (i - prevNum == g) {
+                    result = new long[]{prevNum, i};
+                    return result;
+                }
+                prevNum = i;
+            }
+        }
+        return null;
     }
 
     public int zeros(int n) {
