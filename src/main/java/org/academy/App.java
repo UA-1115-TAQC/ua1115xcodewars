@@ -18,5 +18,6 @@ public class App {
         System.out.println(sixImpl.nbaCup(r, "Boston Celtics"));
 
         System.out.println(sixImpl.nbaCup(r, "Boston Celt"));
+        System.out.println(sixImpl.nbaCup(r, ""));
     }
 }

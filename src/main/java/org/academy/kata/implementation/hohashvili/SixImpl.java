@@ -36,6 +36,9 @@ public class SixImpl implements Six {
         }
     }
     public String nbaCup(String resultSheet, String toFind) {
+        if (toFind.equals("") ) {
+            return "";
+        }
         boolean play = false;
         int wins = 0;
         int draws = 0;
