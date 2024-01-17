@@ -12,7 +12,9 @@ public class EightImpl implements Eight {
     }
 
     public float mpgToKPM(float mpg) {
-        return 0;
+        final var GALLON_TO_LITRE = 4.54609188f;
+        final var MILE_TO_KILOMETER = 1.609344f;
+        return Float.parseFloat(String.format("%.2f", mpg * MILE_TO_KILOMETER / GALLON_TO_LITRE));
     }
 
     public int[] squareOrSquareRoot(int[] array) {
