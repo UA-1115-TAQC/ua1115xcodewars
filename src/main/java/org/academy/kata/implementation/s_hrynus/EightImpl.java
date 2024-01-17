@@ -2,6 +2,8 @@ package org.academy.kata.implementation.s_hrynus;
 
 import org.academy.kata.Eight;
 
+import java.util.stream.IntStream;
+
 public class EightImpl implements Eight {
     public int liters(double time) {
         return 0;
@@ -20,7 +22,13 @@ public class EightImpl implements Eight {
     }
 
     public int[] countPositivesSumNegatives(int[] input) {
-        return new int[0];
+        if (input == null || input.length == 0) {
+            return new int[]{};
+        }
+
+        int negativeSum = IntStream.of(input).filter(x -> x < 0).sum();
+        int quantityOfPositiveNumbers = (int) IntStream.of(input).filter(x -> x > 0).count();
+        return new int[]{quantityOfPositiveNumbers, negativeSum};
     }
 
     public int stringToNumber(String str) {
