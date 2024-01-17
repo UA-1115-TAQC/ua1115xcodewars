@@ -2,6 +2,8 @@ package org.academy.kata.implementation.s_hrynus;
 
 import org.academy.kata.Eight;
 
+import java.math.BigInteger;
+
 public class EightImpl implements Eight {
     public int liters(double time) {
         return 0;
@@ -36,6 +38,16 @@ public class EightImpl implements Eight {
     }
 
     public boolean am_i_wilson(double n) {
-        return false;
+        BigInteger factorial = BigInteger.ONE;
+        BigInteger value = BigInteger.valueOf((long) n);
+
+        for (int i = 1; i <= n - 1; i++) {
+            factorial = factorial.multiply(BigInteger.valueOf(i));
+        }
+
+        BigInteger addDigitToFactorial = factorial.add(BigInteger.ONE);
+        BigInteger sqrtOfN = value.multiply(value);
+
+        return addDigitToFactorial.mod(sqrtOfN).equals(BigInteger.ZERO);
     }
 }
