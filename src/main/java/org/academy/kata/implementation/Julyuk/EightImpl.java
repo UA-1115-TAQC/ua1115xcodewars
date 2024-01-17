@@ -12,7 +12,14 @@ public class EightImpl implements Eight {
     }
 
     public float mpgToKPM(float mpg) {
-        return 0;
+        if (mpg > 0 ) {
+            float result = (float) (mpg*1.609344*100/4.54609188);
+            result = Math.round(result);
+            result /= 100;
+            return result;
+        } else {
+            throw new IllegalArgumentException("The value must be positive");
+        }
     }
 
     public int[] squareOrSquareRoot(int[] array) {
