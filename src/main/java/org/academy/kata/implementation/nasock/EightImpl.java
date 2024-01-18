@@ -28,7 +28,9 @@ public class EightImpl implements Eight {
     }
 
     public double TwoDecimalPlaces(double number) {
-        return 0;
+        int temp = (int)(number * 100);
+        double result = temp / 100.00d;
+        return result;
     }
 
     public int[] divisibleBy(int[] numbers, int divider) {
@@ -38,4 +40,5 @@ public class EightImpl implements Eight {
     public boolean am_i_wilson(double n) {
         return false;
     }
+
 }
