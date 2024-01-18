@@ -7,7 +7,7 @@ public class EightImpl implements Eight {
         if (time < 0) {
             throw new IllegalArgumentException();
         }
-        return (int) (time / 2);
+        return (int) time / 2;
     }
 
     public double getVolumeOfCuboid(double length, double width, double height) {
