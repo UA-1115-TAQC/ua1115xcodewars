@@ -3,7 +3,6 @@ package org.academy.kata.implementation.nasock;
 import org.academy.kata.Eight;
 
 import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.math.RoundingMode;
 
 public class EightImpl implements Eight {
