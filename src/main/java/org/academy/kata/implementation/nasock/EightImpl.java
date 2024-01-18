@@ -17,7 +17,7 @@ public class EightImpl implements Eight {
 
     private boolean hasSqRt(int num){
         double sqrt = Math.sqrt(num);
-        Double decimalPart = (sqrt - (int)sqrt);
+        Double decimalPart = sqrt - (int)sqrt;
         return Double.valueOf(0.0).equals(decimalPart);
     }
 
