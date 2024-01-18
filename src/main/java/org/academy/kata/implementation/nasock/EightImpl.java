@@ -36,28 +36,26 @@ public class EightImpl implements Eight {
         return decimalPart == 0.0;
     }
 
-    private int[] resizeArr(int[] arr){
-        int[] newArr = new int[arr.length * 2];
-        for (int i = 0; i < arr.length; i++){
+    private int[] resizeArr(int[] arr, int newLength){
+        int[] newArr = new int[newLength];
+        for (int i = 0; i < newArr.length; i++){
             newArr[i] = arr[i];
         }
         return newArr;
     }
 
     public int[] divisibleBy(int[] numbers, int divider) {
-        int[] result = new int[2];
+        int[] result = new int[numbers.length];
         int j = 0;
         for(int num : numbers) {
             double div = num/(double)divider;
             if(isNatural(div)){
                 result[j] = num;
                 j++;
-                if(j > result.length - 1){
-                    result = resizeArr(result);
-                }
             }
         }
-        return result;
+        int[] resized = resizeArr(result, j);
+        return resized;
     }
 
     public boolean am_i_wilson(double n) {
