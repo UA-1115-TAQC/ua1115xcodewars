@@ -2,6 +2,9 @@ package org.academy.kata.implementation.nasock;
 
 import org.academy.kata.Eight;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 public class EightImpl implements Eight {
     public int liters(double time) {
         return 0;
@@ -28,9 +31,9 @@ public class EightImpl implements Eight {
     }
 
     public double TwoDecimalPlaces(double number) {
-        int temp = (int)(number * 100);
-        double result = temp / 100.00d;
-        return result;
+        BigDecimal bd = BigDecimal.valueOf(number);
+        bd = bd.setScale(2, RoundingMode.HALF_UP);
+        return bd.doubleValue();
     }
 
     public int[] divisibleBy(int[] numbers, int divider) {
@@ -40,5 +43,5 @@ public class EightImpl implements Eight {
     public boolean am_i_wilson(double n) {
         return false;
     }
-
+    
 }
