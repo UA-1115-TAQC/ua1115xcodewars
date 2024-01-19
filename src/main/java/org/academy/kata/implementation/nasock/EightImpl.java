@@ -31,7 +31,7 @@ public class EightImpl implements Eight {
         return 0;
     }
 
-    private boolean isNatural(double num){
+    private boolean isInteger(double num){
         double decimalPart = num - (int)num;
         return decimalPart == 0.0;
     }
@@ -49,13 +49,12 @@ public class EightImpl implements Eight {
         int j = 0;
         for(int num : numbers) {
             double div = num/(double)divider;
-            if(isNatural(div)){
+            if(isInteger(div)){
                 result[j] = num;
                 j++;
             }
         }
-        int[] resized = resizeArr(result, j);
-        return resized;
+        return  resizeArr(result, j);
     }
 
     public boolean am_i_wilson(double n) {
