@@ -4,7 +4,12 @@ import org.academy.kata.Six;
 
 public class SixImpl implements Six {
     public long findNb(long m) {
-        return 0;
+        long n = 0;
+        while (m > 0) {
+            n++;
+            m -= n * n * n;
+        }
+        return (m == 0) ? n : -1;
     }
 
     public String balance(String book) {
