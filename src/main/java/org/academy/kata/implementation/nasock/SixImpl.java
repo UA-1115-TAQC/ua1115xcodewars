@@ -2,96 +2,106 @@ package org.academy.kata.implementation.nasock;
 
 import org.academy.kata.Six;
 
-import java.util.Arrays;
 
 public class SixImpl implements Six {
     public long findNb(long m) {
         return 0;
     }
 
-    private int findStart(int index, char[] chars, boolean lookForDigits){
+    private int findStrStart(int index, char[] chars){
         for(int i = index; i< chars.length; i++){
             char ch = chars[i];
-            if (lookForDigits && Character.isDigit(ch)){
-                return i;
-            } else if(!lookForDigits && Character.isAlphabetic(ch)){
+            if(Character.isAlphabetic(ch)){
                 return i;
             }
         }
         return -1;
     }
 
-    private int findEnd(int index, char[] chars, boolean lookForDigits){
+    private int findNumStart(int index, char[] chars){
+        for(int i = index; i< chars.length; i++){
+            char ch = chars[i];
+            if (Character.isDigit(ch)){
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    private int findStrEnd(int index, char[] chars){
         for(int i = index; i < chars.length; i++){
             char ch = chars[i];
-            if (lookForDigits && !Character.isDigit(ch) &&  ch != '.'){
+            if(!Character.isAlphabetic(ch) && ch != ' ' &&  ch != '.'){
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    private int findNumEnd(int index, char[] chars){
+        for(int i = index; i < chars.length; i++){
+            char ch = chars[i];
+            if (!Character.isDigit(ch) &&  ch != '.'){
                 if (i > 0 && chars[i-1] == '.'){
                     return i - 1;
                 }
                 return i;
-            } else if(!lookForDigits && !Character.isAlphabetic(ch) && ch != ' ' &&  ch != '.'){
-                return i;
             }
         }
         return -1;
     }
 
-    private String makeSubstring(int startIndex, int endtIndex, char[] chars){
-        char[] numChars = new char[endtIndex - startIndex];
+    private String makeSubstring(int startIndex, int endIndex, char[] chars){
+        char[] numChars = new char[endIndex - startIndex];
         int j = 0;
-        for(int i = startIndex; i <endtIndex; i++){
+        for(int i = startIndex; i <endIndex; i++){
             numChars[j] = chars[i];
             j++;
         }
         return new String(numChars);
     }
 
-    private String[] makeLineComponents(String line, String[] components){
+    private void makeLineComponents(String line, String[] components){
         char[] chars = line.toCharArray();
-        boolean lookForDigits = true;
-        int startIndex = findStart(0, chars, lookForDigits);
+        int startIndex = findNumStart(0, chars);
         if (startIndex == -1){
-//            TODO exeption
+            throw new ArrayIndexOutOfBoundsException();
         }
-        int endtIndex = findEnd(startIndex, chars, lookForDigits);
+        int endtIndex = findNumEnd(startIndex, chars);
         if (endtIndex == -1){
-            //            TODO exeption
+            throw new ArrayIndexOutOfBoundsException();
         }
         components[0] = makeSubstring(startIndex, endtIndex, chars);
 
-        lookForDigits = false;
-        startIndex = findStart(endtIndex, chars, lookForDigits);
+        startIndex = findStrStart(endtIndex, chars);
         if (startIndex == -1){
-            //            TODO exeption
+            throw new ArrayIndexOutOfBoundsException();
         }
-        endtIndex = findEnd(startIndex, chars, lookForDigits);
+        endtIndex = findStrEnd(startIndex, chars);
         if (endtIndex == -1){
-            //            TODO exeption
+            throw new ArrayIndexOutOfBoundsException();
         }
         components[1] = makeSubstring(startIndex, endtIndex, chars);
 
-        lookForDigits = true;
-        startIndex = findStart(endtIndex, chars, lookForDigits);
+        startIndex = findNumStart(endtIndex, chars);
         if (startIndex == -1){
-            //            TODO exeption
+            throw new ArrayIndexOutOfBoundsException();
         }
-        endtIndex = findEnd(startIndex, chars, lookForDigits);
+        endtIndex = findNumEnd(startIndex, chars);
         if (endtIndex == -1){
             endtIndex = chars.length;
         }
         components[2] =  makeSubstring(startIndex, endtIndex, chars);
 
-        return components;
     }
 
     private double findBalance(String line){
         char[] chars = line.toCharArray();
-        boolean lookForDigits = true;
-        int startIndex = findStart(0, chars, lookForDigits);
+        int startIndex = findNumStart(0, chars);
         if (startIndex == -1){
-            //            TODO exeption
+            throw new ArrayIndexOutOfBoundsException();
         }
-        int endtIndex = findEnd(startIndex, chars, lookForDigits);
+        int endtIndex = findNumEnd(startIndex, chars);
         if (endtIndex == -1){
             endtIndex = chars.length;
         }
@@ -114,7 +124,7 @@ public class SixImpl implements Six {
             if (currentLine.isEmpty()){
                 continue;
             }
-            components = makeLineComponents(currentLine, components);
+            makeLineComponents(currentLine, components);
             int num = Integer.parseInt(components[0]);
             resultStr = resultStr + num + " ";
 
@@ -158,16 +168,4 @@ public class SixImpl implements Six {
         return null;
     }
 
-    public static void main(String[] args){
-        SixImpl e = new SixImpl();
-//		System.out.println(e.balance("1000.00!=\n125 Market !=:125.45\n126 Hardware =34.95" +
-//                "\n127 Video! 7.45\n128 Book :14.32\n129 Gasoline ::16.10"));
-//        System.out.println("***************");
-        System.out.println(e.balance("1233.00\n125 Hardware;! 24.80?\n123 Flowers 93.50;\n127 " +
-                "Meat 120.90\n120 Picture 34.00\n124 Gasoline 11.00\n" +
-                "123 Photos;! 71.40?\n122 Picture 93.50\n132 Tyres;! 19.00,?;\n129 " +
-                "Stamps; 13.60\n129 Fruits{} 17.60\n129 Market;! 128.00?\n121 Gasoline;! 13.60?"));
-
-
-	}
 }
