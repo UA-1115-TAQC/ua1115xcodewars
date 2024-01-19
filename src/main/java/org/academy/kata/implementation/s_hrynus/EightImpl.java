@@ -3,6 +3,9 @@ package org.academy.kata.implementation.s_hrynus;
 import org.academy.kata.Eight;
 
 public class EightImpl implements Eight {
+    public static final float ONE_IMPERIAL_GALLON = 4.54609188f;
+    public static final float ONE_KM = 1.609344f;
+
     public int liters(double time) {
         return 0;
     }
@@ -12,7 +15,7 @@ public class EightImpl implements Eight {
     }
 
     public float mpgToKPM(float mpg) {
-        return 0;
+        return (float) Math.round(mpg * ONE_IMPERIAL_GALLON / ONE_KM * 100) / 100;
     }
 
     public int[] squareOrSquareRoot(int[] array) {
