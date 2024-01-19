@@ -3,8 +3,10 @@ package org.academy.kata.implementation.alevtyna30;
 import org.academy.kata.Eight;
 
 public class EightImpl implements Eight {
+    private static final double WATER_PER_HOUR = 0.5;
     public int liters(double time) {
-        return 0;
+
+        return (int) (time * WATER_PER_HOUR);
     }
 
     public double getVolumeOfCuboid(double length, double width, double height) {
