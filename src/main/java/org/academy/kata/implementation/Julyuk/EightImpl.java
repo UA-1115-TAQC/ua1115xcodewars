@@ -7,11 +7,9 @@ import java.lang.Math;
 public class EightImpl implements Eight {
     public int liters(double time) {
         if (time > 0) {
-            int result = (int) Math.floor(time * 0.5);
-            return result;
-        } else {
-            throw new IllegalArgumentException("Time must be a positive number");
+            return (int) Math.floor(time * 0.5);
         }
+        throw new IllegalArgumentException("Time must be a positive number");
     }
 
     public double getVolumeOfCuboid(double length, double width, double height) {
