@@ -60,7 +60,10 @@ public class SixImpl implements Six {
         int teamIndex = resultSheet.indexOf(toFind);
         if (teamIndex == -1) {
             return toFind + ":This team didn't play!";
-        } else if(resultSheet.charAt(teamIndex+toFind.length()) != ' '){
+        }
+//        check that the found name is not a part of other name
+        int tempIndex = teamIndex + toFind.length();
+        if(tempIndex >= resultSheet.length() || resultSheet.charAt(tempIndex) != ' '){
             return toFind + ":This team didn't play!";
         }
         int wins = 0;
@@ -72,7 +75,7 @@ public class SixImpl implements Six {
             //            get the start index of score of toFind team
             teamIndex = teamIndex + toFind.length() + 1;
             if(teamIndex >= resultSheet.length()){
-                return "Error: enterence without result";
+                return "Error: result is missing";
             }
             String numStr = getScoredStr(resultSheet, teamIndex);
             //            check if number is float
