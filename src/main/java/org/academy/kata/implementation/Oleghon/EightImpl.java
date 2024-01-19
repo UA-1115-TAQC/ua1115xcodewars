@@ -4,7 +4,7 @@ import org.academy.kata.Eight;
 
 public class EightImpl implements Eight {
     public int liters(double time) {
-        return 0;
+        return (int) Math.floor(time / 2);
     }
 
     public double getVolumeOfCuboid(double length, double width, double height) {
