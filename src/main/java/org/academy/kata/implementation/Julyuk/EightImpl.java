@@ -12,9 +12,8 @@ public class EightImpl implements Eight {
     public double getVolumeOfCuboid(double length, double width, double height) {
         if(length > 0 && width > 0 && height > 0){
             return length * width * height;
-        } else{
-            throw new IllegalArgumentException("All values must be positive");
         }
+        throw new IllegalArgumentException("All values must be positive");
     }
 
     public float mpgToKPM(float mpg) {
