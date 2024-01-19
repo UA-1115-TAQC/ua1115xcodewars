@@ -28,9 +28,8 @@ public class EightImpl implements Eight {
                 }
             }
             return resultArray;
-        } else{
-            throw new IllegalArgumentException("The array must not be empty");
         }
+            throw new IllegalArgumentException("The array must not be empty");
     }
 
     public int[] countPositivesSumNegatives(int[] input) {
