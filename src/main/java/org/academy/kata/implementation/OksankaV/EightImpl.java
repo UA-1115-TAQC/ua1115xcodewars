@@ -5,7 +5,7 @@ import java.util.Arrays;
 
 public class EightImpl implements Eight {
     public int liters(double time) {
-        return 0;
+        return (int)(time / 2);
     }
 
     public double getVolumeOfCuboid(double length, double width, double height) {
