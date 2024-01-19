@@ -4,8 +4,18 @@ import org.academy.kata.Six;
 
 public class SixImpl implements Six {
     public long findNb(long m) {
-        return 0;
-    }
+        long volume = 0;
+        int n = 1;
+
+        while (volume < m) {
+            volume += (long) Math.pow(n, 3);
+            if (volume == m) {
+                return n;
+            }
+            n++;
+        }
+        return -1;
+}
 
     public String balance(String book) {
         return null;
