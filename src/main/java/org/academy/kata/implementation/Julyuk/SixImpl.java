@@ -6,15 +6,14 @@ public class SixImpl implements Six {
     public long findNb(long m) {
         if(m > 0){
             long volume = 0;
-            long cubes =1;
+            long cubes = 1;
             while(volume < m){
                 volume += (long) Math.pow((cubes),3);
                 cubes++;
             }
             return (volume==m) ? (cubes - 1) : -1;
-        } else{
-            throw new IllegalArgumentException();
         }
+        throw new IllegalArgumentException();
     }
 
     public String balance(String book) {
