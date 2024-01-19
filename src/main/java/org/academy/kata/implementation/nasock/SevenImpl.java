@@ -14,8 +14,7 @@ public class SevenImpl implements Seven {
         if (arr.length > 0 && (sum / arr.length > navg)){
             throw new IllegalArgumentException ();
         }
-        long result = (long) (navg * (arr.length+1) - sum);
-        return result;
+        return (long) (navg * (arr.length + 1) - sum);
     }
 
     public String seriesSum(int n) {
