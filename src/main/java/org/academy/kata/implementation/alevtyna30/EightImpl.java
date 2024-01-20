@@ -2,6 +2,8 @@ package org.academy.kata.implementation.alevtyna30;
 
 import org.academy.kata.Eight;
 
+import java.util.Arrays;
+
 public class EightImpl implements Eight {
     public int liters(double time) {
         return 0;
@@ -16,7 +18,12 @@ public class EightImpl implements Eight {
     }
 
     public int[] squareOrSquareRoot(int[] array) {
-        return new int[0];
+        return Arrays.stream(array)
+                .map(number -> {
+                    int squareRoot = (int) Math.sqrt(number);
+                    return squareRoot * squareRoot == number ? squareRoot : number * number;
+                })
+                .toArray();
     }
 
     public int[] countPositivesSumNegatives(int[] input) {
