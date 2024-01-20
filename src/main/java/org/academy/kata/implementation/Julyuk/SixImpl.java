@@ -28,6 +28,34 @@ public class SixImpl implements Six {
     }
 
     public String stockSummary(String[] lstOfArt, String[] lstOf1stLetter) {
-        return null;
+        if (lstOfArt != null && lstOf1stLetter != null && lstOfArt.length > 0 && lstOf1stLetter.length > 0) {
+            int[] count = new int[lstOf1stLetter.length];
+
+            for (int i = 0; i < lstOfArt.length; i++) {
+                String[] parts = lstOfArt[i].split(" ");
+                if (parts.length == 2) {
+                    String code = parts[0];
+                    int quantity = Integer.parseInt(parts[1]);
+
+                    for (int j = 0; j < lstOf1stLetter.length; j++) {
+                        if (code.startsWith(lstOf1stLetter[j])) {
+                            count[j] += quantity;
+                        }
+                    }
+                }
+            }
+
+            StringBuilder result = new StringBuilder();
+            for (int j = 0; j < lstOf1stLetter.length; j++) {
+                result.append("(").append(lstOf1stLetter[j]).append(" : ").append(count[j]).append(")");
+                if (j != lstOf1stLetter.length - 1) {
+                    result.append(" - ");
+                }
+            }
+
+            return result.toString();
+        }
+
+        return "";
     }
 }
