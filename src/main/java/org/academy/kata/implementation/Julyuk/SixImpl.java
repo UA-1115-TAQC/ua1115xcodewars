@@ -16,7 +16,35 @@ public class SixImpl implements Six {
     }
 
     public double mean(String town, String strng) {
-        return 0;
+        if (!town.isEmpty() && !strng.isEmpty()) {
+            String[] townRecords = strng.split("\n");
+
+            for (String townRecord : townRecords) {
+                if (townRecord.startsWith(town + ":")) {
+                    String[] months = townRecord.split(":")[1].trim().split(","); //start working with the part after :
+                    double sum = 0;
+                    int count = 0;
+
+                    for (String month : months) {
+                        String[] monthData = month.trim().split("\\s+");
+                        if (monthData.length == 2) {
+                            sum += Double.parseDouble(monthData[1]);
+                            count++;
+                        }
+                    }
+
+                    if (count > 0) {
+                        return sum / count;
+                    } else {
+                        return -1.0;
+                    }
+                }
+            }
+
+            return -1.0;
+        }
+
+        throw new IllegalArgumentException("Invalid input");
     }
 
     public double variance(String town, String strng) {
