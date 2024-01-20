@@ -1,6 +1,7 @@
 package org.academy.kata.implementation.alevtyna30;
 
 import org.academy.kata.Eight;
+import java.util.Arrays;
 
 public class EightImpl implements Eight {
     public int liters(double time) {
@@ -32,7 +33,9 @@ public class EightImpl implements Eight {
     }
 
     public int[] divisibleBy(int[] numbers, int divider) {
-        return new int[0];
+        return Arrays.stream(numbers)
+                .filter(num -> num % divider == 0)
+                .toArray();
     }
 
     public boolean am_i_wilson(double n) {
