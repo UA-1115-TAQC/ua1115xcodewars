@@ -1,7 +1,7 @@
 package org.academy.kata.implementation.Natalia62;
 
 import org.academy.kata.Eight;
-
+import java.util.Arrays;
 public class EightImpl implements Eight {
     public int liters(double time) {
         return 0;
@@ -32,7 +32,7 @@ public class EightImpl implements Eight {
     }
 
     public int[] divisibleBy(int[] numbers, int divider) {
-        return new int[0];
+        return Arrays.stream(numbers).filter(number -> number % divider == 0).toArray();
     }
 
     public boolean am_i_wilson(double n) {
