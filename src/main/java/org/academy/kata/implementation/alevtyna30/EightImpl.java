@@ -2,6 +2,8 @@ package org.academy.kata.implementation.alevtyna30;
 
 import org.academy.kata.Eight;
 
+import java.util.Arrays;
+
 public class EightImpl implements Eight {
     public int liters(double time) {
         return 0;
@@ -20,7 +22,14 @@ public class EightImpl implements Eight {
     }
 
     public int[] countPositivesSumNegatives(int[] input) {
-        return new int[0];
+        if (input == null || input.length == 0) {
+            return new int[]{};
+        }
+
+        int countPositives = (int) Arrays.stream(input).filter(num -> num > 0).count();
+        int sumNegatives = Arrays.stream(input).filter(num -> num < 0).sum();
+
+        return new int[]{countPositives, sumNegatives};
     }
 
     public int stringToNumber(String str) {
