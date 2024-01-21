@@ -2,6 +2,9 @@ package org.academy.kata.implementation.Oleghon;
 
 import org.academy.kata.Eight;
 
+import java.math.BigInteger;
+import java.util.stream.LongStream;
+
 public class EightImpl implements Eight {
     public int liters(double time) {
         return (int) Math.floor(time / 2);
@@ -36,6 +39,14 @@ public class EightImpl implements Eight {
     }
 
     public boolean am_i_wilson(double n) {
-        return false;
+        if (n <= 1) return false;
+
+        long longN = (long) n;
+        return LongStream.range(2, longN)
+                .mapToObj(BigInteger::valueOf)
+                .reduce(BigInteger.ONE, BigInteger::multiply)
+                .add(BigInteger.ONE)
+                .divideAndRemainder(BigInteger.valueOf(longN * longN))[1]
+                .intValue() == 0;
     }
 }
