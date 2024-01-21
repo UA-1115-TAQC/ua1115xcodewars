@@ -8,7 +8,12 @@ import static java.util.Arrays.stream;
 
 public class SixImpl implements Six {
     public long findNb(long m) {
-        return 0;
+        long result = 1, sum = 0;
+        while (sum < m) {
+            sum += (long) Math.pow(result, 3);
+            result++;
+        }
+        return sum == m ? result - 1 : -1;
     }
 
     public String balance(String book) {
