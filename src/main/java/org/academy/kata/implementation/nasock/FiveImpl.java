@@ -62,9 +62,10 @@ public class FiveImpl implements Five {
     }
 
     public double solve(double m) {
-        return 0;
+        double sqrtD = Math.sqrt(4 * m + 1);
+        return (2 * m + 1 - sqrtD) / (2 * m);
     }
-
+    
     public long[] smallest(long n) {
         return new long[0];
     }
