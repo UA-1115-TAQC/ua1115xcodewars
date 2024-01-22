@@ -4,7 +4,16 @@ import org.academy.kata.Six;
 
 public class SixImpl implements Six {
     public long findNb(long m) {
-        return 0;
+        if(m > 0){
+            long volume = 0;
+            long cubes = 1;
+            while(volume < m){
+                volume += (long) Math.pow((cubes),3);
+                cubes++;
+            }
+            return (volume==m) ? (cubes - 1) : -1;
+        }
+        throw new IllegalArgumentException();
     }
 
     public String balance(String book) {
