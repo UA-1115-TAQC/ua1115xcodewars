@@ -8,23 +8,28 @@ public class SevenImpl implements Seven {
         if(arr != null && navg > 0){
             double sum = 0;
             int counter = 0;
-            for(int i = 0; i < arr.length; i++){
-                sum += arr[i];
-                counter +=1;
+            for (double v : arr) {
+                sum += v;
+                counter += 1;
             }
             int result = (int) Math.ceil(navg*(counter+1)-sum);
-            if (result >0){
+            if (result > 0){
                 return result;
-            } else{
-                throw new IllegalArgumentException();
             }
-        } else{
-            throw new IllegalArgumentException();
         }
+            throw new IllegalArgumentException();
     }
 
     public String seriesSum(int n) {
-        return null;
+        double result = 1.00;
+        double divider = 1.00;
+        if(n != 0){
+            for(int i = 1; i < n; i++){
+                divider += 3;
+                result += 1 / divider;
+            }
+        }
+        return n == 0 ? "0.00" : String.format("%.2f", result);
     }
 
     public int whereIsHe(int p, int bef, int aft) {
