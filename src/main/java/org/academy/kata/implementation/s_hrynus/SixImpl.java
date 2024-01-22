@@ -2,12 +2,19 @@ package org.academy.kata.implementation.s_hrynus;
 
 import org.academy.kata.Six;
 
+
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.DoubleStream;
 import java.util.stream.Stream;
 
 public class SixImpl implements Six {
+
+
+
+
+
     private static final String FLOAT_NUMBER_ISOLATOR = "\\b(\\d+\\.\\d+)\\b";
     private static final String LINE_SEPARATOR = "\n";
 
