@@ -4,9 +4,6 @@ import org.academy.kata.Eight;
 import java.lang.Math;
 import java.math.BigInteger;
 
-import java.lang.Math;
-
-
 public class EightImpl implements Eight {
     public int liters(double time) {
         if (time > 0) {
