@@ -8,25 +8,22 @@ public class EightImpl implements Eight {
     }
 
     public double getVolumeOfCuboid(double length, double width, double height) {
-        double volume = length * width * height;
-        return volume;
-    }
-
-    public static void main(String[] args) {
-        // Приклад використання
-        EightImpl cuboidCalculator = new EightImpl();
-        double length = 5.0;
-        double width = 3.0;
-        double height = 2.0;
-
-        double result = cuboidCalculator.getVolumeOfCuboid(length, width, height);
-
-        System.out.println("The volume of the cuboid is: " + result);
+        return 0;
     }
 
     public float mpgToKPM(float mpg) {
-        return 0;
-    }
+            float gallonsToLiters = 4.54609188f;
+            float milesToKilometers = 1.609344f;
+            float kpm = (mpg * milesToKilometers) / gallonsToLiters;
+            kpm = Math.round(kpm * 100.0) / 100.0f;
+            return kpm;
+        }
+        public static void main(String[] args) {
+            Eight converter = new EightImpl();
+            float mpg = 35.0f;
+            float kpm = converter.mpgToKPM(mpg);
+            System.out.println(mpg + " mpg is equal to " + kpm + " kpm");
+        }
 
     public int[] squareOrSquareRoot(int[] array) {
         return new int[0];
