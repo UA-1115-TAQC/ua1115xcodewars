@@ -1,14 +1,14 @@
 package org.academy.kata.implementation.Natalia62;
 
 import org.academy.kata.Eight;
-
+import java.math.BigInteger;
 public class EightImpl implements Eight {
     public int liters(double time) {
-        return 0;
+        return (int) (time*0.5);
     }
 
     public double getVolumeOfCuboid(double length, double width, double height) {
-        return 0;
+        return length * width * height;
     }
 
     public float mpgToKPM(float mpg) {
@@ -16,7 +16,11 @@ public class EightImpl implements Eight {
     }
 
     public int[] squareOrSquareRoot(int[] array) {
-        return new int[0];
+        for (int i = 0; i < array.length; i++) {
+            if (Math.sqrt(array[i]) % 1 == 0) array[i] = (int) Math.sqrt(array[i]);
+            else array[i] = (int) Math.pow(array[i],2);
+        }
+        return array;
     }
 
     public int[] countPositivesSumNegatives(int[] input) {
@@ -28,7 +32,7 @@ public class EightImpl implements Eight {
     }
 
     public double TwoDecimalPlaces(double number) {
-        return 0;
+        return Math.round(number * 100d) / 100d;
     }
 
     public int[] divisibleBy(int[] numbers, int divider) {
@@ -36,6 +40,14 @@ public class EightImpl implements Eight {
     }
 
     public boolean am_i_wilson(double n) {
-        return false;
+        if (n <= 2) return false;
+        BigInteger factorial = BigInteger.ONE;
+        BigInteger number =  BigInteger.valueOf((long) n);
+
+        for (int i = 1; i < n; i++) {
+            factorial = factorial.multiply(BigInteger.valueOf(i));}
+        BigInteger Newfactorial = factorial.add(BigInteger.ONE);
+        BigInteger pow = number.multiply(number);
+        return Newfactorial.mod(pow).equals(BigInteger.ZERO);
     }
 }

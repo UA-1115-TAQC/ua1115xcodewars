@@ -12,6 +12,7 @@ public class FiveImpl implements Five {
         }
         return true;
     }
+
     public long[] gap(int g, long m, long n) {
         long currentPrime = 0;
         long nextPrime = 0;
@@ -36,11 +37,22 @@ public class FiveImpl implements Five {
     }
 
     public double solve(double m) {
-        return 0;
+        double sqrt = Math.sqrt(4 * m + 1);
+        return (1 - sqrt) / (2 * m) + 1;
     }
 
     public long[] smallest(long n) {
-        return new long[0];
+        long[] resultArr = new long[]{n, 0, 0};
+        String nStr = Long.toString(n);
+        for (int i = nStr.length() - 1; i >= 0; i--) {
+            String str = nStr.substring(0, i) + nStr.substring(i + 1);
+            for (int j = nStr.length() - 1; j >= 0; j--) {
+                long tempVal = Long.valueOf(str.substring(0, j) + nStr.charAt(i) + str.substring(j));
+                if (resultArr[0] >= tempVal)
+                    resultArr = new long[]{tempVal, i, j};
+            }
+        }
+        return resultArr;
     }
 
     public int artificialRain(int[] v) {
