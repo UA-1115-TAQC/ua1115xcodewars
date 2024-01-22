@@ -2,6 +2,9 @@ package org.academy.kata.implementation.ystankevych;
 
 import org.academy.kata.Six;
 
+import java.util.Arrays;
+import java.util.stream.Collectors;
+
 public class SixImpl implements Six {
     public long findNb(long m) {
         return 0;
@@ -28,6 +31,14 @@ public class SixImpl implements Six {
     }
 
     public String stockSummary(String[] lstOfArt, String[] lstOf1stLetter) {
-        return null;
+        if (lstOfArt == null || lstOf1stLetter == null || lstOfArt.length == 0
+                || lstOf1stLetter.length == 0) {
+            return "";
+        }
+        return Arrays.stream(lstOf1stLetter)
+                .map(s -> "(%s : %d)".formatted(s, Arrays.stream(lstOfArt)
+                        .filter(a -> a.startsWith(s))
+                        .mapToInt(a -> Integer.parseInt(a.split("\\s")[1])).sum()))
+                .collect(Collectors.joining(" - "));
     }
 }
