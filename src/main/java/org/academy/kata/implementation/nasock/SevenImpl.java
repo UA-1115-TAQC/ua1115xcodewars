@@ -4,7 +4,17 @@ import org.academy.kata.Seven;
 
 public class SevenImpl implements Seven {
     public long newAvg(double[] arr, double navg) {
-        return 0;
+        if (arr == null || navg < 0) {
+            throw new IllegalArgumentException ();
+        }
+        long sum = 0L;
+        for (double num : arr) {
+            sum = sum + (long) num;
+        }
+        if (arr.length > 0 && (sum / arr.length > navg)){
+            throw new IllegalArgumentException ();
+        }
+        return (long) (navg * (arr.length + 1) - sum);
     }
 
     public String seriesSum(int n) {
@@ -14,4 +24,5 @@ public class SevenImpl implements Seven {
     public int whereIsHe(int p, int bef, int aft) {
         return 0;
     }
+
 }
