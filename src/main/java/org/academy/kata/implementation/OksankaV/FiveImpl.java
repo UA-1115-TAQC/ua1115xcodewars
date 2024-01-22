@@ -12,6 +12,7 @@ public class FiveImpl implements Five {
         }
         return true;
     }
+
     public long[] gap(int g, long m, long n) {
         long currentPrime = 0;
         long nextPrime = 0;
@@ -36,7 +37,8 @@ public class FiveImpl implements Five {
     }
 
     public double solve(double m) {
-        return 0;
+        double sqrt = Math.sqrt(4 * m + 1);
+        return (1 - sqrt) / (2 * m) + 1;
     }
 
     public long[] smallest(long n) {
