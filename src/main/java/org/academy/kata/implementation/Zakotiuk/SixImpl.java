@@ -12,7 +12,10 @@ public class SixImpl implements Six {
     }
 
     public double f(double x) {
-        return 0;
+        double numerator = x;
+        double denominator = Math.sqrt(1 + x) + 1;
+
+        return numerator / denominator;
     }
 
     public double mean(String town, String strng) {
