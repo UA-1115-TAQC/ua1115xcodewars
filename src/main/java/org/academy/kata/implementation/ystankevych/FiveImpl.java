@@ -1,8 +1,11 @@
 package org.academy.kata.implementation.ystankevych;
 
-import org.academy.kata.Five;
+import static java.math.BigInteger.ONE;
+import static java.math.BigInteger.ZERO;
 
 import java.math.BigInteger;
+import java.util.stream.Stream;
+import org.academy.kata.Five;
 
 public class FiveImpl implements Five {
     public long[] gap(int g, long m, long n) {
@@ -14,7 +17,8 @@ public class FiveImpl implements Five {
     }
 
     public BigInteger perimeter(BigInteger n) {
-        return null;
+        return Stream.iterate(new BigInteger[]{ONE, ONE}, i -> new BigInteger[]{i[1], i[0].add(i[1])})
+                .limit(n.longValue()).map(a -> a[1]).reduce(ZERO, BigInteger::add).add(ONE).multiply(BigInteger.valueOf(4));
     }
 
     public double solve(double m) {
