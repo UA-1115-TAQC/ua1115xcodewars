@@ -39,12 +39,11 @@ public class EightImpl implements Eight {
             return new int[] {};
         int positive_count = 0;
         int negative_summ = 0;
-        for(int i = 0; i < input.length; ++i){
-            if(input[i] > 0){
+        for (int j : input) {
+            if (j > 0) {
                 positive_count++;
-            }
-            else{
-                negative_summ+= input[i];
+            } else {
+                negative_summ += j;
             }
         }
         return new int[] {positive_count, negative_summ};
@@ -63,6 +62,10 @@ public class EightImpl implements Eight {
     }
 
     public boolean am_i_wilson(double n) {
-        return false;
+        long sqr = (long) (n * n);
+        long item = 1;
+        for (long factor = 2; factor < n; factor++)
+            item = (item * factor) % sqr;
+        return item + 1 == sqr;
     }
 }
