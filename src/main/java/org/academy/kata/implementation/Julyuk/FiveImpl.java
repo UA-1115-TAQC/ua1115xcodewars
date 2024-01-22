@@ -18,9 +18,7 @@ public class FiveImpl implements Five {
         }
     private static boolean isPrime(long n) {
         if (n <= 2) return false;
-        for (long i = 3; i < n; i += 2) {
-                if (n % i == 0) return false;
-        }
+        for (long i = 3; i < n; i += 2) if (n % i == 0) return false;
         return true;
     }
 
