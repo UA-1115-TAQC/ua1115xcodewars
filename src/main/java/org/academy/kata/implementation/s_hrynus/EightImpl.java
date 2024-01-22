@@ -46,7 +46,9 @@ public class EightImpl implements Eight {
     }
 
     public int[] divisibleBy(int[] numbers, int divider) {
-        return new int[0];
+        return IntStream.of(numbers)
+                .filter(x -> x % divider == 0)
+                .toArray();
     }
 
     public boolean am_i_wilson(double n) {
