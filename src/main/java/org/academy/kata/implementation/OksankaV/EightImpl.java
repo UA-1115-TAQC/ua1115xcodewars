@@ -32,7 +32,17 @@ public class EightImpl implements Eight {
     }
 
     public int[] countPositivesSumNegatives(int[] input) {
-        return new int[0];
+        if (input != null && input.length != 0) {
+            int countPositive = 0;
+            int sumNegative = 0;
+            for (int value : input) {
+                if (value > 0) countPositive++;
+                else if (value < 0) sumNegative += value;
+            }
+            int[] arr = {countPositive,sumNegative};
+            return arr;
+        } else
+            return new int[0];
     }
 
     public int stringToNumber(String str) {
