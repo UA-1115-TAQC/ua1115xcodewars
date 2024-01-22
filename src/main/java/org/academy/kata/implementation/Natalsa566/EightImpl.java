@@ -2,9 +2,11 @@ package org.academy.kata.implementation.Natalsa566;
 
 import org.academy.kata.Eight;
 
+import java.util.Arrays;
+
 public class EightImpl implements Eight {
     public int liters(double time) {
-        return (int) Math.floor(time * 0.5);
+        return 0;
     }
 
     public double getVolumeOfCuboid(double length, double width, double height) {
@@ -12,22 +14,20 @@ public class EightImpl implements Eight {
     }
 
     public float mpgToKPM(float mpg) {
-            float gallonsToLiters = 4.54609188f;
-            float milesToKilometers = 1.609344f;
-            float kpm = (mpg * milesToKilometers) / gallonsToLiters;
-            kpm = Math.round(kpm * 100.0) / 100.0f;
-            return kpm;
-        }
-        public static void main(String[] args) {
-            Eight converter = new EightImpl();
-            float mpg = 35.0f;
-            float kpm = converter.mpgToKPM(mpg);
-            System.out.println(mpg + " mpg is equal to " + kpm + " kpm");
+        return 0;
         }
 
     public int[] squareOrSquareRoot(int[] array) {
-        return new int[0];
-    }
+            return Eight.squareOrSquareRootStatic(array);
+        }
+        public static void main(String[] args) {
+            EightImpl eightImpl = new EightImpl();
+            int[] inputArray = {4, 3, 9, 7, 2, 1};
+            int[] resultArray = eightImpl.squareOrSquareRoot(inputArray);
+
+            System.out.println("Input Array: " + Arrays.toString(inputArray));
+            System.out.println("Result Array: " + Arrays.toString(resultArray));
+        }
 
     public int[] countPositivesSumNegatives(int[] input) {
         return new int[0];
