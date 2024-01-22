@@ -6,11 +6,6 @@ public class EightImpl implements Eight {
     public int liters(double time) {
         return (int) Math.floor(time * 0.5);
     }
-    public static void main(String[] args) {
-        System.out.println(new EightImpl().liters(3));
-        System.out.println(new EightImpl().liters(6.7));
-        System.out.println(new EightImpl().liters(11.8));
-    }
 
     public double getVolumeOfCuboid(double length, double width, double height) {
         return 0;
