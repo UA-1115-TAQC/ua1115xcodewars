@@ -4,6 +4,8 @@ import org.academy.kata.Six;
 
 import java.util.regex.Pattern;
 
+import static java.util.Arrays.stream;
+
 public class SixImpl implements Six {
     public long findNb(long m) {
         return 0;
@@ -44,12 +46,30 @@ public class SixImpl implements Six {
         return x / (Math.sqrt(x + 1) + 1);
     }
 
-    public double mean(String town, String strng) {
-        return 0;
+    public double mean(String town, String data) {
+        return data.lines()
+                .map(line -> line.split(":"))
+                .filter(line -> line[0].equals(town))
+                .map(line -> line[1])
+                .flatMap(line -> stream(line.split(",")))
+                .map(arr -> arr.split(" ")[1])
+                .mapToDouble(Double::parseDouble)
+                .average()
+                .orElse(-1);
     }
 
-    public double variance(String town, String strng) {
-        return 0;
+    public double variance(String town, String data) {
+        final double mean = mean(town, data);
+        return data.lines()
+                .map(line -> line.split(":"))
+                .filter(line -> line[0].equals(town))
+                .map(line -> line[1])
+                .flatMap(line -> stream(line.split(",")))
+                .map(arr -> arr.split(" ")[1])
+                .mapToDouble(Double::parseDouble)
+                .map(v -> (mean - v) * (mean - v))
+                .average()
+                .orElse(-1);
     }
 
     public String nbaCup(String resultSheet, String toFind) {
