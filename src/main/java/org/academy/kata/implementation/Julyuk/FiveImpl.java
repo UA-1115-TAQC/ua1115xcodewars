@@ -73,8 +73,34 @@ public class FiveImpl implements Five {
         throw new IllegalArgumentException();
     }
 
+    private static long insertDigit(long num, int from, int to) {
+        String numStr = Long.toString(num);
+        StringBuilder result = new StringBuilder(numStr);
+        char digit = result.charAt(from);
+        result.deleteCharAt(from);
+        result.insert(to, digit);
+        return Long.parseLong(result.toString());
+    }
     public long[] smallest(long n) {
-        return new long[0];
+        if (n > 0) {
+            String numStr = Long.toString(n);
+            int length = numStr.length();
+            long minNum = n;
+            long[] result = new long[]{n, 0, 0};
+            for (int i = 0; i < length; i++) {
+                for (int j = 0; j < length; j++) {
+                    long currentNum = insertDigit(n, i, j);
+                    if (currentNum < minNum) {
+                        minNum = currentNum;
+                        result[0] = minNum;
+                        result[1] = i;
+                        result[2] = j;
+                    }
+                }
+            }
+            return result;
+        }
+        throw new IllegalArgumentException();
     }
 
     public int artificialRain(int[] v) {

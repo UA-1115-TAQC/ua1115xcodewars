@@ -2,8 +2,8 @@ package org.academy.kata.implementation.Oleghon;
 
 import org.academy.kata.Eight;
 
-import java.math.BigInteger;
 import java.util.stream.LongStream;
+import java.math.*;
 
 public class EightImpl implements Eight {
     public int liters(double time) {
@@ -46,8 +46,8 @@ public class EightImpl implements Eight {
         return Integer.parseInt(str);
     }
 
-    public double TwoDecimalPlaces(double number) {
-        return 0;
+    public double TwoDecimalPlaces(double value) {
+        return new BigDecimal(value).setScale(2, RoundingMode.HALF_EVEN).doubleValue();
     }
 
     public int[] divisibleBy(int[] numbers, int divider) {

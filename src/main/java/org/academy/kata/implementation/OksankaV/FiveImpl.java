@@ -29,11 +29,29 @@ public class FiveImpl implements Five {
     }
 
     public int zeros(int n) {
-        return 0;
+        int countZero = 0;
+        int k = 5;
+        while (n / k > 0) {
+            countZero += n / k;
+            k *= 5;
+        }
+        return countZero;
     }
 
     public BigInteger perimeter(BigInteger n) {
-        return null;
+        BigInteger sum = BigInteger.ONE;
+        BigInteger prevNumber = BigInteger.ZERO;
+        BigInteger currentNumber = BigInteger.ONE;
+        BigInteger i = BigInteger.ONE;
+        n = n.add(BigInteger.ONE);
+        while (n.compareTo(i) == 1) {
+            BigInteger tempNumber = prevNumber;
+            prevNumber = currentNumber;
+            currentNumber = currentNumber.add(tempNumber);
+            sum = sum.add(currentNumber);
+            i = i.add(BigInteger.ONE);
+        }
+        return sum.multiply(BigInteger.valueOf(4));
     }
 
     public double solve(double m) {

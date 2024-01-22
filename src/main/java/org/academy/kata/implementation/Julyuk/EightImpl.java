@@ -2,9 +2,8 @@ package org.academy.kata.implementation.Julyuk;
 
 import org.academy.kata.Eight;
 import java.lang.Math;
+import java.util.Arrays;
 import java.math.BigInteger;
-
-import java.lang.Math;
 
 public class EightImpl implements Eight {
     public int liters(double time) {
@@ -15,7 +14,10 @@ public class EightImpl implements Eight {
     }
 
     public double getVolumeOfCuboid(double length, double width, double height) {
-        return 0;
+        if(length > 0 && width > 0 && height > 0){
+            return length * width * height;
+        }
+        throw new IllegalArgumentException("All values must be positive");
     }
 
     public float mpgToKPM(float mpg) {
@@ -28,7 +30,19 @@ public class EightImpl implements Eight {
     }
 
     public int[] squareOrSquareRoot(int[] array) {
-        return new int[0];
+        if(array != null) {
+            int [] resultArray = Arrays.copyOf(array, array.length);
+            for(int elem = 0; elem < array.length; elem++){
+                if(resultArray[elem] > 0 &&
+                        (int) Math.sqrt(resultArray[elem]) * (int)  Math.sqrt(resultArray[elem]) == resultArray[elem]){
+                    resultArray[elem] = (int) Math.sqrt(resultArray[elem]);
+                } else{
+                    resultArray[elem] *= resultArray[elem];
+                }
+            }
+            return resultArray;
+        }
+            throw new IllegalArgumentException("The array must not be empty");
     }
 
     public int[] countPositivesSumNegatives(int[] input) {
