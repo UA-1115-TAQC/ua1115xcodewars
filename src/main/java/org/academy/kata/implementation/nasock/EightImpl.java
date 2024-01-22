@@ -56,7 +56,9 @@ public class EightImpl implements Eight {
     }
 
     public double TwoDecimalPlaces(double number) {
-        return 0;
+        BigDecimal bd = BigDecimal.valueOf(number);
+        bd = bd.setScale(2, RoundingMode.HALF_UP);
+        return bd.doubleValue();
     }
 
     public int[] divisibleBy(int[] numbers, int divider) {
