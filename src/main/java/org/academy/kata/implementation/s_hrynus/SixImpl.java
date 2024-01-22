@@ -14,7 +14,13 @@ public class SixImpl implements Six {
     public static final int LOSE = 3;
     public static final int DRAW = 4;
     public long findNb(long m) {
-        return 0;
+        long n = 1;
+        long sum = 0;
+        while (sum < m) {
+            sum += (long) Math.pow(n, 3);
+            n++;
+        }
+        return sum == m ? n - 1 : -1;
     }
 
     public String balance(String book) {
