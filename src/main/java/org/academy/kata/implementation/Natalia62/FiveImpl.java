@@ -6,8 +6,24 @@ import java.math.BigInteger;
 
 public class FiveImpl implements Five {
     public long[] gap(int g, long m, long n) {
-        return new long[0];
+        long prevPrime = 0;
+        for (long i = m; i <= n; i++) {
+            if (isPrime(i)) {
+                if (i - prevPrime == g) return new long[]{prevPrime, i};
+                prevPrime = i;
+            }
+        }
+        return null;
     }
+
+    private static boolean isPrime(long i) {
+        if (i < 2) return false;
+        for (long j = 2; j <= Math.sqrt(i); j++) {
+            if (i % j == 0) return false;
+        }
+        return true;
+    }
+
 
     public int zeros(int n) {
         return 0;
