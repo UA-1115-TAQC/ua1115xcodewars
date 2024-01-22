@@ -2,6 +2,7 @@ package org.academy.kata.implementation.s_hrynus;
 
 import org.academy.kata.Eight;
 
+
 import java.math.BigInteger;
 
 public class EightImpl implements Eight {
