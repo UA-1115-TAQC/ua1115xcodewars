@@ -55,7 +55,8 @@ public class EightImpl implements Eight {
     }
 
     public double TwoDecimalPlaces(double number) {
-        return 0;
+        DecimalFormat decimal = new DecimalFormat("#.##");
+        return Double.parseDouble(decimal.format(number));
     }
 
     public int[] divisibleBy(int[] numbers, int divider) {
