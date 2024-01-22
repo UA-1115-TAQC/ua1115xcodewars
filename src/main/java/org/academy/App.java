@@ -7,5 +7,6 @@ import org.academy.kata.implementation.hohashvili.EightImpl;
  */
 public class App {
     public static void main(String[] args) {
+        System.out.println("Hello World!");
     }
 }
