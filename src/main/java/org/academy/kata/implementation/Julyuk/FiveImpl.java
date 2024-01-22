@@ -29,7 +29,12 @@ public class FiveImpl implements Five {
 
 
     public int zeros(int n) {
-        return 0;
+        int fives = 0;
+        while (n > 0) {
+            n = (int) Math.floor(n/5);
+            fives += n;
+        }
+        return fives;
     }
 
     public BigInteger perimeter(BigInteger n) {
