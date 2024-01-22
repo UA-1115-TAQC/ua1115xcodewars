@@ -4,7 +4,7 @@ import org.academy.kata.Eight;
 
 public class EightImpl implements Eight {
     public int liters(double time) {
-        return (int) Math.floor(time * 0.5);
+        return 0;
     }
 
     public double getVolumeOfCuboid(double length, double width, double height) {
@@ -13,14 +13,11 @@ public class EightImpl implements Eight {
     }
 
     public static void main(String[] args) {
-        // Приклад використання
         EightImpl cuboidCalculator = new EightImpl();
         double length = 5.0;
         double width = 3.0;
         double height = 2.0;
-
         double result = cuboidCalculator.getVolumeOfCuboid(length, width, height);
-
         System.out.println("The volume of the cuboid is: " + result);
     }
 
