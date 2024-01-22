@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.DoubleStream;
+import java.util.stream.Stream;  
 
 public class SixImpl implements Six {
     public static final int SCORES = 0;
@@ -13,6 +15,9 @@ public class SixImpl implements Six {
     public static final int WIN = 2;
     public static final int LOSE = 3;
     public static final int DRAW = 4;
+    private static final String FLOAT_NUMBER_ISOLATOR = "\\b(\\d+\\.\\d+)\\b";
+    private static final String LINE_SEPARATOR = "\n";
+
     public long findNb(long m) {
         long n = 1;
         long sum = 0;
@@ -69,12 +74,42 @@ public class SixImpl implements Six {
     }
 
     public double mean(String town, String strng) {
-        return 0;
+        double sumOfRainfallData = Stream.of(strng.split(LINE_SEPARATOR))
+                .filter(citiesData -> citiesData.startsWith(town + ":"))
+                .mapToDouble(SixImpl::getRainfallDataByMonths)
+                .sum();
+        return sumOfRainfallData != 0 ? sumOfRainfallData / 12 : - 1.0;
     }
 
     public double variance(String town, String strng) {
-        return 0;
+        double averageOfRainfall = mean(town, strng);
+        Pattern pattern = Pattern.compile(FLOAT_NUMBER_ISOLATOR);
+        return Stream.of(strng.split(LINE_SEPARATOR))
+                .filter(cityData -> cityData.startsWith(town + ":"))
+                .map(line -> {
+                    Matcher matcher = pattern.matcher(line);
+                    return matcher.results()
+                            .mapToDouble(match -> Double.parseDouble(match.group(1)))
+                            .toArray();
+                })
+                .flatMapToDouble(DoubleStream::of)
+                .map(value -> Math.pow(value - averageOfRainfall, 2))
+                .average().orElse(-1.0);
     }
+
+    private static double getRainfallDataByMonths(String cityData) {
+        String[] monthsData = cityData.split(",");
+        Pattern pattern = Pattern.compile(FLOAT_NUMBER_ISOLATOR);
+        double rainfallDataByMoths = 0;
+        for (String monthData : monthsData) {
+            Matcher matcher = pattern.matcher(monthData);
+            if (matcher.find()) {
+                rainfallDataByMoths += Double.parseDouble(matcher.group(1));
+            }
+        }
+        return rainfallDataByMoths;
+    }
+
 
     public String nbaCup(String resultSheet, String toFind) {
         if (toFind.equals("")) {
