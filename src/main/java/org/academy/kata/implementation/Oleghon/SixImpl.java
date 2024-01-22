@@ -6,6 +6,9 @@ import java.util.regex.Pattern;
 
 import static java.util.Arrays.stream;
 
+import java.util.Arrays;
+import java.util.regex.Matcher;
+
 public class SixImpl implements Six {
     public long findNb(long m) {
         return 0;
@@ -73,7 +76,63 @@ public class SixImpl implements Six {
     }
 
     public String nbaCup(String resultSheet, String toFind) {
-        return null;
+        if (toFind.isBlank()) return toFind;
+
+        var pattern = Pattern.compile(toFind + " \\d{2,3}");
+        var matcher = pattern.matcher(resultSheet);
+        if (!matcher.find()) {
+            return toFind + ":This team didn't play!";
+        }
+
+        int win = 0, lose = 0, draw = 0, scored = 0, conceded = 0, points = 0;
+
+        String[] array = Arrays.stream(resultSheet.split(","))
+                .filter(pattern.asPredicate())
+                .toArray(String[]::new);
+
+        for (String line : array) {
+            System.out.println(line);
+            Matcher matcher1 = pattern.matcher(line);
+            String goalTeam;
+            if (matcher1.find())
+                goalTeam = matcher1.group();
+            else return " ";
+
+            String competitorTeam = matcher1.replaceAll("").trim();
+
+            try {
+                int goalTeamScore = extractScore(goalTeam);
+                int competitorScore = extractScore(competitorTeam);
+
+                scored += goalTeamScore;
+                conceded += competitorScore;
+
+                if (goalTeamScore > competitorScore) {
+                    win++;
+                    points += 3;
+                } else if (goalTeamScore < competitorScore) lose++;
+                else {
+                    draw++;
+                    points += 1;
+                }
+            } catch (NumberFormatException e) {
+                return "Error(float number):" + line;
+            }
+        }
+
+        return new StringBuilder(toFind)
+                .append(":W=").append(win)
+                .append(";D=").append(draw)
+                .append(";L=").append(lose)
+                .append(";Scored=").append(scored)
+                .append(";Conceded=").append(conceded)
+                .append(";Points=").append(points)
+                .toString();
+    }
+
+    private static int extractScore(String line) {
+        var pattern = "\\w+ ([a-zA-Z0-9]{4,} )?([a-zA-Z0-9]{4,} )?";
+        return Integer.parseInt(line.replaceFirst(pattern, ""));
     }
 
     public String stockSummary(String[] lstOfArt, String[] lstOf1stLetter) {
