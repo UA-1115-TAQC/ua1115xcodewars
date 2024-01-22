@@ -37,8 +37,100 @@ public class SixImpl implements Six {
         return 0;
     }
 
+    private String getScoredStr(String resultSheet, int startIndex) {
+        int endIndex = startIndex + 1;
+        while(endIndex < resultSheet.length()){
+            char ch = resultSheet.charAt(endIndex);
+            if(!Character.isDigit(ch) && ch != '.'){
+                break;
+            }
+            endIndex++;
+        }
+        return resultSheet.substring(startIndex, endIndex);
+    }
+
+    private String getConcededStr(String resultSheet, int endIndex) {
+        int startIndex = endIndex - 1;
+        while(startIndex >= 0){
+            char ch = resultSheet.charAt(startIndex);
+            if(!Character.isDigit(ch) && ch != '.'){
+                break;
+            }
+            startIndex--;
+        }
+        return resultSheet.substring(startIndex + 1, endIndex);
+    }
+
+    private String makeErrorMsg(String resultSheet, int index){
+        int startIndex = resultSheet.lastIndexOf(",", index) + 1 ;
+        int endIndex = resultSheet.indexOf(",", index);
+        return "Error(float number):" + resultSheet.substring(startIndex, endIndex);
+    }
+
     public String nbaCup(String resultSheet, String toFind) {
-        return null;
+        if (toFind.isEmpty()){
+            return "";
+        }
+        int teamIndex = resultSheet.indexOf(toFind);
+        if (teamIndex == -1) {
+            return toFind + ":This team didn't play!";
+        }
+//        check that the found name is not a part of other name
+        int tempIndex = teamIndex + toFind.length();
+        if(tempIndex >= resultSheet.length() || resultSheet.charAt(tempIndex) != ' '){
+            return toFind + ":This team didn't play!";
+        }
+        int wins = 0;
+        int draws = 0;
+        int losses = 0;
+        int scored = 0;
+        int conceded = 0;
+        while (teamIndex > -1) {
+            //            get the start index of score of toFind team
+            teamIndex = teamIndex + toFind.length() + 1;
+            if(teamIndex >= resultSheet.length()){
+                return "Error: result is missing";
+            }
+            String numStr = getScoredStr(resultSheet, teamIndex);
+            //            check if number is float
+            if (numStr.contains(".")){
+                return makeErrorMsg( resultSheet, teamIndex);
+            }
+            int gameScored = Integer.parseInt(numStr);
+            scored = scored + gameScored;
+
+            //            get the end index of score of rival team
+            int rivalIndex = teamIndex + numStr.length();
+            if (rivalIndex >= resultSheet.length() || resultSheet.charAt(rivalIndex) == ','){
+                //            the score of rival team is before toFind team
+                rivalIndex = rivalIndex - numStr.length() - toFind.length() - 2;
+            } else {
+                //            the score of rival team is after toFind team
+                rivalIndex = resultSheet.indexOf(",", rivalIndex) ;
+                if (rivalIndex == -1){
+                    rivalIndex = resultSheet.length();
+                }
+            }
+            numStr = getConcededStr(resultSheet, rivalIndex);
+            //            check if number is float
+            if (numStr.contains(".")){
+                return makeErrorMsg(resultSheet, teamIndex);
+            }
+            int gameConceded = Integer.parseInt(numStr) ;
+            conceded = conceded + gameConceded;
+
+            if(gameScored < gameConceded){
+                losses++;
+            } else if(gameScored > gameConceded){
+                wins++;
+            } else {
+                draws++;
+            }
+            teamIndex = resultSheet.indexOf(toFind, teamIndex);
+
+        }
+        return toFind+":W=" + wins + ";D=" + draws + ";L=" + losses + ";Scored=" + scored
+                + ";Conceded=" + conceded + ";Points=" + (wins * 3 + draws);
     }
 
     public String stockSummary(String[] lstOfArt, String[] lstOf1stLetter) {
