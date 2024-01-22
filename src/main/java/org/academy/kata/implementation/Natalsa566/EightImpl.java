@@ -21,9 +21,7 @@ public class EightImpl implements Eight {
     public static void main(String[] args) {
         Eight converter = new EightImpl();
         float mpg = 35.0f;
-
         float kpm = converter.mpgToKPM(mpg);
-
         System.out.println(mpg + " mpg is equal to " + kpm + " kpm");
     }
 
