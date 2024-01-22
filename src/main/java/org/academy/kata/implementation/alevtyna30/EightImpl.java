@@ -5,6 +5,8 @@ import java.util.Arrays;
 
 import java.util.Arrays;
 
+import java.util.Arrays;
+
 public class EightImpl implements Eight {
     private static final double WATER_PER_HOUR = 0.5;
     public int liters(double time) {
@@ -21,7 +23,12 @@ public class EightImpl implements Eight {
     }
 
     public int[] squareOrSquareRoot(int[] array) {
-        return new int[0];
+        return Arrays.stream(array)
+                .map(number -> {
+                    int squareRoot = (int) Math.sqrt(number);
+                    return squareRoot * squareRoot == number ? squareRoot : number * number;
+                })
+                .toArray();
     }
 
     public int[] countPositivesSumNegatives(int[] input) {
