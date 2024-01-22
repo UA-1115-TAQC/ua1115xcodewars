@@ -2,6 +2,9 @@ package org.academy.kata.implementation.nasock;
 
 import org.academy.kata.Eight;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 public class EightImpl implements Eight {
     public int liters(double time) {
         if (time < 0) {
@@ -11,7 +14,14 @@ public class EightImpl implements Eight {
     }
 
     public double getVolumeOfCuboid(double length, double width, double height) {
-        return 0;
+        if (length <= 0 || width <= 0 || height <= 0) {
+            throw new IllegalArgumentException();
+        }
+
+        double volume  = length * width * height;
+        BigDecimal bd = new BigDecimal(volume);
+        bd = bd.setScale(2, RoundingMode.HALF_UP);
+        return bd.doubleValue();
     }
 
     public float mpgToKPM(float mpg) {
