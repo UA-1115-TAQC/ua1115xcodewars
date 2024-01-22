@@ -99,6 +99,23 @@ public class SixImpl implements Six {
     }
 
     public String stockSummary(String[] lstOfArt, String[] lstOf1stLetter) {
-        return null;
+        String resultStr = "";
+        boolean noValues = true;
+        for (int i = 0; i < lstOf1stLetter.length; i++){
+            int count = 0;
+            for (String value : lstOfArt){
+                if (value.startsWith(lstOf1stLetter[i])) {
+                    String[] valArr = value.split(" ");
+                    count += Integer.parseInt(valArr[1]);
+                    noValues = false;
+                }
+            }
+            resultStr += "(" + lstOf1stLetter[i] + " : " + count +")";
+            if (i < lstOf1stLetter.length - 1) {
+                resultStr += " - ";
+            }
+        }
+        if (noValues) return "";
+        return resultStr;
     }
 }
