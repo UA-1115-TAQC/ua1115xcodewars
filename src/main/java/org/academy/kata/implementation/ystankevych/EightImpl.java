@@ -45,7 +45,7 @@ public class EightImpl implements Eight {
     }
 
     public int stringToNumber(String str) {
-        return 0;
+        return Integer.parseInt(str);
     }
 
     public double TwoDecimalPlaces(double number) {
