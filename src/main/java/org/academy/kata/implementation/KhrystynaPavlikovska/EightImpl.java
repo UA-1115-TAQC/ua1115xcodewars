@@ -1,6 +1,8 @@
 package org.academy.kata.implementation.KhrystynaPavlikovska;
 
 import org.academy.kata.Eight;
+import java.text.DecimalFormat;
+
 
 public class EightImpl implements Eight {
     public int liters(double time) {
@@ -12,7 +14,14 @@ public class EightImpl implements Eight {
     }
 
     public float mpgToKPM(float mpg) {
-        return 0;
+        double gallonToLitres = 4.54609188;
+        double mileToKilometer = 1.609344;
+
+        double kpl = mileToKilometer / gallonToLitres;
+        float mpgToKPM = (float) (kpl * mpg);
+
+        DecimalFormat df = new DecimalFormat("#.##");
+        return Float.parseFloat(df.format(mpgToKPM));
     }
 
     public int[] squareOrSquareRoot(int[] array) {
