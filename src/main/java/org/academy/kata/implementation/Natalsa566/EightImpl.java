@@ -24,7 +24,19 @@ public class EightImpl implements Eight {
     }
 
     public int stringToNumber(String str) {
-        return 0;
+        return Integer.parseInt(str);
+    }
+    public static void main(String[] args) {
+        Eight converter = new EightImpl();
+        String str1 = "1234";
+        String str2 = "605";
+        String str3 = "1405";
+        String str4 = "-7";
+
+        System.out.println(converter.stringToNumber(str1));
+        System.out.println(converter.stringToNumber(str2));
+        System.out.println(converter.stringToNumber(str3));
+        System.out.println(converter.stringToNumber(str4));
     }
 
     public double TwoDecimalPlaces(double number) {
