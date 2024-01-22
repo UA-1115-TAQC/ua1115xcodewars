@@ -2,6 +2,11 @@ package org.academy.kata.implementation.alevtyna30;
 
 import org.academy.kata.Six;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import static java.util.stream.Collectors.averagingDouble;
+
 public class SixImpl implements Six {
     public long findNb(long m) {
         return 0;
@@ -16,11 +21,31 @@ public class SixImpl implements Six {
     }
 
     public double mean(String town, String strng) {
-        return 0;
+        return parseTemp(town, strng).stream()
+                .collect(averagingDouble(n -> n));
     }
-
     public double variance(String town, String strng) {
-        return 0;
+        double mean = mean(town, strng);
+        if (mean == -1.0) return -1.0;
+
+        return parseTemp(town, strng).stream()
+                .collect(averagingDouble(n -> (n - mean) * (n - mean)));
+    }
+    private static List<Double> parseTemp(String town, String strng) {
+        List<Double> temps = new ArrayList<>();
+        for (String line : strng.split("\\n")) {
+            String[] data = line.split(":");
+            if (town.equals(data[0])) {
+                for (String weather : data[1].split(",")) {
+                    String[] temp = weather.split("\\s");
+                    temps.add(Double.parseDouble(temp[1]));
+                }
+                break;
+            }
+        }
+        if (temps.isEmpty()) temps.add(-1.0);
+
+        return temps;
     }
 
     public String nbaCup(String resultSheet, String toFind) {
