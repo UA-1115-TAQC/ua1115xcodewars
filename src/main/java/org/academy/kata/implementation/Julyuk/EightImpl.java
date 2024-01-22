@@ -17,7 +17,12 @@ public class EightImpl implements Eight {
     }
 
     public float mpgToKPM(float mpg) {
-        return 0;
+        final double IMPERIAL_GALLON = 4.54609188;
+        final double MILE = 1.609344;
+        if (mpg > 0 ) {
+            return  Math.round(mpg * MILE * 100 / IMPERIAL_GALLON) /100.0f;
+        }
+        throw new IllegalArgumentException("The value must be positive");
     }
 
     public int[] squareOrSquareRoot(int[] array) {
