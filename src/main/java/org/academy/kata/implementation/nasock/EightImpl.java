@@ -4,7 +4,10 @@ import org.academy.kata.Eight;
 
 public class EightImpl implements Eight {
     public int liters(double time) {
-        return 0;
+        if (time < 0) {
+            throw new IllegalArgumentException();
+        }
+        return (int) time / 2;
     }
 
     public double getVolumeOfCuboid(double length, double width, double height) {
@@ -38,4 +41,5 @@ public class EightImpl implements Eight {
     public boolean am_i_wilson(double n) {
         return false;
     }
+    
 }
