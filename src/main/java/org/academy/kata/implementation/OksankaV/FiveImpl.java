@@ -42,7 +42,17 @@ public class FiveImpl implements Five {
     }
 
     public long[] smallest(long n) {
-        return new long[0];
+        long[] resultArr = new long[]{n, 0, 0};
+        String nStr = Long.toString(n);
+        for (int i = nStr.length() - 1; i >= 0; i--) {
+            String str = nStr.substring(0, i) + nStr.substring(i + 1);
+            for (int j = nStr.length() - 1; j >= 0; j--) {
+                long tempVal = Long.valueOf(str.substring(0, j) + nStr.charAt(i) + str.substring(j));
+                if (resultArr[0] >= tempVal)
+                    resultArr = new long[]{tempVal, i, j};
+            }
+        }
+        return resultArr;
     }
 
     public int artificialRain(int[] v) {
