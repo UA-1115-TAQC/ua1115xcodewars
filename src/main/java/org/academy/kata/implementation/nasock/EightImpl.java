@@ -37,7 +37,22 @@ public class EightImpl implements Eight {
     }
 
     public int stringToNumber(String str) {
-        return 0;
+        char[] chars = str.toCharArray();
+        int num = 0;
+        int i = 0;
+        boolean isNegative = false;
+        if (chars[0] == '-'){
+            i = 1;
+            isNegative = true;
+        }
+        for(; i < chars.length; i++){
+            int currentNum = chars[i] - '0';
+            num = num * 10 + currentNum;
+        }
+        if(isNegative){
+            num = num * -1;
+        }
+        return num;
     }
 
     public double TwoDecimalPlaces(double number) {
