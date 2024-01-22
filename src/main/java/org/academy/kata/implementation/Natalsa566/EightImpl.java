@@ -11,14 +11,6 @@ public class EightImpl implements Eight {
         double volume = length * width * height;
         return volume;
     }
-    public static void main(String[] args) {
-        EightImpl cuboidCalculator = new EightImpl();
-        double length = 5.0;
-        double width = 3.0;
-        double height = 2.0;
-        double result = cuboidCalculator.getVolumeOfCuboid(length, width, height);
-        System.out.println("The volume of the cuboid is: " + result);
-    }
 
     public float mpgToKPM(float mpg) {
         return 0;
