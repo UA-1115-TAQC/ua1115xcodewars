@@ -3,6 +3,7 @@ package org.academy.kata.implementation.Julyuk;
 import org.academy.kata.Eight;
 import java.lang.Math;
 import java.util.Arrays;
+
 public class EightImpl implements Eight {
     public int liters(double time) {
         return 0;
