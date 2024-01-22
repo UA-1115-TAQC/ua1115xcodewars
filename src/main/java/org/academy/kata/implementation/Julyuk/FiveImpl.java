@@ -28,7 +28,7 @@ public class FiveImpl implements Five {
     public int zeros(int n) {
         int fives = 0;
         while (n > 0) {
-            n = (int) Math.floor(n/5);
+            n = (int) (double) (n / 5);
             fives += n;
         }
         return fives;
