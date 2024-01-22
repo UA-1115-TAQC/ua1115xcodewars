@@ -51,17 +51,32 @@ public class EightImpl implements Eight {
     }
 
     public int stringToNumber(String str) {
-        return 0;
+        return Integer.parseInt(str);
     }
 
     public double TwoDecimalPlaces(double number) {
-        return 0;
+        DecimalFormat decimal = new DecimalFormat("#.##");
+        return Double.parseDouble(decimal.format(number));
     }
 
     public int[] divisibleBy(int[] numbers, int divider) {
-        return new int[0];
-    }
+        int count = 0;
+        for (int number : numbers) {
+            if (number % divider == 0) {
+                count++;
+            }
+        }
+        int[] result = new int[count];
+        int counter  = 0;
 
+        for (int number : numbers) {
+            if (number % divider == 0) {
+                result[counter] = number;
+                counter++;
+            }
+        }
+        return result;
+    }
     public boolean am_i_wilson(double n) {
         return false;
     }
