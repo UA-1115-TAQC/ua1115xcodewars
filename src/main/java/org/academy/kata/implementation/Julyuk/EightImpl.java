@@ -32,7 +32,24 @@ public class EightImpl implements Eight {
     }
 
     public int[] divisibleBy(int[] numbers, int divider) {
-        return new int[0];
+        if(numbers != null && divider != 0){
+            int counter=0;
+            for (int number : numbers) {
+                if (number % divider == 0) {
+                    counter++;
+                }
+            }
+            int [] result = new int[counter];
+            counter = 0;
+            for (int number : numbers) {
+                if (number % divider == 0) {
+                    result[counter] = number;
+                    counter++;
+                }
+            }
+            return result;
+        }
+            throw new IllegalArgumentException();
     }
 
     public boolean am_i_wilson(double n) {
