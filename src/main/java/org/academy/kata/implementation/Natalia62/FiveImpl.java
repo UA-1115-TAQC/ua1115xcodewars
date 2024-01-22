@@ -10,7 +10,12 @@ public class FiveImpl implements Five {
     }
 
     public int zeros(int n) {
-        return 0;
+        int zeros = 0;
+        while (n >= 5) {
+            n /= 5;
+            zeros += n;
+        }
+        return zeros;
     }
 
     public BigInteger perimeter(BigInteger n) {
