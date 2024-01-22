@@ -7,8 +7,5 @@ import org.academy.kata.implementation.hohashvili.EightImpl;
  */
 public class App {
     public static void main(String[] args) {
-        EightImpl eightImpl = new EightImpl();
-        System.out.println(eightImpl.TwoDecimalPlaces(5.5589));
-        System.out.println(eightImpl.TwoDecimalPlaces(3.3424));
     }
 }
