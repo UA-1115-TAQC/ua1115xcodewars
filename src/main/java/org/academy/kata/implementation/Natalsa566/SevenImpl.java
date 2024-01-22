@@ -20,17 +20,6 @@ public class SevenImpl implements Seven {
         }
                                  return requiredDonation;
     }
-    public static void main(String[] args) {
-        SevenImpl sevenImpl = new SevenImpl();
-        double[] donations = {14.0, 30.0, 5.0, 7.0, 9.0, 11.0, 16.0};
-        double targetAvg = 90.0;
-            try {
-                long result = sevenImpl.newAvg(donations, targetAvg);
-                System.out.println("Required Donation: " + result);
-                 } catch (IllegalArgumentException e) {
-                     System.out.println("Error: " + e.getMessage());
-        }
-    }
 
     public String seriesSum(int n) {
         return null;
