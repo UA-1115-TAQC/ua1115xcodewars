@@ -4,8 +4,6 @@ import org.academy.kata.Eight;
 import java.lang.Math;
 import java.math.BigInteger;
 
-import java.lang.Math;
-
 public class EightImpl implements Eight {
     public int liters(double time) {
         if (time > 0) {
@@ -15,7 +13,10 @@ public class EightImpl implements Eight {
     }
 
     public double getVolumeOfCuboid(double length, double width, double height) {
-        return 0;
+        if(length > 0 && width > 0 && height > 0){
+            return length * width * height;
+        }
+        throw new IllegalArgumentException("All values must be positive");
     }
 
     public float mpgToKPM(float mpg) {
