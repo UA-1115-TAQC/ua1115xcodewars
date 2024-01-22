@@ -7,11 +7,21 @@ import java.math.RoundingMode;
 
 public class EightImpl implements Eight {
     public int liters(double time) {
-        return 0;
+        if (time < 0) {
+            throw new IllegalArgumentException();
+        }
+        return (int) time / 2;
     }
 
     public double getVolumeOfCuboid(double length, double width, double height) {
-        return 0;
+        if (length <= 0 || width <= 0 || height <= 0) {
+            throw new IllegalArgumentException();
+        }
+
+        double volume  = length * width * height;
+        BigDecimal bd = new BigDecimal(volume);
+        bd = bd.setScale(2, RoundingMode.HALF_UP);
+        return bd.doubleValue();
     }
 
     public float mpgToKPM(float mpg) {
@@ -27,11 +37,28 @@ public class EightImpl implements Eight {
     }
 
     public int stringToNumber(String str) {
-        return 0;
+        char[] chars = str.toCharArray();
+        int num = 0;
+        int i = 0;
+        boolean isNegative = false;
+        if (chars[0] == '-'){
+            i = 1;
+            isNegative = true;
+        }
+        for(; i < chars.length; i++){
+            int currentNum = chars[i] - '0';
+            num = num * 10 + currentNum;
+        }
+        if(isNegative){
+            num = num * -1;
+        }
+        return num;
     }
 
     public double TwoDecimalPlaces(double number) {
-        return 0;
+        BigDecimal bd = BigDecimal.valueOf(number);
+        bd = bd.setScale(2, RoundingMode.HALF_UP);
+        return bd.doubleValue();
     }
 
     public int[] divisibleBy(int[] numbers, int divider) {
@@ -86,5 +113,5 @@ public class EightImpl implements Eight {
         BigDecimal div = fct.divide(BigDecimal.valueOf(sqr));
         return isNatural(div);
     }
-
+    
 }
