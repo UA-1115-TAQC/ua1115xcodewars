@@ -84,8 +84,30 @@ public class EightImpl implements Eight {
         return bd.doubleValue();
     }
 
+    private boolean isInteger(double num){
+        double decimalPart = num - (int)num;
+        return decimalPart == 0.0;
+    }
+
+    private int[] resizeArr(int[] arr, int newLength){
+        int[] newArr = new int[newLength];
+        for (int i = 0; i < newArr.length; i++){
+            newArr[i] = arr[i];
+        }
+        return newArr;
+    }
+
     public int[] divisibleBy(int[] numbers, int divider) {
-        return new int[0];
+        int[] result = new int[numbers.length];
+        int j = 0;
+        for(int num : numbers) {
+            double div = num/(double)divider;
+            if(isInteger(div)){
+                result[j] = num;
+                j++;
+            }
+        }
+        return  resizeArr(result, j);
     }
 
     private boolean isNatural(double n){
