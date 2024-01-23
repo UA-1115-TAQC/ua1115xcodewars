@@ -20,7 +20,7 @@ public class SixImpl implements Six {
             n++;
         }
         return -1;
-}
+    }
 
     public String balance(String book) {
         String t = book.replaceAll("([^\\n. \\da-zA-Z])", "");
@@ -50,6 +50,7 @@ public class SixImpl implements Six {
         return parseTemp(town, strng).stream()
                 .collect(averagingDouble(n -> n));
     }
+
     public double variance(String town, String strng) {
         double mean = mean(town, strng);
         if (mean == -1.0) return -1.0;
@@ -57,6 +58,7 @@ public class SixImpl implements Six {
         return parseTemp(town, strng).stream()
                 .collect(averagingDouble(n -> (n - mean) * (n - mean)));
     }
+
     private static List<Double> parseTemp(String town, String strng) {
         List<Double> temps = new ArrayList<>();
         for (String line : strng.split("\\n")) {
@@ -79,6 +81,20 @@ public class SixImpl implements Six {
     }
 
     public String stockSummary(String[] lstOfArt, String[] lstOf1stLetter) {
-        return null;
+        if (lstOfArt.length == 0) return "";
+        StringBuilder result = new StringBuilder();
+        int cont = 0;
+        String ite;
+        for (int i = 0; i < lstOf1stLetter.length; i++) {
+            ite = lstOf1stLetter[i];
+            for (String stock : lstOfArt) {
+                if (stock.substring(0, 1).equals(ite)) {
+                    cont += Integer.parseInt(stock.replaceAll("\\D", ""));
+                }
+            }
+            result.append(i != lstOf1stLetter.length - 1 ? String.format("(%s : %d) - ", ite, cont) : String.format("(%s : %d)", ite, cont));
+            cont = 0;
+        }
+        return result.toString();
     }
 }
