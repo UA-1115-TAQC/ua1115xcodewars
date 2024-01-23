@@ -18,7 +18,19 @@ public class FiveImpl implements Five {
     }
 
     public double solve(double m) {
-        return 0;
+        double left = 0;
+        double right = 1, arv;
+        double accuracy = 1e-12;
+        while (right - left > accuracy) {
+            arv = (left + right) / 2;
+            double u = arv / Math.pow(1 - arv, 2);
+            if (u > m) {
+                right = arv;
+            } else {
+                left = arv;
+            }
+        }
+        return (left + right) / 2;
     }
 
     public long[] smallest(long n) {
