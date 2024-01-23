@@ -48,7 +48,7 @@ public class SixImpl implements Six {
         return x / (Math.sqrt(1 + x) + 1);
     }
 
-    public double[] getTempArray(String town, String strng) {
+    private double[] getTempArray(String town, String strng) {
         int indexStart = strng.indexOf(town + ":");
         if (indexStart < 0) return new double[0];
         int indexEnd = strng.indexOf("\n", indexStart);
