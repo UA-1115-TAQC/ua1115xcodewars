@@ -30,4 +30,5 @@ public class SixImpl implements Six {
     public String stockSummary(String[] lstOfArt, String[] lstOf1stLetter) {
         return null;
     }
+    
 }
