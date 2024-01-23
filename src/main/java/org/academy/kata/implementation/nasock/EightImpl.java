@@ -6,6 +6,9 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 
 public class EightImpl implements Eight {
+    private static float GALON_TO_LITERS = 4.54609188F;
+    private static float MILE_TO_KM = 1.609344F;
+
     public int liters(double time) {
         if (time < 0) {
             throw new IllegalArgumentException();
@@ -25,7 +28,14 @@ public class EightImpl implements Eight {
     }
 
     public float mpgToKPM(float mpg) {
-        return 0;
+        if (mpg < 0) {
+            throw new IllegalArgumentException();
+        }
+
+        float kpl  = mpg * MILE_TO_KM / GALON_TO_LITERS;
+        BigDecimal bd = BigDecimal.valueOf(kpl);
+        bd = bd.setScale(2, RoundingMode.HALF_UP);
+        return bd.floatValue();
     }
 
     public int[] squareOrSquareRoot(int[] array) {
