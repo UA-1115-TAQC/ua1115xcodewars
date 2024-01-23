@@ -33,4 +33,5 @@ public class FiveImpl implements Five {
     public int artificialRain(int[] v) {
         return 0;
     }
+
 }
