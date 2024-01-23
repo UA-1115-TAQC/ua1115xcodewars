@@ -38,8 +38,23 @@ public class EightImpl implements Eight {
         return bd.floatValue();
     }
 
+    private boolean hasSqRt(int num){
+        double sqrt = Math.sqrt(num);
+        Double decimalPart = sqrt - (int)sqrt;
+        return Double.valueOf(0.0).equals(decimalPart);
+    }
+
     public int[] squareOrSquareRoot(int[] array) {
-        return new int[0];
+        int[] result = new int[array.length];
+        for(int i = 0; i < array.length; i++){
+            int num = array[i];
+            if (hasSqRt(num)) {
+                result[i] = (int) Math.sqrt(num);
+            } else {
+                result[i] = num*num;
+            }
+        }
+        return result;
     }
 
     public int[] countPositivesSumNegatives(int[] input) {
