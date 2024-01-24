@@ -30,11 +30,76 @@ public class SixImpl implements Six {
     }
 
     public double mean(String town, String strng) {
-        return 0;
+
+        String monthData = getMonthDataForTown(town, strng);
+
+        if (monthData.isEmpty())
+            return -1;
+
+        String[] monthRecords = monthData.split(",");
+        double sum = 0;
+        int validRecordsCount = 0;
+
+        for (String record : monthRecords) {
+            String[] tempData = record.split(" ");
+            if (tempData.length >= 2) {
+                String temp = tempData[1];
+                sum += Double.parseDouble(temp);
+                validRecordsCount++;
+            }
+        }
+
+        if (validRecordsCount == 0)
+            return -1;
+
+        return sum / validRecordsCount;
     }
 
     public double variance(String town, String strng) {
-        return 0;
+        double mean = mean(town, strng);
+
+        if (mean == -1) {
+            return -1;
+        }
+
+        String monthData = getMonthDataForTown(town, strng);
+
+        if (monthData.isEmpty())
+            return -1;
+
+        String[] monthRecords = monthData.split(",");
+        double counting = 0.0;
+        int validRecordsCount = 0;
+
+        for (String record : monthRecords) {
+            String[] tempData = record.split(" ");
+            if (tempData.length >= 2) {
+                String temp = tempData[1];
+                double tempdb = Double.parseDouble(temp) - mean;
+                counting += tempdb * tempdb;
+                validRecordsCount++;
+            }
+        }
+
+        if (validRecordsCount == 0)
+            return -1;
+
+        return counting / validRecordsCount;
+    }
+    private String getMonthDataForTown(String town, String strng) {
+        String[] citiesData = strng.split("\\n");
+        String monthData = "";
+
+        for (String cityData : citiesData) {
+            String[] parts = cityData.split(":");
+
+            if (parts[0].equals(town)) {
+                monthData = parts[1];
+                break;
+            }
+        }
+
+        return monthData;
     }
 
     public String nbaCup(String resultSheet, String toFind) {
