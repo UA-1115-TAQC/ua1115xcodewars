@@ -179,7 +179,7 @@ public class SixImpl implements Six {
                     else if (points1 < points2) {
                         matchesLost++;
                     }
-                    else if (points1 == points2) {
+                    else {
                         matchesInDraw++;
                     }
 
