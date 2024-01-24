@@ -45,16 +45,5 @@ public class EightImpl implements Eight {
         }
         return (factorialMod + 1) % n == 0;
     }
-    public static void main(String[] args) {
-        Eight eight = new EightImpl();
-        double num1 = 5.0;
-        double num2 = 7.0;
-        double num3 = 13.0;
-        double num4 = 2.5;
-        System.out.println(num1 + " is a Wilson prime: " + eight.am_i_wilson(num1));
-        System.out.println(num2 + " is a Wilson prime: " + eight.am_i_wilson(num2));
-        System.out.println(num3 + " is a Wilson prime: " + eight.am_i_wilson(num3));
-        System.out.println(num4 + " is a Wilson prime: " + eight.am_i_wilson(num4));
-    }
 }
 
