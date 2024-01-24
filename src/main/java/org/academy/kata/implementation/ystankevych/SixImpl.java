@@ -36,7 +36,7 @@ public class SixImpl implements Six {
                 .collect(Collectors.averagingDouble(v -> Math.pow(v - average, 2)));
     }
 
-    private static DoubleStream getStatisticsByTown(String town, String strng) {
+    private DoubleStream getStatisticsByTown(String town, String strng) {
         return Pattern.compile("(?m)^" + town + ":(.*)$")
                 .matcher(strng)
                 .results()
