@@ -202,8 +202,8 @@ public class SixImpl implements Six {
         if (lstOfArt != null && lstOf1stLetter != null && lstOfArt.length > 0 && lstOf1stLetter.length > 0) {
             int[] count = new int[lstOf1stLetter.length];
 
-            for (int i = 0; i < lstOfArt.length; i++) {
-                String[] parts = lstOfArt[i].split(" ");
+            for (String s : lstOfArt) {
+                String[] parts = s.split(" ");
                 if (parts.length == 2) {
                     String code = parts[0];
                     int quantity = Integer.parseInt(parts[1]);
