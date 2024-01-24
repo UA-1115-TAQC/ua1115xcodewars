@@ -75,7 +75,7 @@ public class ConsoleReader {
     public String[] readStringArr() {
         while (true) {
             try {
-                return reader.readLine().trim().split(",\\s*");
+                return reader.readLine().trim().split("\\s*,\\s*");
             } catch (IOException e) {
                 System.out.println("Input should be a string array, where the elements are separated by commas.");
             }
