@@ -1,7 +1,6 @@
 package org.academy.kata.implementation.ystankevych;
 
 import org.academy.kata.Five;
-
 import java.math.BigInteger;
 
 public class FiveImpl implements Five {
@@ -18,7 +17,7 @@ public class FiveImpl implements Five {
     }
 
     public double solve(double m) {
-        return 0;
+        return (1 - Math.sqrt(4 * m + 1)) / (2 * m) + 1;
     }
 
     public long[] smallest(long n) {
