@@ -39,30 +39,48 @@ public class EightImpl implements Eight {
             return new int[] {};
         int positive_count = 0;
         int negative_summ = 0;
-        for(int i = 0; i < input.length; ++i){
-            if(input[i] > 0){
+        for (int j : input) {
+            if (j > 0) {
                 positive_count++;
-            }
-            else{
-                negative_summ+= input[i];
+            } else {
+                negative_summ += j;
             }
         }
         return new int[] {positive_count, negative_summ};
     }
 
     public int stringToNumber(String str) {
-        return 0;
+        return Integer.parseInt(str);
     }
 
     public double TwoDecimalPlaces(double number) {
-        return 0;
+        DecimalFormat decimal = new DecimalFormat("#.##");
+        return Double.parseDouble(decimal.format(number));
     }
 
     public int[] divisibleBy(int[] numbers, int divider) {
-        return new int[0];
-    }
+        int count = 0;
+        for (int number : numbers) {
+            if (number % divider == 0) {
+                count++;
+            }
+        }
+        int[] result = new int[count];
+        int counter  = 0;
 
+        for (int number : numbers) {
+            if (number % divider == 0) {
+                result[counter] = number;
+                counter++;
+            }
+        }
+        return result;
+    }
     public boolean am_i_wilson(double n) {
-        return false;
+        long sqr = (long) (n * n);
+        long item = 1;
+        for (long factor = 2; factor < n; factor++)
+            item = (item * factor) % sqr;
+        return item + 1 == sqr;
     }
 }

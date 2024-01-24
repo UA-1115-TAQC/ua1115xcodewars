@@ -3,13 +3,38 @@ package org.academy.kata.implementation.Natalsa566;
 import org.academy.kata.Six;
 
 public class SixImpl implements Six {
+
     public long findNb(long m) {
         return 0;
     }
 
+    @Override
     public String balance(String book) {
-        return null;
-    }
+         StringBuilder result = new StringBuilder();
+         double balance = 0.0;
+         double totalExpense = 0.0;
+         int expenseCount = 0;
+         String[] lines = book.split("\n");
+            for (String line : lines) {
+                if (!line.trim().isEmpty()) {
+                    String cleanedLine = line.replaceAll("[^a-zA-Z0-9.\\s]", "");
+                    String[] parts = cleanedLine.split("\\s+");
+                        if (parts.length > 0 && parts[0].matches("\\d+")) {
+                            int checkNumber = Integer.parseInt(parts[0]);
+                            double checkAmount = Double.parseDouble(parts[1]);
+                            balance -= checkAmount;
+                            totalExpense += checkAmount;
+                            expenseCount++;
+                       result.append(String.format("%d %s %.2f Balance %.2f%n", checkNumber, parts[2], checkAmount, balance));
+                        }
+                    }
+            }
+
+        result.append(String.format("Total expense  %.2f%n", totalExpense));
+        result.append(String.format("Average expense  %.2f", totalExpense / expenseCount));
+
+        return result.toString();
+}
 
     public double f(double x) {
         return 0;
