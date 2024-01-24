@@ -4,15 +4,17 @@ import org.academy.kata.Eight;
 
 public class EightImpl implements Eight {
     public int liters(double time) {
-        return 0;
+        return (int) Math.floor(time/2);
     }
 
     public double getVolumeOfCuboid(double length, double width, double height) {
-        return 0;
+        return length * width * height;
     }
 
     public float mpgToKPM(float mpg) {
-        return 0;
+        float imperialGallonToLiter = 4.54609188F;
+        float mileToKm = 1.609344F;
+        return mpg*mileToKm/imperialGallonToLiter;
     }
 
     public int[] squareOrSquareRoot(int[] array) {
