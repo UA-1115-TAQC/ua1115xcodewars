@@ -38,7 +38,7 @@ public class FiveImpl implements Five {
         return new long[]{min, index1, index2};
     }
 
-    private static long makingSmallNumber(String s, int i, int j) {
+    private long makingSmallNumber(String s, int i, int j) {
         StringBuilder sb = new StringBuilder(s);
         char c = sb.charAt(i);
         sb.deleteCharAt(i);
