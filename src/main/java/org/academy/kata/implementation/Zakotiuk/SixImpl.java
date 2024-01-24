@@ -4,7 +4,18 @@ import org.academy.kata.Six;
 
 public class SixImpl implements Six {
     public long findNb(long m) {
-        return 0;
+        long cube_counter = 1;
+        long total = 0;
+
+        while (total < m){
+            total += cube_counter * cube_counter * cube_counter;
+            cube_counter++;
+        }
+
+        if(total == m)
+            return cube_counter-1;
+        else
+            return -1;
     }
 
     public String balance(String book) {
