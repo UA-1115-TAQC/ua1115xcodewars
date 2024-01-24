@@ -17,7 +17,7 @@ public class SixImpl implements Six {
     public double f(double x) {
         return 0;
     }
-@Override
+
     public double mean(String town, String strng) {
         String[] townRecords = getTownRecords(town, strng);
         if (townRecords.length == 0) {
