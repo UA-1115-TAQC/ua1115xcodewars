@@ -1,5 +1,9 @@
 package org.academy;
 
+import org.academy.kata.implementation.hohashvili.FiveImpl;
+
+import java.util.Arrays;
+
 /**
  * Hello world!
  */

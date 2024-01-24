@@ -8,6 +8,8 @@ import java.util.Arrays;
 import java.util.Arrays;
 
 public class EightImpl implements Eight {
+    private static final double MILES_TO_KM = 1.609344;
+    private static final double GALLONS_TO_LITERS = 4.54609188;
     private static final double WATER_PER_HOUR = 0.5;
     public int liters(double time) {
 
@@ -19,7 +21,7 @@ public class EightImpl implements Eight {
     }
 
     public float mpgToKPM(float mpg) {
-        return 0;
+        return (float) (mpg * MILES_TO_KM / GALLONS_TO_LITERS);
     }
 
     public int[] squareOrSquareRoot(int[] array) {

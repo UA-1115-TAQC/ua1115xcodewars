@@ -6,6 +6,9 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 
 public class EightImpl implements Eight {
+    private static float GALON_TO_LITERS = 4.54609188F;
+    private static float MILE_TO_KM = 1.609344F;
+
     public int liters(double time) {
         if (time < 0) {
             throw new IllegalArgumentException();
@@ -25,15 +28,50 @@ public class EightImpl implements Eight {
     }
 
     public float mpgToKPM(float mpg) {
-        return 0;
+        if (mpg < 0) {
+            throw new IllegalArgumentException();
+        }
+
+        float kpl  = mpg * MILE_TO_KM / GALON_TO_LITERS;
+        BigDecimal bd = BigDecimal.valueOf(kpl);
+        bd = bd.setScale(2, RoundingMode.HALF_UP);
+        return bd.floatValue();
+    }
+
+    private boolean hasSqRt(int num){
+        double sqrt = Math.sqrt(num);
+        Double decimalPart = sqrt - (int)sqrt;
+        return Double.valueOf(0.0).equals(decimalPart);
     }
 
     public int[] squareOrSquareRoot(int[] array) {
-        return new int[0];
+        int[] result = new int[array.length];
+        for(int i = 0; i < array.length; i++){
+            int num = array[i];
+            if (hasSqRt(num)) {
+                result[i] = (int) Math.sqrt(num);
+            } else {
+                result[i] = num*num;
+            }
+        }
+        return result;
     }
 
     public int[] countPositivesSumNegatives(int[] input) {
-        return new int[0];
+        if(input == null || input.length == 0){
+            return new int[]{};
+        }
+
+        int count = 0;
+        int sum = 0;
+        for(int num : input){
+            if (num > 0){
+                count++;
+            } else if (num < 0){
+                sum = sum + num;
+            }
+        }
+        return new int[]{count, sum};
     }
 
     public int stringToNumber(String str) {
@@ -61,12 +99,79 @@ public class EightImpl implements Eight {
         return bd.doubleValue();
     }
 
+    private boolean isInteger(double num){
+        double decimalPart = num - (int)num;
+        return decimalPart == 0.0;
+    }
+
+    private int[] resizeArr(int[] arr, int newLength){
+        int[] newArr = new int[newLength];
+        for (int i = 0; i < newArr.length; i++){
+            newArr[i] = arr[i];
+        }
+        return newArr;
+    }
+
     public int[] divisibleBy(int[] numbers, int divider) {
-        return new int[0];
+        int[] result = new int[numbers.length];
+        int j = 0;
+        for(int num : numbers) {
+            double div = num/(double)divider;
+            if(isInteger(div)){
+                result[j] = num;
+                j++;
+            }
+        }
+        return  resizeArr(result, j);
+    }
+
+    private boolean isNatural(double n){
+        if (n <= 0){
+            return false;
+        }
+        double decimalPart = n - (int)n;
+        return decimalPart == 0;
+    }
+
+    private boolean isNatural(BigDecimal n){
+        BigDecimal zero = BigDecimal.valueOf(0);
+        if (n.compareTo(zero) <= 0){
+            return false;
+        }
+        BigDecimal scaled = n.setScale(0, RoundingMode.HALF_UP);
+        BigDecimal result = n.subtract(scaled);
+        return (result.compareTo(zero) == 0);
+    }
+
+    private boolean isPrime(double n){
+        if(!isNatural(n) || n == 1){
+            return false;
+        }
+        for(int i = 2; i <= Math.sqrt(n); i++){
+            double d = n / i;
+            if (isNatural(d)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private BigDecimal factorial(double n){
+        BigDecimal f = BigDecimal.valueOf(n);
+        for(int i = 1; i < n; i++){
+            f = f.multiply(BigDecimal.valueOf(n - i));
+        }
+        return f;
     }
 
     public boolean am_i_wilson(double n) {
-        return false;
+        if(!isPrime(n)){
+            return false;
+        }
+        double sqr = n*n;
+        BigDecimal fct = factorial(n-1).add(BigDecimal.valueOf(1));
+        BigDecimal div = fct.divide(BigDecimal.valueOf(sqr));
+        return isNatural(div);
     }
     
 }
