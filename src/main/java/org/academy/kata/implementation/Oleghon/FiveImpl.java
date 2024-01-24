@@ -23,7 +23,20 @@ public class FiveImpl implements Five {
     }
 
     public BigInteger perimeter(BigInteger n) {
-        return null;
+        var sum = BigInteger.ONE;
+        var index = BigInteger.ONE;
+        var current = BigInteger.ONE;
+        var previous = BigInteger.ZERO;
+        n = n.add(index);
+
+        while (n.compareTo(index) > 0) {
+            var temp = previous;
+            previous = current;
+            current = current.add(temp);
+            sum = sum.add(current);
+            index = index.add(BigInteger.ONE);
+        }
+        return sum.multiply(BigInteger.valueOf(4));
     }
 
     public double solve(double m) {
