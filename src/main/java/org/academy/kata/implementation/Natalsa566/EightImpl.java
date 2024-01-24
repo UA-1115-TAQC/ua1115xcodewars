@@ -47,13 +47,6 @@ public class EightImpl implements Eight {
                      }
                          return resultArray;
 }
-           public static void main(String[] args) {
-                 EightImpl eightImpl = new EightImpl();
-                 int[] inputArray = {1, 2, 3, 4, 5, 6};
-                 int divisor = 2;
-                 int[] result = eightImpl.divisibleBy(inputArray, divisor);
-                 System.out.println(Arrays.toString(result));
-}
     public boolean am_i_wilson(double n) {
         return false;
     }
