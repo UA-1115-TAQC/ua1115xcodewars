@@ -34,7 +34,32 @@ public class FiveImpl implements Five {
     }
 
     public long[] smallest(long n) {
-        return new long[0];
+        String numberStr = String.valueOf(n);
+        long smallestNum = n;
+        int digitIndex = 0;
+        int insertIndex = 0;
+
+        for (int i = 0; i < numberStr.length(); i++) {
+            char digit = numberStr.charAt(i);
+
+            StringBuilder modifiedNumber = new StringBuilder(numberStr);
+            modifiedNumber.deleteCharAt(i);
+
+            for (int j = 0; j <= modifiedNumber.length(); j++) {
+                StringBuilder temp = new StringBuilder(modifiedNumber);
+                temp.insert(j, digit);
+
+                long modifiedLong = Long.parseLong(temp.toString());
+
+                if (modifiedLong < smallestNum) {
+                    smallestNum = modifiedLong;
+                    digitIndex = i;
+                    insertIndex = j;
+                }
+            }
+        }
+
+        return new long[]{smallestNum, digitIndex, insertIndex};
     }
 
     public int artificialRain(int[] v) {
