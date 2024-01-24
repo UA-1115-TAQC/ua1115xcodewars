@@ -163,7 +163,7 @@ public class SixImpl implements Six {
     }
 
     public double f(double x) {
-        return 0;
+        return x / (Math.sqrt(1.0 + x) + 1.0);
     }
 
     private String getTownString(String town, String strng){
