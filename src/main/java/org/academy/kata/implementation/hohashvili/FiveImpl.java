@@ -22,7 +22,26 @@ public class FiveImpl implements Five {
     }
 
     public long[] smallest(long n) {
-        return new long[0];
+        String nStr = String.valueOf(n);
+        long smallest = n;
+        long iNum = 0;
+        long jNum = 0;
+
+        for (int i = 0; i < nStr.length(); i++) {
+            for (int j = 0; j < nStr.length(); j++) {
+                if (i==j) {
+                    continue;
+                }
+                String newStr = nStr.substring(0, i) + nStr.substring(i+1);
+                newStr = newStr.substring(0,j) + nStr.charAt(i) + newStr.substring(j);
+                if (Long.parseLong(newStr) < smallest) {
+                    smallest = Long.parseLong(newStr);
+                    iNum = i;
+                    jNum = j;
+                }
+            }
+        }
+        return new long[]{smallest, iNum, jNum};
     }
 
     public int artificialRain(int[] v) {
