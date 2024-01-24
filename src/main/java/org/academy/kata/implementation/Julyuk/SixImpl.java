@@ -12,7 +12,7 @@ public class SixImpl implements Six {
     }
 
     public double f(double x) {
-         return x / 2.0 - x * x / 8.0 + x * x * x / 16.0 - 5.0 * x * x * x * x / 128.0;
+        return 0;
     }
 
     public double mean(String town, String strng) {
