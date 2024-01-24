@@ -36,12 +36,6 @@ public class EightImpl implements Eight {
         }
         return new int[]{countPositives, sumNegatives};
     }
-    public static void main (String[]args){
-        EightImpl eightImpl = new EightImpl();
-        int[] result = eightImpl.countPositivesSumNegatives(new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, -11, -12, -13, -14, -15});
-        System.out.println("Count of positives: " + result[0]);
-        System.out.println("Sum of negatives: " + result[1]);
-    }
 
     public int stringToNumber(String str) {
         return 0;
