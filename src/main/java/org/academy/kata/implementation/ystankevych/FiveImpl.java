@@ -9,7 +9,7 @@ public class FiveImpl implements Five {
     }
 
     public int zeros(int n) {
-        return 0;
+        return n < 5 ? 0 : n / 5 + zeros(n / 5);
     }
 
     public BigInteger perimeter(BigInteger n) {
