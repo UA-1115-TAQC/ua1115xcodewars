@@ -18,7 +18,20 @@ public class FiveImpl implements Five {
     }
 
     public double solve(double m) {
-        return 0;
+        if (m <= 0 || m >= 1) {
+            throw new IllegalArgumentException("m should be in the range (0, 1)");
+        }
+        double x = m / 2.0;
+        for (int i = 0; i < 1000; i++) {
+            double numerator = m * x;
+            double denominator = 1 + x;
+            double newX = numerator / denominator;
+            if (Math.abs(newX - x) < 1e-13) {
+                return newX;
+            }
+            x = newX;
+        }
+        return x;
     }
 
     public long[] smallest(long n) {
