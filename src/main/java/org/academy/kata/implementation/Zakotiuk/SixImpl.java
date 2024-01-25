@@ -108,41 +108,64 @@ public class SixImpl implements Six {
 
     public String nbaCup(String resultSheet, String toFind) {
         if (toFind.isEmpty()) return "";
-
-        Set<String> teams = new HashSet<>(Arrays.asList(
-                "Los Angeles Clippers", "Dallas Mavericks", "New York Knicks", "Atlanta Hawks", "Indiana Pacers", "Memphis Grizzlies",
+        String[] teams = new String[]{"Los Angeles Clippers", "Dallas Mavericks", "New York Knicks", "Atlanta Hawks", "Indiana Pacers", "Memphis Grizzlies",
                 "Los Angeles Lakers", "Minnesota Timberwolves", "Phoenix Suns", "Portland Trail Blazers", "New Orleans Pelicans",
                 "Sacramento Kings", "Los Angeles Clippers", "Houston Rockets", "Denver Nuggets", "Cleveland Cavaliers", "Milwaukee Bucks",
                 "Oklahoma City Thunder", "San Antonio Spurs", "Boston Celtics", "Philadelphia 76ers", "Brooklyn Nets", "Chicago Bulls",
                 "Detroit Pistons", "Utah Jazz", "Miami Heat", "Charlotte Hornets", "Toronto Raptors", "Orlando Magic", "Washington Wizards",
-                "Golden State Warriors"));
+                "Golden State Warriors"};
 
-        if (!teams.contains(toFind)) return toFind + ":This team didn't play!";
+        if (!Arrays.asList(teams).contains(toFind)) return toFind + ":This team didn't play!";
 
+        String[] pairs = resultSheet.split(",");
         int wins = 0, draws = 0, loses = 0, scored = 0, conceded = 0, points = 0;
-        Matcher m = Pattern.compile("([\\w ]+) (\\d+) ([\\w ]+) (\\d+)").matcher(resultSheet);
 
-        while (m.find()) {
-            if (m.group().contains(".")) return "Error(float number):" + m.group();
+        for (String line : pairs) {
+            if (line.contains(".")) return "Error(float number):" + line;
 
-            String team1 = m.group(1);
-            String team2 = m.group(3);
-            int score1 = Integer.parseInt(m.group(2));
-            int score2 = Integer.parseInt(m.group(4));
-            if (team1.equals(toFind) || team2.equals(toFind)) {
-                boolean isTeam1 = team1.equals(toFind);
-                scored += isTeam1 ? score1 : score2;
-                conceded += isTeam1 ? score2 : score1;
+            if (line.contains(toFind)) {
+                int first = Integer.parseInt(line.substring(0, line.length() - 10).replaceAll("[\\D]", ""));
 
-                int result = Integer.compare(isTeam1 ? score1 : score2, isTeam1 ? score2 : score1);
-                if (result > 0) {
-                    points += 3;
-                    wins++;
-                } else if (result == 0) {
-                    points += 1;
-                    draws++;
-                } else {
-                    loses++;
+                StringBuilder stringBuilder = new StringBuilder();
+                String reversed = new StringBuilder(line).reverse().toString();
+
+                for (int i = 0; i < reversed.length(); i++) {
+                    if (Character.isDigit(reversed.charAt(i))) {
+                        stringBuilder.insert(i, reversed.charAt(i));
+                    } else break;
+                }
+
+                int second = Integer.parseInt(stringBuilder.reverse().toString());
+
+                if (line.contains(toFind + " " + first)) {
+                    scored += first;
+                    conceded += second;
+                    if (first > second) {
+                        points += 3;
+                        wins++;
+                    }
+                    if (first == second) {
+                        points += 1;
+                        draws++;
+                    }
+                    if (first < second) {
+                        loses++;
+                    }
+                }
+                if (line.contains(toFind + " " + second)) {
+                    scored += second;
+                    conceded += first;
+                    if (second > first) {
+                        points += 3;
+                        wins++;
+                    }
+                    if (first == second) {
+                        points += 1;
+                        draws++;
+                    }
+                    if (second < first) {
+                        loses++;
+                    }
                 }
             }
         }
