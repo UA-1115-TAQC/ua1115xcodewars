@@ -23,7 +23,28 @@ public class SixImpl implements Six {
     }
 
     public String balance(String book) {
-        return null;
+        String temp = book.replaceAll("([^\\n. \\da-zA-Z])", "");
+        String[] arr = temp.split("[\\n]+");
+
+        double total = 0;
+        int count = 0;
+        double current = Double.parseDouble(arr[0]);
+
+        StringBuilder result = new StringBuilder();
+        result.append("Original Balance: ").append(arr[0]);
+
+        for (int i = 1; i < arr.length; i++) {
+            count++;
+            String[] line = arr[i].split("[ ]+");
+            current -= Double.parseDouble(line[2]);
+            total += Double.parseDouble(line[2]);
+
+            String item = String.format("\\r\\n%s %s %s Balance %.2f", line[0], line[1], line[2], current);
+            result.append(item);
+        }
+
+        result.append(String.format("\\r\\nTotal expense  %.2f\\r\\nAverage expense  %.2f", total, total / count));
+        return result.toString();
     }
 
     public double f(double x) {
