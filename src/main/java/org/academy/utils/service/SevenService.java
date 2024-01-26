@@ -19,7 +19,10 @@ public class SevenService {
         setImplByAuthor(author);
         setReader(reader);
 
-        // Add switch with numeration for task. We should discuss it.
+        switch (id) {
+            case 13 -> newAvg();
+        }
+
     }
     private void printChoiceMessage(String task) {
         System.out.println("You choosed task \"" + task + '\"');
@@ -37,5 +40,18 @@ public class SevenService {
         if (sevenImpl == null || sevenImpl.getClass() != author.getSeven().getClass()) {
             setSevenImpl(author.getSeven());
         }
+    }
+
+    private void printChoiceMessage(String task) {
+        System.out.println("You choosed task \"" + task + '\"');
+    }
+
+    private void newAvg() {
+        printChoiceMessage("newAwg");
+        System.out.print("Enter the array of donations divided by whitespaces (array of doubles): ");
+        double[] arr = reader.readDoubleArr();
+        System.out.print("Enter the average donation (double): ");
+        double d = reader.readDouble();
+        System.out.println("Result of task: " + sevenImpl.newAvg(arr, d));
     }
 }
