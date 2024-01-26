@@ -14,7 +14,6 @@ public class EightImpl implements Eight {
     public double getVolumeOfCuboid(double length, double width, double height) {
         return 0;
     }
-
     public float mpgToKPM(float mpg) {
         return 0;
     }
@@ -59,6 +58,15 @@ public class EightImpl implements Eight {
                          return resultArray;
 }
     public boolean am_i_wilson(double n) {
-        return false;
+        long number = (long) n;
+        if (number < 2) {
+            return false;
+        }
+        double factorialMod = 1;
+        for (double i = 2; i < n; i++) {
+            factorialMod = (factorialMod * i) % n;
+        }
+        return (factorialMod + 1) % n == 0;
     }
 }
+
