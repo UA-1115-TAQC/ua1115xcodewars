@@ -11,7 +11,7 @@ public class SixImpl implements Six {
         } else {
             return -1;
         }
-
+    }
     public String balance(String book) {
          StringBuilder result = new StringBuilder();
          double balance = 0.0;
