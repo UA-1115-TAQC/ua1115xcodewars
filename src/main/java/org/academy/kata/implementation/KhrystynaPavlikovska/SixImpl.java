@@ -2,6 +2,10 @@ package org.academy.kata.implementation.KhrystynaPavlikovska;
 
 import org.academy.kata.Six;
 
+
+import java.util.HashMap;
+import java.util.Map;
+
 public class SixImpl implements Six {
     public long findNb(long m) {
 
@@ -37,6 +41,28 @@ public class SixImpl implements Six {
     }
 
     public String stockSummary(String[] lstOfArt, String[] lstOf1stLetter) {
-        return null;
+
+        if (lstOfArt.length == 0 || lstOf1stLetter.length == 0) {
+            return "";
+        }
+
+        Map<Character, Integer> categorySum = new HashMap<>();
+
+        for (String book : lstOfArt) {
+            char category = book.charAt(0);
+            int quantity = Integer.parseInt(book.split(" ")[1]);
+
+            categorySum.put(category, categorySum.getOrDefault(category, 0) + quantity);
+        }
+
+        StringBuilder result = new StringBuilder();
+
+        for (String category : lstOf1stLetter) {
+            char key = category.charAt(0);
+            int sum = categorySum.getOrDefault(key, 0);
+            result.append(String.format("(%s : %d) - ", category, sum));
+        }
+
+        return result.substring(0, result.length() - 3);
     }
 }
