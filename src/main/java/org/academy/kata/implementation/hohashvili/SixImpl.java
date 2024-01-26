@@ -12,7 +12,15 @@ import java.util.Map;
 
 public class SixImpl implements Six {
     public long findNb(long m) {
-        return 0;
+        int i = 1;
+        while (m > 0) {
+            m -= (long) Math.pow(i, 3);
+            i++;
+        }
+        if (m == 0) {
+            return i-1;
+        }
+        return -1;
     }
 
     public String balance(String book) {
