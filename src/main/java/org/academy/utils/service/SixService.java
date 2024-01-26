@@ -60,12 +60,23 @@ public class SixService {
 
     private void easyBalanceChecking() {
         printChoiceMessage("easyBalanceChecking");
-        sixImpl.balance("");
+
+        System.out.println("Please enter a check book: ");
+        String book = reader.readString();
+
+        System.out.println("\n" + sixImpl.balance(book));
     }
 
     private void buildPileOfCubes() {
         printChoiceMessage("buildPileOfCubes");
-        long nb = sixImpl.findNb(0l);
+
+        System.out.println("Please enter total number of cubes: ");
+        long m = reader.readLong();
+
+        long n = sixImpl.findNb(m);
+        if (n == -1)
+            System.out.println("\nThe pile cannot be built of " + m + " cubes.");
+        System.out.println("\nYou will have to build " + n + " cubes.");
     }
 
     private void printChoiceMessage(String task) {
