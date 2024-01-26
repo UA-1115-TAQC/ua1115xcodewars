@@ -20,7 +20,7 @@ public class FiveImpl implements Five {
         }
         return null;
     }
-    public boolean isPrime(long num) {
+    private boolean isPrime(long num) {
         if (num <= 1) {
             return false; // Число менше або дорівнює 1 не є простим
         }
