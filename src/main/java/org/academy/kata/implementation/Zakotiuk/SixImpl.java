@@ -2,28 +2,49 @@ package org.academy.kata.implementation.Zakotiuk;
 
 import org.academy.kata.Six;
 
-import java.util.*;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
 
 public class SixImpl implements Six {
     public long findNb(long m) {
         long cube_counter = 1;
         long total = 0;
 
-        while (total < m){
+        while (total < m) {
             total += cube_counter * cube_counter * cube_counter;
             cube_counter++;
         }
 
-        if(total == m)
-            return cube_counter-1;
-        else
-            return -1;
+        if (total == m) return cube_counter - 1;
+        else return -1;
     }
 
     public String balance(String book) {
-        return null;
+
+        String temp = book.replaceAll("([^\\n. \\da-zA-Z])", "");
+        String[] arr = temp.split("[\\n]+");
+
+        double total = 0;
+        int count = 0;
+        double current = Double.parseDouble(arr[0]);
+
+        StringBuilder result = new StringBuilder();
+        result.append("Original Balance: ").append(arr[0]);
+
+        for (int i = 1; i < arr.length; i++) {
+            count++;
+            String[] line = arr[i].split("[ ]+");
+            current -= Double.parseDouble(line[2]);
+            total += Double.parseDouble(line[2]);
+
+            String item = String.format("\\r\\n%s %s %s Balance %.2f", line[0], line[1], line[2], current);
+            result.append(item);
+        }
+
+        result.append(String.format("\\r\\nTotal expense  %.2f\\r\\nAverage expense  %.2f", total, total / count));
+        return result.toString();
     }
 
     public double f(double x) {
@@ -37,8 +58,7 @@ public class SixImpl implements Six {
 
         String monthData = getMonthDataForTown(town, strng);
 
-        if (monthData.isEmpty())
-            return -1;
+        if (monthData.isEmpty()) return -1;
 
         String[] monthRecords = monthData.split(",");
         double sum = 0;
@@ -53,8 +73,7 @@ public class SixImpl implements Six {
             }
         }
 
-        if (validRecordsCount == 0)
-            return -1;
+        if (validRecordsCount == 0) return -1;
 
         return sum / validRecordsCount;
     }
@@ -68,8 +87,7 @@ public class SixImpl implements Six {
 
         String monthData = getMonthDataForTown(town, strng);
 
-        if (monthData.isEmpty())
-            return -1;
+        if (monthData.isEmpty()) return -1;
 
         String[] monthRecords = monthData.split(",");
         double counting = 0.0;
@@ -85,11 +103,11 @@ public class SixImpl implements Six {
             }
         }
 
-        if (validRecordsCount == 0)
-            return -1;
+        if (validRecordsCount == 0) return -1;
 
         return counting / validRecordsCount;
     }
+
     private String getMonthDataForTown(String town, String strng) {
         String[] citiesData = strng.split("\\n");
         String monthData = "";
@@ -108,12 +126,7 @@ public class SixImpl implements Six {
 
     public String nbaCup(String resultSheet, String toFind) {
         if (toFind.isEmpty()) return "";
-        String[] teams = new String[]{"Los Angeles Clippers", "Dallas Mavericks", "New York Knicks", "Atlanta Hawks", "Indiana Pacers", "Memphis Grizzlies",
-                "Los Angeles Lakers", "Minnesota Timberwolves", "Phoenix Suns", "Portland Trail Blazers", "New Orleans Pelicans",
-                "Sacramento Kings", "Los Angeles Clippers", "Houston Rockets", "Denver Nuggets", "Cleveland Cavaliers", "Milwaukee Bucks",
-                "Oklahoma City Thunder", "San Antonio Spurs", "Boston Celtics", "Philadelphia 76ers", "Brooklyn Nets", "Chicago Bulls",
-                "Detroit Pistons", "Utah Jazz", "Miami Heat", "Charlotte Hornets", "Toronto Raptors", "Orlando Magic", "Washington Wizards",
-                "Golden State Warriors"};
+        String[] teams = new String[]{"Los Angeles Clippers", "Dallas Mavericks", "New York Knicks", "Atlanta Hawks", "Indiana Pacers", "Memphis Grizzlies", "Los Angeles Lakers", "Minnesota Timberwolves", "Phoenix Suns", "Portland Trail Blazers", "New Orleans Pelicans", "Sacramento Kings", "Los Angeles Clippers", "Houston Rockets", "Denver Nuggets", "Cleveland Cavaliers", "Milwaukee Bucks", "Oklahoma City Thunder", "San Antonio Spurs", "Boston Celtics", "Philadelphia 76ers", "Brooklyn Nets", "Chicago Bulls", "Detroit Pistons", "Utah Jazz", "Miami Heat", "Charlotte Hornets", "Toronto Raptors", "Orlando Magic", "Washington Wizards", "Golden State Warriors"};
 
         if (!Arrays.asList(teams).contains(toFind)) return toFind + ":This team didn't play!";
 
@@ -170,8 +183,7 @@ public class SixImpl implements Six {
             }
         }
 
-        return String.format("%s:W=%d;D=%d;L=%d;Scored=%d;Conceded=%d;Points=%d",
-                toFind, wins, draws, loses, scored, conceded, points);
+        return String.format("%s:W=%d;D=%d;L=%d;Scored=%d;Conceded=%d;Points=%d", toFind, wins, draws, loses, scored, conceded, points);
     }
 
     public String stockSummary(String[] lstOfArt, String[] lstOf1stLetter) {
@@ -192,8 +204,7 @@ public class SixImpl implements Six {
                 if (Objects.equals(item, "" + letter)) {
                     if (categoryCounts.containsKey(letter))
                         categoryCounts.put(letter, categoryCounts.get(letter) + count);
-                    else
-                        categoryCounts.put(letter, count);
+                    else categoryCounts.put(letter, count);
                 }
             }
         }
