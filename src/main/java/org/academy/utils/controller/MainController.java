@@ -2,6 +2,7 @@ package org.academy.utils.controller;
 
 import org.academy.utils.Author;
 import org.academy.utils.ConsoleReader;
+import org.academy.utils.service.SevenService;
 import org.academy.utils.service.SixService;
 import org.academy.utils.service.FiveService;
 
@@ -25,20 +26,25 @@ public class MainController {
             9 perimeterSquares
             10 xForSum
             11 findSmallest
-            12 artificialRain""";
+            12 artificialRain
+            13 newAvg
+            14 seriesSum""";
+
     private final ConsoleReader reader;
     private final SixService sixService;
     private  final  FiveService fiveService;
+    private  final SevenService sevenService;
 
-    private MainController(ConsoleReader reader, SixService sixService, FiveService fiveService) {
+    private MainController(ConsoleReader reader, SixService sixService, FiveService fiveService, SevenService sevenService) {
         this.reader = reader;
         this.sixService = sixService;
         this.fiveService = fiveService;
+        this.sevenService = sevenService;
     }
 
     public static MainController getInstance() {
         if (INSTANCE == null) {
-            INSTANCE = new MainController(new ConsoleReader(), new SixService(), new FiveService());
+            INSTANCE = new MainController(new ConsoleReader(), new SixService(), new FiveService(), new SevenService());
         }
         return INSTANCE;
     }
@@ -112,6 +118,8 @@ public class MainController {
             sixService.callMethod(taskId, author, reader);
         if (taskId > 6 && taskId <= 12)
             fiveService.callMethod(taskId, author, reader);
+        if (taskId >= 13 && taskId <= 14)
+            sevenService.callMethod(taskId, author, reader);
             // or else if(taskId > 6 && taskId <= 10)
             // sevenController ....
             // etc.
