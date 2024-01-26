@@ -8,7 +8,7 @@ import java.text.DecimalFormat;
 
 public class EightImpl implements Eight {
     public int liters(double time) {
-        return 0;
+        return (int) Math.floor(time * 0.5);
     }
 
     public double getVolumeOfCuboid(double length, double width, double height) {

@@ -27,6 +27,8 @@ public class SevenImpl implements Seven {
         }
         return String.format("%.2f", sum);
     }
+        return String.format("%.2f", sum);
+}
 
     public int whereIsHe(int p, int bef, int aft) {
         return 0;
