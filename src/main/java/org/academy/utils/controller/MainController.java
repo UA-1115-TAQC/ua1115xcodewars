@@ -26,7 +26,18 @@ public class MainController {
             9 perimeterSquares
             10 xForSum
             11 findSmallest
-            12 artificialRain""";
+            12 artificialRain
+            
+            
+            15 keepHydrated
+            16 getVolumeOfCuboid
+            17 mpgToKPM
+            18 squareOrSquareRoot
+            19 countPositivesSumNegatives
+            20 stringToNumber
+            21 TwoDecimalPlaces
+            22 divisibleBy
+            23 am_i_wilson""";
     private final ConsoleReader reader;
     private final SixService sixService;
     private  final  FiveService fiveService;
