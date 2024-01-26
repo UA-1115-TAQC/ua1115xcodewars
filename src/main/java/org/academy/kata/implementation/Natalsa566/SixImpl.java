@@ -8,7 +8,6 @@ public class SixImpl implements Six {
         return 0;
     }
 
-    @Override
     public String balance(String book) {
          StringBuilder result = new StringBuilder();
          double balance = 0.0;
@@ -29,10 +28,8 @@ public class SixImpl implements Six {
                         }
                     }
             }
-
         result.append(String.format("Total expense  %.2f%n", totalExpense));
         result.append(String.format("Average expense  %.2f", totalExpense / expenseCount));
-
         return result.toString();
 }
 
