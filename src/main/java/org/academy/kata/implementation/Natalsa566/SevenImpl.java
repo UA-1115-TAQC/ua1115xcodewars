@@ -6,7 +6,7 @@ public class SevenImpl implements Seven {
     public long newAvg(double[] arr, double navg) {
         return 0;
     }
-@Override
+
     public String seriesSum(int n) {
     double sum = 0;
         for (int i = 0; i < n; i++) {
