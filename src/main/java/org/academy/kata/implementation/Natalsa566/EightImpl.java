@@ -33,7 +33,7 @@ public class EightImpl implements Eight {
     public int[] divisibleBy(int[] numbers, int divider) {
         return new int[0];
     }
-@Override
+
     public boolean am_i_wilson(double n) {
         long number = (long) n;
         if (number < 2) {
