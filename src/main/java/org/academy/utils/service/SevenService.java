@@ -8,6 +8,24 @@ public class SevenService {
     private ConsoleReader reader;
     private Seven sevenImpl;
 
+    public void callMethod(int id, Author author, ConsoleReader reader) {
+        setImplByAuthor(author);
+        setReader(reader);
+        switch (id) {
+            case 13 -> newAvg();
+            case 14 -> seriesSum();
+        }
+    }
+
+    private void newAvg() {
+        printChoiceMessage("newAwg");
+        System.out.print("Enter the array of donations divided by whitespaces (array of doubles): ");
+        double[] arr = reader.readDoubleArr();
+        System.out.print("Enter the average donation (double): ");
+        double d = reader.readDouble();
+        System.out.println("Result of task: " + sevenImpl.newAvg(arr, d));
+    }
+
     private void seriesSum() {
         printChoiceMessage("seriesSum");
         System.out.println("Enter int number as a parameter: ");
@@ -15,15 +33,6 @@ public class SevenService {
         sevenImpl.seriesSum(sum);
     }
 
-    public void callMethod(int id, Author author, ConsoleReader reader) {
-        setImplByAuthor(author);
-        setReader(reader);
-
-        switch (id) {
-            case 13 -> newAvg();
-        }
-
-    }
     private void printChoiceMessage(String task) {
         System.out.println("You choosed task \"" + task + '\"');
     }
@@ -42,16 +51,4 @@ public class SevenService {
         }
     }
 
-    private void printChoiceMessage(String task) {
-        System.out.println("You choosed task \"" + task + '\"');
-    }
-
-    private void newAvg() {
-        printChoiceMessage("newAwg");
-        System.out.print("Enter the array of donations divided by whitespaces (array of doubles): ");
-        double[] arr = reader.readDoubleArr();
-        System.out.print("Enter the average donation (double): ");
-        double d = reader.readDouble();
-        System.out.println("Result of task: " + sevenImpl.newAvg(arr, d));
-    }
 }
