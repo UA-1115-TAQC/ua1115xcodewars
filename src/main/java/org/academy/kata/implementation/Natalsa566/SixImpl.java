@@ -34,7 +34,7 @@ public class SixImpl implements Six {
         }
         return Arrays.stream(rainfallValues).average().orElse(Double.NaN);
     }
-    @Override
+
     public double variance(String town, String strng) {
         String[] townRecords = getTownRecords(town, strng);
         if (townRecords.length == 0) {
