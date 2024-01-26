@@ -1,6 +1,9 @@
 package org.academy.kata.implementation.Natalsa566;
 
 import org.academy.kata.Eight;
+import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.List;
 import java.text.DecimalFormat;
 
 public class EightImpl implements Eight {
@@ -43,9 +46,18 @@ public class EightImpl implements Eight {
     }
 
     public int[] divisibleBy(int[] numbers, int divider) {
-        return new int[0];
+        List<Integer> result = new ArrayList<>();
+             for (int number : numbers) {
+                if (number % divider == 0) {
+                    result.add(number);
+            }
     }
-
+                int[] resultArray = new int[result.size()];
+                for (int i = 0; i < result.size(); i++) {
+                    resultArray[i] = result.get(i);
+                     }
+                         return resultArray;
+}
     public boolean am_i_wilson(double n) {
         return false;
     }
