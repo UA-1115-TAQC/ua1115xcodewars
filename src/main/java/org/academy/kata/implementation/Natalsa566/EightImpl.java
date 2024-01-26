@@ -12,7 +12,8 @@ public class EightImpl implements Eight {
     }
 
     public double getVolumeOfCuboid(double length, double width, double height) {
-        return 0;
+        double volume = length * width * height;
+        return volume;
     }
     public float mpgToKPM(float mpg) {
         float gallonsToLiters = 4.54609188f;
