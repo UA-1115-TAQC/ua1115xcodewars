@@ -5,6 +5,7 @@ import java.math.BigInteger;
 import org.academy.kata.Five;
 import org.academy.utils.Author;
 import org.academy.utils.ConsoleReader;
+import java.util.Arrays;
 
 public class FiveService {
     private ConsoleReader reader;
@@ -24,6 +25,24 @@ public class FiveService {
         }
     }
 
+private void gapInPrimes(){
+        printChoiceMessage("Gap in Primes.");
+        System.out.println("Enter an integer, which is greater than 2 or equals it. It will also indicate the gap we are looking for: ");
+        int g = reader.readInt();
+        System.out.println("Enter an integer m, which is greater than 2. It will also indicate the start of the search (m inclusive): ");
+        long m = reader.readLong();
+        System.out.println("Enter an integer n, which is greater than m or equals it. It will also indicate the the end of the search (n inclusive): ");
+        long n = reader.readLong();
+        System.out.println("You entered " + g + ", " + m + ", " + n + "\nResult of task: " + Arrays.toString(fiveImpl.gap(g, m, n)));
+    }
+
+    private void trailingZeros(){
+        printChoiceMessage("Number of trailing zeros of N!");
+        System.out.println("Enter an an integer, which will indicate the number, the number of trailing zeroes in the factorial of which we are looking for: ");
+        int n = reader.readInt();
+        System.out.println("You entered " + n + "\nResult of task: " + fiveImpl.zeros(n));
+    }
+    
     private void perimeterSquares() {
         printChoiceMessage("Perimeter of squares.");
 
