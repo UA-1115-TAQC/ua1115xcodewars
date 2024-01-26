@@ -8,7 +8,11 @@ public class SevenImpl implements Seven {
     }
 
     public String seriesSum(int n) {
-        return null;
+        double sum = 0;
+        for (int i = 0; i < n; i++) {
+            sum += 1.0 / (1 + i * 3);
+        }
+        return String.format("%.2f", sum);
     }
 
     public int whereIsHe(int p, int bef, int aft) {
