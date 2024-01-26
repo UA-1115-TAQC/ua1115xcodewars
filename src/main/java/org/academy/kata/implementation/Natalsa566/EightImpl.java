@@ -27,7 +27,7 @@ public class EightImpl implements Eight {
     public int stringToNumber(String str) {
         return 0;
     }
-    @Override
+
     public double TwoDecimalPlaces(double number) {
         long n = (long) number;
         if (n < 2 || n != number || number % 1 != 0) {
@@ -40,17 +40,6 @@ public class EightImpl implements Eight {
         double result = (factorialMod + 1) % (n * n) == 0 ? 1.0 : 0.0;
         DecimalFormat decimalFormat = new DecimalFormat("#.##");
         return Double.parseDouble(decimalFormat.format(result));
-    }
-    public static void main(String[] args) {
-        Eight checker = new EightImpl();
-        double num1 = 5.0;
-        double num2 = 7.0;
-        double num3 = 13.0;
-        double num4 = 2.5;
-        System.out.println(num1 + " is a Wilson prime: " + checker.TwoDecimalPlaces(num1));
-        System.out.println(num2 + " is a Wilson prime: " + checker.TwoDecimalPlaces(num2));
-        System.out.println(num3 + " is a Wilson prime: " + checker.TwoDecimalPlaces(num3));
-        System.out.println(num4 + " is a Wilson prime: " + checker.TwoDecimalPlaces(num4));
     }
 
     public int[] divisibleBy(int[] numbers, int divider) {
