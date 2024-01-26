@@ -25,7 +25,6 @@ public class EightImpl implements Eight {
             result[i] = (squareRoot == (int) squareRoot) ? (int) squareRoot : (number * number);
         }
         return result;
-
     }
 
     public int[] countPositivesSumNegatives(int[] input) {

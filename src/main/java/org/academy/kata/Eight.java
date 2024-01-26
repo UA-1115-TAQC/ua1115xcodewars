@@ -7,15 +7,8 @@ public interface Eight {
 
     float mpgToKPM(final float mpg);
 
-    static int[] squareOrSquareRootStatic(int[] array) {
-        int[] result = new int[array.length];
-        for (int i = 0; i < array.length; i++) {
-            int number = array[i];
-            double squareRoot = Math.sqrt(number);
-            result[i] = (squareRoot == (int) squareRoot) ? (int) squareRoot : (number * number);
-        }
-        return result;
-    }
+    int[] squareOrSquareRoot(int[] array);
+
     int[] countPositivesSumNegatives(int[] input);
 
     int stringToNumber(String str);
