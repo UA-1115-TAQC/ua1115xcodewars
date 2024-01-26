@@ -2,6 +2,7 @@ package org.academy.utils.controller;
 
 import org.academy.utils.Author;
 import org.academy.utils.ConsoleReader;
+import org.academy.utils.service.EightService;
 import org.academy.utils.service.SixService;
 import org.academy.utils.service.FiveService;
 
@@ -30,15 +31,18 @@ public class MainController {
     private final SixService sixService;
     private  final  FiveService fiveService;
 
-    private MainController(ConsoleReader reader, SixService sixService, FiveService fiveService) {
+    private final EightService eightService;
+
+    private MainController(ConsoleReader reader, SixService sixService, FiveService fiveService, EightService eightService) {
         this.reader = reader;
         this.sixService = sixService;
         this.fiveService = fiveService;
+        this.eightService = eightService;
     }
 
     public static MainController getInstance() {
         if (INSTANCE == null) {
-            INSTANCE = new MainController(new ConsoleReader(), new SixService(), new FiveService());
+            INSTANCE = new MainController(new ConsoleReader(), new SixService(), new FiveService(), new EightService());
         }
         return INSTANCE;
     }
@@ -112,9 +116,9 @@ public class MainController {
             sixService.callMethod(taskId, author, reader);
         if (taskId > 6 && taskId <= 12)
             fiveService.callMethod(taskId, author, reader);
-            // or else if(taskId > 6 && taskId <= 10)
-            // sevenController ....
-            // etc.
+        if (taskId > 14 && taskId <= 23 )
+            eightService.callMethod(taskId, author, reader);
+
         else printExceptionMessage("Task", taskId);
     }
 
