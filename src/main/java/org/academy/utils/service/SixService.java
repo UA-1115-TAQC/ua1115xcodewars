@@ -36,16 +36,26 @@ public class SixService {
 
     private void rankingNBA() {
         printChoiceMessage("rankingNBA");
-        sixImpl.nbaCup("", "");
+
+        System.out.println("Enter NBA result sheet as string:");
+        String resSheet = reader.readString();
+
+        System.out.println("Enter a name of NBA team:");
+        String teamToFind = reader.readString();
+
+        String result = sixImpl.nbaCup(resSheet, teamToFind);
+        System.out.println("Input parameters: \nNBA result sheet: " + resSheet
+                + "\nNBA team: " + teamToFind
+                + "\nResult: " + result);
     }
 
     private void floatingPointApproximation() {
         printChoiceMessage("floatingPointApproximation");
 
         System.out.println("Enter decimal number as parameter:"); // 2.6e-08 result: 1.29999999155e-08
-        double v = reader.readDouble();
-        double result = sixImpl.f(v);
-        System.out.println("You entered " + v + ", \nResult of task: " + result);
+        double value = reader.readDouble();
+        double result = sixImpl.f(value);
+        System.out.println("You entered: " + value + "\nResult of task: " + result);
     }
 
     private void easyBalanceChecking() {
