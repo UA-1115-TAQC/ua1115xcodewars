@@ -71,15 +71,15 @@ public enum Author {
     private final String name;
     private final Eight eight;
     private final Seven seven;
-    private final Six sixImpl;
+    private final Six six;
     private final Five five;
 
-    Author(int id, String name, Eight eight, Seven seven, Six sixImpl, Five five) {
+    Author(int id, String name, Eight eight, Seven seven, Six six, Five five) {
         this.id = id;
         this.name = name;
         this.eight = eight;
         this.seven = seven;
-        this.sixImpl = sixImpl;
+        this.six = six;
         this.five = five;
     }
 
@@ -114,7 +114,7 @@ public enum Author {
     }
 
     public Six getSix() {
-        return sixImpl;
+        return six;
     }
 
     public Five getFive() {
