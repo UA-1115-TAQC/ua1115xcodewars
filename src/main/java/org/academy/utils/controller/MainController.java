@@ -2,7 +2,9 @@ package org.academy.utils.controller;
 
 import org.academy.utils.Author;
 import org.academy.utils.ConsoleReader;
+import org.academy.utils.service.SevenService;
 import org.academy.utils.service.SixService;
+import org.academy.utils.service.FiveService;
 
 public class MainController {
     private static MainController INSTANCE;
@@ -18,18 +20,31 @@ public class MainController {
             3 rankingNBA
             4 floatingPointApproximation
             5 easyBalanceChecking
-            6 buildPileOfCubes""";
+            6 buildPileOfCubes
+            7 gapInPrimes
+            8 trailingZeros
+            9 perimeterSquares
+            10 xForSum
+            11 findSmallest
+            12 artificialRain
+            13 newAvg
+            14 seriesSum""";
+
     private final ConsoleReader reader;
     private final SixService sixService;
+    private  final  FiveService fiveService;
+    private  final SevenService sevenService;
 
-    private MainController(ConsoleReader reader, SixService sixService) {
+    private MainController(ConsoleReader reader, SixService sixService, FiveService fiveService, SevenService sevenService) {
         this.reader = reader;
         this.sixService = sixService;
+        this.fiveService = fiveService;
+        this.sevenService = sevenService;
     }
 
     public static MainController getInstance() {
         if (INSTANCE == null) {
-            INSTANCE = new MainController(new ConsoleReader(), new SixService());
+            INSTANCE = new MainController(new ConsoleReader(), new SixService(), new FiveService(), new SevenService());
         }
         return INSTANCE;
     }
@@ -54,7 +69,7 @@ public class MainController {
                 default -> printActions();
             }
         }
-        System.out.println("program finished");
+        System.out.println("The program is finished");
     }
 
     private void printActions() {
@@ -62,7 +77,7 @@ public class MainController {
     }
 
     private void printAuthors() {
-        System.out.println("List of author:");
+        System.out.println("List of authors:");
         Author.printAuthors();
     }
 
@@ -101,6 +116,10 @@ public class MainController {
     private void mapTask(int taskId, Author author) {
         if (taskId > 0 && taskId <= 6)
             sixService.callMethod(taskId, author, reader);
+        if (taskId > 6 && taskId <= 12)
+            fiveService.callMethod(taskId, author, reader);
+        if (taskId >= 13 && taskId <= 14)
+            sevenService.callMethod(taskId, author, reader);
             // or else if(taskId > 6 && taskId <= 10)
             // sevenController ....
             // etc.
@@ -112,6 +131,6 @@ public class MainController {
     }
 
     private void printChoiceMessage(String obj) {
-        System.out.println("You choosed \"" + obj + '\"');
+        System.out.println("You chose \"" + obj + '\"');
     }
 }
