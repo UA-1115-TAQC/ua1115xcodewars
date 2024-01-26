@@ -1,7 +1,6 @@
 package org.academy.utils.service;
 
 import org.academy.kata.Seven;
-import org.academy.kata.Six;
 import org.academy.utils.Author;
 import org.academy.utils.ConsoleReader;
 
