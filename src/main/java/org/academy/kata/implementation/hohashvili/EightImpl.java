@@ -51,7 +51,15 @@ public class EightImpl implements Eight {
         return new int[0];
     }
 
+    private double factorial(double n)
+    {
+        if (n == 0)
+            return 1;
+
+        return n * factorial(n - 1);
+    }
     public boolean am_i_wilson(double n) {
-        return false;
+        double result = (factorial(n-1) + 1) / (n*n);
+        return Math.ceil(result) == result;
     }
 }
