@@ -3,6 +3,7 @@ package org.academy.utils.controller;
 import org.academy.utils.Author;
 import org.academy.utils.ConsoleReader;
 import org.academy.utils.service.EightService;
+import org.academy.utils.service.SevenService;
 import org.academy.utils.service.SixService;
 import org.academy.utils.service.FiveService;
 
@@ -27,8 +28,8 @@ public class MainController {
             10 xForSum
             11 findSmallest
             12 artificialRain
-            
-            
+            13 newAvg
+            14 seriesSum
             15 keepHydrated
             16 getVolumeOfCuboid
             17 mpgToKPM
@@ -38,22 +39,25 @@ public class MainController {
             21 TwoDecimalPlaces
             22 divisibleBy
             23 am_i_wilson""";
+
     private final ConsoleReader reader;
     private final SixService sixService;
     private  final  FiveService fiveService;
-
+    private  final SevenService sevenService;
     private final EightService eightService;
 
-    private MainController(ConsoleReader reader, SixService sixService, FiveService fiveService, EightService eightService) {
+
+    private MainController(ConsoleReader reader, SixService sixService, FiveService fiveService, SevenService sevenService, EightService eightService) {
         this.reader = reader;
         this.sixService = sixService;
         this.fiveService = fiveService;
+        this.sevenService = sevenService;
         this.eightService = eightService;
     }
 
     public static MainController getInstance() {
         if (INSTANCE == null) {
-            INSTANCE = new MainController(new ConsoleReader(), new SixService(), new FiveService(), new EightService());
+            INSTANCE = new MainController(new ConsoleReader(), new SixService(), new FiveService(), new SevenService(),new EightService());
         }
         return INSTANCE;
     }
@@ -127,9 +131,10 @@ public class MainController {
             sixService.callMethod(taskId, author, reader);
         if (taskId > 6 && taskId <= 12)
             fiveService.callMethod(taskId, author, reader);
+        if (taskId >= 13 && taskId <= 14)
+            sevenService.callMethod(taskId, author, reader);
         if (taskId > 14 && taskId <= 23 )
             eightService.callMethod(taskId, author, reader);
-
         else printExceptionMessage("Task", taskId);
     }
 
