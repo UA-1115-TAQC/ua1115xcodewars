@@ -25,13 +25,31 @@ public class SixService {
 
     private void rainFall() {
         printChoiceMessage("rainFall");
-        double mean = sixImpl.mean("", "");
-        double variance = sixImpl.variance("", "");
+
+        System.out.println("Please enter a city name:");
+        String town = reader.readString();
+        System.out.println("""
+                Please enter rainfall records of cities
+                 (separate months with "," and towns with \\n):""");
+        String record = reader.readString();
+
+        double mean = sixImpl.mean(town, record);
+        double variance = sixImpl.variance(town, record);
+        if (mean == -1){
+            System.out.println("There isn't " + town + " in the records");
+        } else {
+            System.out.println("The average = " + mean + "\nThe variance = " + variance);
+        }
     }
 
     private void helpTheBookseller() {
         printChoiceMessage("helpTheBookseller");
-        sixImpl.stockSummary(new String[0], new String[0]);
+
+        System.out.println("Please enter stock list as array of strings (separate strings with \",\"):");
+        String[] books = reader.readStringArr();
+        System.out.println("Please enter letters as array of strings (separate strings with \",\"):");
+        String[] letters = reader.readStringArr();
+        System.out.println("The quantity of books: " + sixImpl.stockSummary(books, letters));
     }
 
     private void rankingNBA() {
