@@ -21,7 +21,6 @@ public class FiveService {
             case 9 -> perimeterSquares();
             case 10 -> xForSum();
             case 11 -> findSmallest();
-            case 12 -> artificialRain();
         }
     }
 
@@ -65,10 +64,6 @@ private void gapInPrimes(){
         long param = reader.readLong();
         System.out.println("You've entered: " + param + "\n.");
         System.out.println("Result: The smallest number is " + fiveImpl.smallest(param)[0] + ", digits " + fiveImpl.smallest(param)[1] + " and " + fiveImpl.smallest(param)[2] + " got swapped.");
-    }
-
-    private void artificialRain() {
-
     }
 
     private void printChoiceMessage(String task) {
