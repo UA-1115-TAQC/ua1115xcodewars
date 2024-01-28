@@ -1,10 +1,10 @@
 package org.academy.utils.service;
 
-import java.math.BigInteger;
-
 import org.academy.kata.Five;
 import org.academy.utils.Author;
 import org.academy.utils.ConsoleReader;
+
+import java.math.BigInteger;
 import java.util.Arrays;
 
 public class FiveService {
@@ -57,6 +57,18 @@ private void gapInPrimes(){
         System.out.println("Enter a positive double as a parameter: ");
         double param = reader.readDouble();
         System.out.println("You entered " + param + "\nResult of task: " + fiveImpl.solve(param));
+    }
+
+    private void findSmallest() {
+        printChoiceMessage("Find the smallest resulting integer along with the indices of the swapped digits");
+        System.out.println("Enter a long as a parameter: ");
+        long param = reader.readLong();
+        System.out.println("You've entered: " + param + "\n.");
+        System.out.println("Result: The smallest number is " + fiveImpl.smallest(param)[0] + ", digits " + fiveImpl.smallest(param)[1] + " and " + fiveImpl.smallest(param)[2] + " got swapped.");
+    }
+
+    private void artificialRain() {
+
     }
 
     private void printChoiceMessage(String task) {
