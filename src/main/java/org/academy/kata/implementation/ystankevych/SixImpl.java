@@ -1,15 +1,23 @@
 package org.academy.kata.implementation.ystankevych;
 
-import java.util.stream.Collectors;
-import java.util.Arrays;
+import org.academy.kata.Six;
+
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import org.academy.kata.Six;
+import java.util.stream.Collectors;
+import java.util.stream.DoubleStream;
 
 public class SixImpl implements Six {
+    private static String[] parseNbaSheet(String resultSheet, String toFind) {
+        return Arrays.stream(resultSheet.split(","))
+                .filter(s -> !s.isBlank() && s.contains(toFind + " "))
+                .map(s -> s.replaceAll("\\s+", " "))
+                .toArray(String[]::new);
+    }
+
     public long findNb(long m) {
         long counter = 0;
         while (m > 0) {
@@ -59,11 +67,27 @@ public class SixImpl implements Six {
     }
 
     public double mean(String town, String strng) {
-        return 0;
+        return getStatisticsByTown(town, strng)
+                .average()
+                .orElse(-1);
     }
 
     public double variance(String town, String strng) {
-        return 0;
+        final double average = mean(town, strng);
+        return average < 0 ? -1 : getStatisticsByTown(town, strng)
+                .boxed()
+                .collect(Collectors.averagingDouble(v -> Math.pow(v - average, 2)));
+    }
+
+    private DoubleStream getStatisticsByTown(String town, String strng) {
+        return Pattern.compile("(?m)^" + town + ":(.*)$")
+                .matcher(strng)
+                .results()
+                .map(s -> s.group(1))
+                .flatMap(s -> Arrays.stream(s.split(","))
+                        .filter(c -> !c.isBlank())
+                        .map(c -> c.replaceAll("[^\\d.]", "")))
+                .mapToDouble(Double::parseDouble);
     }
 
     public String nbaCup(String resultSheet, String toFind) {
@@ -107,13 +131,6 @@ public class SixImpl implements Six {
         }
         statistics.merge("Scored", first, Integer::sum);
         statistics.merge("Conceded", second, Integer::sum);
-    }
-
-    private static String[] parseNbaSheet(String resultSheet, String toFind) {
-        return Arrays.stream(resultSheet.split(","))
-                .filter(s -> !s.isBlank() && s.contains(toFind + " "))
-                .map(s -> s.replaceAll("\\s+", " "))
-                .toArray(String[]::new);
     }
 
     public String stockSummary(String[] lstOfArt, String[] lstOf1stLetter) {
