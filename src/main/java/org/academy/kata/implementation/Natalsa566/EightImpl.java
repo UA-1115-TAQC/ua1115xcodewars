@@ -1,41 +1,98 @@
 package org.academy.kata.implementation.Natalsa566;
 
 import org.academy.kata.Eight;
+import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.List;
+import java.text.DecimalFormat;
+
+import java.util.Arrays;
 
 public class EightImpl implements Eight {
     public int liters(double time) {
-        return 0;
+        return (int) Math.floor(time * 0.5);
     }
 
     public double getVolumeOfCuboid(double length, double width, double height) {
-        return 0;
+        double volume = length * width * height;
+        return volume;
     }
-
     public float mpgToKPM(float mpg) {
-        return 0;
+        float gallonsToLiters = 4.54609188f;
+        float milesToKilometers = 1.609344f;
+        float kpm = (mpg * milesToKilometers) / gallonsToLiters;
+        kpm = Math.round(kpm * 100.0) / 100.0f;
+        return kpm;
     }
 
     public int[] squareOrSquareRoot(int[] array) {
-        return new int[0];
+        int[] result = new int[array.length];
+        for (int i = 0; i < array.length; i++) {
+            int number = array[i];
+            double squareRoot = Math.sqrt(number);
+            result[i] = (squareRoot == (int) squareRoot) ? (int) squareRoot : (number * number);
+        }
+        return result;
     }
 
-    public int[] countPositivesSumNegatives(int[] input) {
-        return new int[0];
+    public int[] countPositivesSumNegatives ( int[] input){
+        if (input == null || input.length == 0) {
+            return new int[0];
+        }
+            int countPositives = 0;
+            int sumNegatives = 0;
+
+               for (int num : input) {
+                  if (num > 0) {
+                     countPositives++;
+                       } else if (num < 0) {
+                            sumNegatives += num;
+            }
+        }
+        return new int[]{countPositives, sumNegatives};
     }
 
     public int stringToNumber(String str) {
-        return 0;
+        return Integer.parseInt(str);
     }
 
     public double TwoDecimalPlaces(double number) {
-        return 0;
+        long n = (long) number;
+        if (n < 2 || n != number || number % 1 != 0) {
+            return 0.0;
+        }
+        long factorialMod = 1;
+        for (long i = 2; i < n; i++) {
+            factorialMod = (factorialMod * i) % n;
+        }
+        double result = (factorialMod + 1) % (n * n) == 0 ? 1.0 : 0.0;
+        DecimalFormat decimalFormat = new DecimalFormat("#.##");
+        return Double.parseDouble(decimalFormat.format(result));
     }
 
     public int[] divisibleBy(int[] numbers, int divider) {
-        return new int[0];
+        List<Integer> result = new ArrayList<>();
+             for (int number : numbers) {
+                if (number % divider == 0) {
+                    result.add(number);
+            }
     }
-
+                int[] resultArray = new int[result.size()];
+                for (int i = 0; i < result.size(); i++) {
+                    resultArray[i] = result.get(i);
+                     }
+                         return resultArray;
+}
     public boolean am_i_wilson(double n) {
-        return false;
+        long number = (long) n;
+        if (number < 2) {
+            return false;
+        }
+        double factorialMod = 1;
+        for (double i = 2; i < n; i++) {
+            factorialMod = (factorialMod * i) % n;
+        }
+        return (factorialMod + 1) % n == 0;
     }
 }
+

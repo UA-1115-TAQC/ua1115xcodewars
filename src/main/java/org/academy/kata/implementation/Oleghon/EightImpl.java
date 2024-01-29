@@ -2,7 +2,7 @@ package org.academy.kata.implementation.Oleghon;
 
 import org.academy.kata.Eight;
 
-import java.util.stream.LongStream;
+import java.util.stream.*;
 import java.math.*;
 
 public class EightImpl implements Eight {
@@ -51,7 +51,9 @@ public class EightImpl implements Eight {
     }
 
     public int[] divisibleBy(int[] numbers, int divider) {
-        return new int[0];
+        return IntStream.of(numbers)
+                .filter(n -> n % divider == 0)
+                .toArray();
     }
 
     public boolean am_i_wilson(double n) {
