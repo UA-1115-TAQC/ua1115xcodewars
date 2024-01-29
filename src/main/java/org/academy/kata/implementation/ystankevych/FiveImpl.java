@@ -1,9 +1,23 @@
 package org.academy.kata.implementation.ystankevych;
 
 import org.academy.kata.Five;
+
 import java.math.BigInteger;
+import java.util.stream.Stream;
+
+import static java.math.BigInteger.ONE;
+import static java.math.BigInteger.ZERO;
 
 public class FiveImpl implements Five {
+    private static boolean isPrime(long value) {
+        for (int i = 2; i <= Math.sqrt(value); i++) {
+            if (value % i == 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     public long[] gap(int g, long m, long n) {
         if (g < 2 || g % 2 != 0 || m <= 2 || n < m) {
             return null;
@@ -14,7 +28,7 @@ public class FiveImpl implements Five {
         for (long i = m % 2 == 0 ? m + 1 : m; i < n; i += 2) {
             if (isPrime(i)) {
                 if (i - temp == g) {
-                    return new long[] {temp, i};
+                    return new long[]{temp, i};
                 }
                 temp = i;
             }
@@ -22,21 +36,12 @@ public class FiveImpl implements Five {
         return null;
     }
 
-    private static boolean isPrime(long value) {
-        for (int i = 2; i <= Math.sqrt(value); i++) {
-            if (value % i == 0) {
-                return false;
-            }
-        }
-        return true;
-    }
-
     public int zeros(int n) {
         return n < 5 ? 0 : n / 5 + zeros(n / 5);
     }
 
     public BigInteger perimeter(BigInteger n) {
-        return null;
+        return Stream.iterate(new BigInteger[]{ONE, ONE}, i -> new BigInteger[]{i[1], i[0].add(i[1])}).limit(n.longValue()).map(a -> a[1]).reduce(ZERO, BigInteger::add).add(ONE).multiply(BigInteger.valueOf(4));
     }
 
     public double solve(double m) {
