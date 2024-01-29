@@ -10,9 +10,14 @@ import java.util.Map;
 public class SixImpl implements Six {
 
     public long findNb(long m) {
-        return 0;
+        long n = (long) Math.sqrt(2 * Math.sqrt(m));
+        if (n * (n + 1) / 2 * n * (n + 1) / 2 == m) {
+            return n;
+        } else {
+            return -1;
+        }
     }
-
+  
     public String balance(String book) {
          StringBuilder result = new StringBuilder();
          double balance = 0.0;
