@@ -81,11 +81,36 @@ public class EightService {
     }
 
 
+    public void TwoDecimalPlaces() {
+        printChoiceMessage("Formatting decimal places");
+        System.out.println("Enter a number that should be rounded to two decimal places:");
+        double n = reader.readDouble();
+        System.out.println("You entered " + n + "\nResult of task: " + eightIml.TwoDecimalPlaces(n));
+    }
+
+
+    public void divisibleBy() {
+        printChoiceMessage("Find numbers which are divisible by given number");
+        System.out.println("Enter elements of the array:");
+        int[] input = reader.readIntArr();
+        System.out.println("Enter divisor:");
+        int number = reader.readInt();
+        int[] result = eightIml.divisibleBy(input,number);
+        System.out.println("You entered " + Arrays.toString(input) + ", divisor " + number + "\nResult of task: " + Arrays.toString(result));
+    }
+
+
+    public void am_i_wilson() {
+        printChoiceMessage("Wilson primes. Check if the given number is a Wilson prime");
+        System.out.println("Enter the number:");
+        int number = reader.readInt();
+        System.out.println("You entered " + number + "\nResult of task: " + eightIml.am_i_wilson(number));
+    }
+
     public void setImplByAuthor(Author author) {
         if (eightIml == null || eightIml.getClass() != author.getSix().getClass())
             setEightIml(author.getEight());
     }
-
 
     private void setReader(ConsoleReader reader) {
         this.reader = reader;
@@ -98,6 +123,8 @@ public class EightService {
     private void printChoiceMessage(String task) {
         System.out.printf("You choose a task '%s'%n", task);
     }
+
+
 }
 
 
