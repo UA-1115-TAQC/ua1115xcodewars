@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.text.DecimalFormat;
 
+import java.util.Arrays;
+
 public class EightImpl implements Eight {
     public int liters(double time) {
         return (int) Math.floor(time * 0.5);
@@ -24,7 +26,13 @@ public class EightImpl implements Eight {
     }
 
     public int[] squareOrSquareRoot(int[] array) {
-        return new int[0];
+        int[] result = new int[array.length];
+        for (int i = 0; i < array.length; i++) {
+            int number = array[i];
+            double squareRoot = Math.sqrt(number);
+            result[i] = (squareRoot == (int) squareRoot) ? (int) squareRoot : (number * number);
+        }
+        return result;
     }
 
     public int[] countPositivesSumNegatives ( int[] input){
