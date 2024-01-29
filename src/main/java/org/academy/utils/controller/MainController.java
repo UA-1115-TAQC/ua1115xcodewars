@@ -42,8 +42,8 @@ public class MainController {
 
     private final ConsoleReader reader;
     private final SixService sixService;
-    private  final  FiveService fiveService;
-    private  final SevenService sevenService;
+    private final FiveService fiveService;
+    private final SevenService sevenService;
     private final EightService eightService;
 
 
@@ -57,7 +57,7 @@ public class MainController {
 
     public static MainController getInstance() {
         if (INSTANCE == null) {
-            INSTANCE = new MainController(new ConsoleReader(), new SixService(), new FiveService(), new SevenService(),new EightService());
+            INSTANCE = new MainController(new ConsoleReader(), new SixService(), new FiveService(), new SevenService(), new EightService());
         }
         return INSTANCE;
     }
@@ -129,11 +129,11 @@ public class MainController {
     private void mapTask(int taskId, Author author) {
         if (taskId > 0 && taskId <= 6)
             sixService.callMethod(taskId, author, reader);
-        if (taskId > 6 && taskId <= 12)
+        else if (taskId > 6 && taskId <= 12)
             fiveService.callMethod(taskId, author, reader);
-        if (taskId >= 13 && taskId <= 14)
+        else if (taskId >= 13 && taskId <= 14)
             sevenService.callMethod(taskId, author, reader);
-        if (taskId > 14 && taskId <= 23 )
+        else if (taskId > 14 && taskId <= 23)
             eightService.callMethod(taskId, author, reader);
         else printExceptionMessage("Task", taskId);
     }
