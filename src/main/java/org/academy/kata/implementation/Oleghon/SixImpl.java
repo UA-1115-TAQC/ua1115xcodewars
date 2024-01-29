@@ -2,6 +2,7 @@ package org.academy.kata.implementation.Oleghon;
 
 import org.academy.kata.Six;
 
+import java.util.Arrays;
 import java.util.regex.Pattern;
 
 import static java.util.Arrays.stream;
@@ -77,6 +78,24 @@ public class SixImpl implements Six {
     }
 
     public String stockSummary(String[] lstOfArt, String[] lstOf1stLetter) {
-        return null;
+        if (lstOfArt.length == 0 || lstOf1stLetter.length == 0) return "";
+
+        StringBuilder stringBuilder = new StringBuilder("(");
+        int i = 0;
+        for (String letter : lstOf1stLetter) {
+            int sum = Arrays.stream(lstOfArt)
+                    .filter(art -> art.startsWith(letter))
+                    .map(art -> art.replaceAll("\\w+ ", ""))
+                    .mapToInt(Integer::parseInt)
+                    .sum();
+            stringBuilder.append(letter).append(" : ").append(sum).append(")");
+            if (i < lstOf1stLetter.length) {
+                stringBuilder.append(" - (");
+                i++;
+            }
+        }
+
+        return stringBuilder.toString();
+
     }
 }
