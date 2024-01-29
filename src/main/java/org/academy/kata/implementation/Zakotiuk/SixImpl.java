@@ -2,6 +2,7 @@ package org.academy.kata.implementation.Zakotiuk;
 
 import org.academy.kata.Six;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -11,18 +12,17 @@ public class SixImpl implements Six {
         long cube_counter = 1;
         long total = 0;
 
-        while (total < m){
+        while (total < m) {
             total += cube_counter * cube_counter * cube_counter;
             cube_counter++;
         }
 
-        if(total == m)
-            return cube_counter-1;
-        else
-            return -1;
+        if (total == m) return cube_counter - 1;
+        else return -1;
     }
 
     public String balance(String book) {
+
         String temp = book.replaceAll("([^\\n. \\da-zA-Z])", "");
         String[] arr = temp.split("[\\n]+");
 
@@ -58,8 +58,7 @@ public class SixImpl implements Six {
 
         String monthData = getMonthDataForTown(town, strng);
 
-        if (monthData.isEmpty())
-            return -1;
+        if (monthData.isEmpty()) return -1;
 
         String[] monthRecords = monthData.split(",");
         double sum = 0;
@@ -74,8 +73,7 @@ public class SixImpl implements Six {
             }
         }
 
-        if (validRecordsCount == 0)
-            return -1;
+        if (validRecordsCount == 0) return -1;
 
         return sum / validRecordsCount;
     }
@@ -89,8 +87,7 @@ public class SixImpl implements Six {
 
         String monthData = getMonthDataForTown(town, strng);
 
-        if (monthData.isEmpty())
-            return -1;
+        if (monthData.isEmpty()) return -1;
 
         String[] monthRecords = monthData.split(",");
         double counting = 0.0;
@@ -106,11 +103,11 @@ public class SixImpl implements Six {
             }
         }
 
-        if (validRecordsCount == 0)
-            return -1;
+        if (validRecordsCount == 0) return -1;
 
         return counting / validRecordsCount;
     }
+
     private String getMonthDataForTown(String town, String strng) {
         String[] citiesData = strng.split("\\n");
         String monthData = "";
@@ -128,7 +125,65 @@ public class SixImpl implements Six {
     }
 
     public String nbaCup(String resultSheet, String toFind) {
-        return null;
+        if (toFind.isEmpty()) return "";
+        String[] teams = new String[]{"Los Angeles Clippers", "Dallas Mavericks", "New York Knicks", "Atlanta Hawks", "Indiana Pacers", "Memphis Grizzlies", "Los Angeles Lakers", "Minnesota Timberwolves", "Phoenix Suns", "Portland Trail Blazers", "New Orleans Pelicans", "Sacramento Kings", "Los Angeles Clippers", "Houston Rockets", "Denver Nuggets", "Cleveland Cavaliers", "Milwaukee Bucks", "Oklahoma City Thunder", "San Antonio Spurs", "Boston Celtics", "Philadelphia 76ers", "Brooklyn Nets", "Chicago Bulls", "Detroit Pistons", "Utah Jazz", "Miami Heat", "Charlotte Hornets", "Toronto Raptors", "Orlando Magic", "Washington Wizards", "Golden State Warriors"};
+
+        if (!Arrays.asList(teams).contains(toFind)) return toFind + ":This team didn't play!";
+
+        String[] pairs = resultSheet.split(",");
+        int wins = 0, draws = 0, loses = 0, scored = 0, conceded = 0, points = 0;
+
+        for (String line : pairs) {
+            if (line.contains(".")) return "Error(float number):" + line;
+
+            if (line.contains(toFind)) {
+                int first = Integer.parseInt(line.substring(0, line.length() - 10).replaceAll("[\\D]", ""));
+
+                StringBuilder stringBuilder = new StringBuilder();
+                String reversed = new StringBuilder(line).reverse().toString();
+
+                for (int i = 0; i < reversed.length(); i++) {
+                    if (Character.isDigit(reversed.charAt(i))) {
+                        stringBuilder.insert(i, reversed.charAt(i));
+                    } else break;
+                }
+
+                int second = Integer.parseInt(stringBuilder.reverse().toString());
+
+                if (line.contains(toFind + " " + first)) {
+                    scored += first;
+                    conceded += second;
+                    if (first > second) {
+                        points += 3;
+                        wins++;
+                    }
+                    if (first == second) {
+                        points += 1;
+                        draws++;
+                    }
+                    if (first < second) {
+                        loses++;
+                    }
+                }
+                if (line.contains(toFind + " " + second)) {
+                    scored += second;
+                    conceded += first;
+                    if (second > first) {
+                        points += 3;
+                        wins++;
+                    }
+                    if (first == second) {
+                        points += 1;
+                        draws++;
+                    }
+                    if (second < first) {
+                        loses++;
+                    }
+                }
+            }
+        }
+
+        return String.format("%s:W=%d;D=%d;L=%d;Scored=%d;Conceded=%d;Points=%d", toFind, wins, draws, loses, scored, conceded, points);
     }
 
     public String stockSummary(String[] lstOfArt, String[] lstOf1stLetter) {
@@ -149,8 +204,7 @@ public class SixImpl implements Six {
                 if (Objects.equals(item, "" + letter)) {
                     if (categoryCounts.containsKey(letter))
                         categoryCounts.put(letter, categoryCounts.get(letter) + count);
-                    else
-                        categoryCounts.put(letter, count);
+                    else categoryCounts.put(letter, count);
                 }
             }
         }
