@@ -3,15 +3,14 @@ package org.academy.utils.controller;
 import org.academy.utils.Author;
 import org.academy.utils.ConsoleReader;
 import org.academy.utils.service.EightService;
+import org.academy.utils.service.FiveService;
 import org.academy.utils.service.SevenService;
 import org.academy.utils.service.SixService;
-import org.academy.utils.service.FiveService;
 
 public class MainController {
-    private static MainController INSTANCE;
     private static final String ACTIONS = """
             1. show authors;
-            2. choose author;
+            2. choose author; %s
             3. show tasks;
             4. choose task;
             0. exit;""";
@@ -39,13 +38,13 @@ public class MainController {
             21 TwoDecimalPlaces
             22 divisibleBy
             23 am_i_wilson""";
-
+    private static MainController INSTANCE;
     private final ConsoleReader reader;
     private final SixService sixService;
     private final FiveService fiveService;
     private final SevenService sevenService;
     private final EightService eightService;
-
+    private Author author = null;
 
     private MainController(ConsoleReader reader, SixService sixService, FiveService fiveService, SevenService sevenService, EightService eightService) {
         this.reader = reader;
@@ -63,14 +62,15 @@ public class MainController {
     }
 
     public void entryPoint() {
-        Author author = null;
+
         boolean flag = false;
 
         System.out.println("Welcome to \"Code Warriors\"");
-        System.out.println("------------------------------");
-        printActions();
+
 
         while (!flag) {
+            System.out.println("------------------------------");
+            printActions();
             System.out.println("------------------------------");
             System.out.println("Input the number of an action:");
             switch (reader.readInt()) {
@@ -86,7 +86,7 @@ public class MainController {
     }
 
     private void printActions() {
-        System.out.println(ACTIONS);
+        System.out.printf(ACTIONS + "%n", author == null ? "" : author.toString());
     }
 
     private void printAuthors() {
@@ -127,14 +127,10 @@ public class MainController {
     }
 
     private void mapTask(int taskId, Author author) {
-        if (taskId > 0 && taskId <= 6)
-            sixService.callMethod(taskId, author, reader);
-        else if (taskId > 6 && taskId <= 12)
-            fiveService.callMethod(taskId, author, reader);
-        else if (taskId >= 13 && taskId <= 14)
-            sevenService.callMethod(taskId, author, reader);
-        else if (taskId > 14 && taskId <= 23)
-            eightService.callMethod(taskId, author, reader);
+        if (taskId > 0 && taskId <= 6) sixService.callMethod(taskId, author, reader);
+        else if (taskId > 6 && taskId <= 12) fiveService.callMethod(taskId, author, reader);
+        else if (taskId >= 13 && taskId <= 14) sevenService.callMethod(taskId, author, reader);
+        else if (taskId > 14 && taskId <= 23) eightService.callMethod(taskId, author, reader);
         else printExceptionMessage("Task", taskId);
     }
 
