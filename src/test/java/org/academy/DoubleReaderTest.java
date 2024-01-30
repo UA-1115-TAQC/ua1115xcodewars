@@ -1,5 +1,6 @@
-package org.academy.utils;
+package org.academy;
 
+import org.academy.utils.ConsoleReader;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
