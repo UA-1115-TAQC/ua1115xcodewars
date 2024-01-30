@@ -9,23 +9,23 @@ import java.util.Arrays;
 
 public class EightService {
 
-                private ConsoleReader reader;
-                private Eight eightIml;
+    private ConsoleReader reader;
+    private Eight eightIml;
 
-                public void callMethod(int id, Author author, ConsoleReader reader) {
-                    setImplByAuthor(author);
-                    setReader(reader);
+    public void callMethod(int id, Author author, ConsoleReader reader) {
+        setImplByAuthor(author);
+        setReader(reader);
 
-                    switch (id) {
-                        case 15 -> keepHydrated();
-                        case 16 -> getVolumeOfCuboid();
-                        case 17 -> mpgToKPM();
-                        case 18 -> squareOrSquareRoot();
-                        case 19 -> countPositivesSumNegatives();
-                        case 20 -> stringToNumber();
-                        case 21 -> TwoDecimalPlaces();
-                        case 22 -> divisibleBy();
-                        case 23 -> am_i_wilson();
+        switch (id) {
+            case 14 -> keepHydrated();
+            case 15 -> getVolumeOfCuboid();
+            case 16 -> mpgToKPM();
+            case 17 -> squareOrSquareRoot();
+            case 18 -> countPositivesSumNegatives();
+            case 19 -> stringToNumber();
+            case 20 -> TwoDecimalPlaces();
+            case 21 -> divisibleBy();
+            case 22 -> am_i_wilson();
         }
     }
 
@@ -45,7 +45,6 @@ public class EightService {
         System.out.println("Enter third values - height");
         double h = reader.readDouble();
         System.out.println("You entered " + l + ", " + w + ", " + h + "\nResult of task: " + eightIml.getVolumeOfCuboid(l, w, h));
-
     }
 
     private void mpgToKPM() {
@@ -53,7 +52,6 @@ public class EightService {
         System.out.println("Enter miles which you'd like to convert into kilometers:");
         float m = reader.readFloat();
         System.out.println("You entered " + m + "\nResult of task: " + eightIml.mpgToKPM(m));
-
     }
 
     private void squareOrSquareRoot() {
@@ -62,8 +60,8 @@ public class EightService {
         int[] array = reader.readIntArr();
         int[] result = eightIml.squareOrSquareRoot(array);
         System.out.println("You entered " + Arrays.toString(array) + "\nResult of task: " + Arrays.toString(result));
-
     }
+
     private void countPositivesSumNegatives() {
         printChoiceMessage("To square(root) or not to square(root)");
         System.out.println("Enter elements of the array:");
@@ -95,7 +93,7 @@ public class EightService {
         int[] input = reader.readIntArr();
         System.out.println("Enter divisor:");
         int number = reader.readInt();
-        int[] result = eightIml.divisibleBy(input,number);
+        int[] result = eightIml.divisibleBy(input, number);
         System.out.println("You entered " + Arrays.toString(input) + ", divisor " + number + "\nResult of task: " + Arrays.toString(result));
     }
 
@@ -123,8 +121,6 @@ public class EightService {
     private void printChoiceMessage(String task) {
         System.out.printf("You choose a task '%s'%n", task);
     }
-
-
 }
 
 

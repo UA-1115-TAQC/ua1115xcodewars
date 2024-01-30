@@ -35,7 +35,7 @@ public class SixService {
 
         double mean = sixImpl.mean(town, record);
         double variance = sixImpl.variance(town, record);
-        if (mean == -1){
+        if (mean == -1) {
             System.out.println("There isn't " + town + " in the records");
         } else {
             System.out.println("The average = " + mean + "\nThe variance = " + variance);
@@ -43,7 +43,7 @@ public class SixService {
     }
 
     private void helpTheBookseller() {
-        printChoiceMessage("helpTheBookseller");
+        printChoiceMessage("Help the bookseller");
 
         System.out.println("Please enter stock list as array of strings (separate strings with \",\"):");
         String[] books = reader.readStringArr();
@@ -53,7 +53,7 @@ public class SixService {
     }
 
     private void rankingNBA() {
-        printChoiceMessage("rankingNBA");
+        printChoiceMessage("Ranking NBA");
 
         System.out.println("Enter NBA result sheet as string:");
         String resSheet = reader.readString();
@@ -68,7 +68,7 @@ public class SixService {
     }
 
     private void floatingPointApproximation() {
-        printChoiceMessage("floatingPointApproximation");
+        printChoiceMessage("Floating point approximation");
 
         System.out.println("Enter decimal number as parameter:"); // 2.6e-08 result: 1.29999999155e-08
         double value = reader.readDouble();
@@ -77,7 +77,7 @@ public class SixService {
     }
 
     private void easyBalanceChecking() {
-        printChoiceMessage("easyBalanceChecking");
+        printChoiceMessage("Easy balance checking");
 
         System.out.println("Please enter a check book: ");
         String book = reader.readString();
@@ -86,7 +86,7 @@ public class SixService {
     }
 
     private void buildPileOfCubes() {
-        printChoiceMessage("buildPileOfCubes");
+        printChoiceMessage("Build pile of cubes");
 
         System.out.println("Please enter total number of cubes: ");
         long m = reader.readLong();
@@ -98,7 +98,7 @@ public class SixService {
     }
 
     private void printChoiceMessage(String task) {
-        System.out.println("You choosed task \"" + task + '\"');
+        System.out.println("You chose task \"" + task + '\"');
     }
 
     public void setImplByAuthor(Author author) {

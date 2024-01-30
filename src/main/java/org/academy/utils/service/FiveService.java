@@ -24,7 +24,7 @@ public class FiveService {
         }
     }
 
-private void gapInPrimes(){
+    private void gapInPrimes() {
         printChoiceMessage("Gap in Primes.");
         System.out.println("Enter an integer, which is greater than 2 or equals it. It will also indicate the gap we are looking for: ");
         int g = reader.readInt();
@@ -35,13 +35,13 @@ private void gapInPrimes(){
         System.out.println("You entered " + g + ", " + m + ", " + n + "\nResult of task: " + Arrays.toString(fiveImpl.gap(g, m, n)));
     }
 
-    private void trailingZeros(){
+    private void trailingZeros() {
         printChoiceMessage("Number of trailing zeros of N!");
         System.out.println("Enter an an integer, which will indicate the number, the number of trailing zeroes in the factorial of which we are looking for: ");
         int n = reader.readInt();
         System.out.println("You entered " + n + "\nResult of task: " + fiveImpl.zeros(n));
     }
-    
+
     private void perimeterSquares() {
         printChoiceMessage("Perimeter of squares.");
 
