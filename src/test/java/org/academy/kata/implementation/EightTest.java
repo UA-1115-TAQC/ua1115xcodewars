@@ -32,4 +32,8 @@ public class EightTest {
     public void countPositivesSumNegativesTest(Eight eight, int[] input, int[] expected) {
         assertEquals(expected, eight.countPositivesSumNegatives(input));
     }
+    @Test(dataProvider = "stringToNumber", dataProviderClass = EightDataProvider.class)
+    public void convertStringToNumberTest(Eight eight, String input, int expected) {
+        assertEquals(eight.stringToNumber(input), expected);
+    }
 }
