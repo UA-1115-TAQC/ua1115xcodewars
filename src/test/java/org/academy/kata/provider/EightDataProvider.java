@@ -15,7 +15,7 @@ public class EightDataProvider extends AbstractDataProvider {
         inputs.add(new Object[]{"645", 645}); // input, result
         inputs.add(new Object[]{"-7", -7}); // input1, input2, result
 
-        return combineData(inputs, FIVES);
+        return combineData(inputs, EIGHTS);
     }
 }
 
