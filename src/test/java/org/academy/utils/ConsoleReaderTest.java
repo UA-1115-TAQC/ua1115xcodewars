@@ -11,6 +11,7 @@ import java.io.PrintStream;
 import java.math.BigInteger;
 
 import static org.testng.Assert.assertEquals;
+import static org.testng.FileAssert.fail;
 
 public class ConsoleReaderTest {
 
@@ -34,11 +35,17 @@ public class ConsoleReaderTest {
         ConsoleReader reader = new ConsoleReader();
         Assert.expectThrows(NullPointerException.class, () -> {
             reader.readDoubleArr();
-            PrintStream output = new PrintStream(new ByteArrayOutputStream());
+        });
+        try{
+        reader.readDoubleArr();
+         fail("Expected NullPointerException to be thrown");
+    } catch (NullPointerException e){
+            PrintStream  output = new PrintStream(new ByteArrayOutputStream());
             System.setOut(output);
             String expectedMessage="Input should be a double array.";
-            assertEquals(expectedMessage, output.toString()
-                    .trim());
-        });
+            assertEquals(output.toString()
+                    .trim(), expectedMessage);
+    }
+
     }
 }
