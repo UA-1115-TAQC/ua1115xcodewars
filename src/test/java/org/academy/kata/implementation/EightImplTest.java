@@ -12,4 +12,9 @@ public class EightImplTest {
     public void convertStringToNumberTest(Eight eight, String input, int expected) {
         assertEquals(eight.stringToNumber(input), expected);
     }
+
+    @Test(dataProvider = "divisibleByData", dataProviderClass = EightDataProvider.class)
+    public void divisibleBy_validData_ok(Eight eight, int[] firstInput, int secondInput, int[] expected) {
+        assertEquals(eight.divisibleBy(firstInput, secondInput), expected);
+    }
 }
