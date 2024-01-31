@@ -16,4 +16,11 @@ public class ConsoleReaderTest {
         ConsoleReader reader = new ConsoleReader();
         assertEquals(reader.readBigInteger(), expected);
     }
+
+    @Test(dataProvider = "validDataForDoubleArr", dataProviderClass = ConsoleReaderDataProvider.class)
+    public void testReadDoubleArr(String inputString, double[] expected){
+        System.setIn(new ByteArrayInputStream(inputString.getBytes()));
+        ConsoleReader reader = new ConsoleReader();
+        assertEquals(reader.readBigInteger(), expected);
+    }
 }
