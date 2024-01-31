@@ -4,7 +4,10 @@ import org.academy.kata.Eight;
 import org.academy.kata.Five;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Stream;
 
 public class AbstractDataProvider {
     protected static final List<Eight> EIGHTS = List.of(
@@ -34,34 +37,11 @@ public class AbstractDataProvider {
             new org.academy.kata.implementation.ystankevych.FiveImpl(),
             new org.academy.kata.implementation.Zakotiuk.FiveImpl());
 
-    protected static Object[][] getDataOneParam(List<Object[]> objects, List impls) {
+    protected static Iterator<Object[]> combineData(List<Object[]> objects, List impls) {
         ArrayList<Object[]> data = new ArrayList<>();
         for (Object impl : impls) {
-            for (Object[] object : objects) {
-                data.add(new Object[]{impl, object[0], object[1]}); // impl, input, result
-            }
+            objects.forEach(o -> data.add(Stream.concat(Stream.of(impl), Arrays.stream(o)).toArray()));
         }
-        return data.toArray(new Object[data.size()][3]);
-    }
-
-    protected static Object[][] getDataTwoParams(List<Object[]> objects, List impls) {
-        ArrayList<Object[]> data = new ArrayList<>();
-        for (Object impl : impls) {
-            for (Object[] object : objects) {
-                data.add(new Object[]{impl, object[0], object[1], object[2]}); // impl, input1, input2, result
-            }
-        }
-        return data.toArray(new Object[data.size()][4]);
-    }
-
-    protected static Object[][] getDataThreeParams(List<Object[]> objects, List impls) {
-        ArrayList<Object[]> data = new ArrayList<>();
-        for (Object impl : impls) {
-            for (Object[] object : objects) {
-                // impl, input1, input2, input3, result
-                data.add(new Object[]{impl, object[0], object[1], object[2], object[3]});
-            }
-        }
-        return data.toArray(new Object[data.size()][5]);
+        return data.iterator();
     }
 }
