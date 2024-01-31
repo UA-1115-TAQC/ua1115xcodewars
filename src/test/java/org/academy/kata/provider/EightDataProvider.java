@@ -17,5 +17,17 @@ public class EightDataProvider extends AbstractDataProvider {
 
         return combineData(inputs, FIVES);
     }
+
+    @DataProvider(name = "test_data_wilson")
+    private Iterator<Object[]> test_data_wilson(){
+        List<Object[]> testData = new ArrayList<>();
+        testData.add(new Object[] {5, true});
+        testData.add(new Object[] {11, false});
+        testData.add(new Object[] {13, true});
+        testData.add(new Object[] {88, false});
+        testData.add(new Object[] {563, true});
+        return combineData(testData, EIGHTS);
+    }
+
 }
 
