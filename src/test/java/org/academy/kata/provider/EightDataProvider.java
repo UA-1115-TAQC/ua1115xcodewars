@@ -12,30 +12,31 @@ public class EightDataProvider extends AbstractDataProvider {
     public static Iterator<Object[]> stringToNumberData() {
         List<Object[]> inputs = new ArrayList<>();
         inputs.add(new Object[]{"90", 90});
-        inputs.add(new Object[]{"645", 645}); // input, result
-        inputs.add(new Object[]{"-7", -7}); // input1, input2, result
+        inputs.add(new Object[]{"645", 645});
+        inputs.add(new Object[]{"-7", -7});
 
-        return combineData(inputs, FIVES);
+        return combineData(inputs, EIGHTS);
     }
+
     @DataProvider(name = "test_data_wilson")
-    private Iterator<Object[]> test_data_wilson(){
+    private Iterator<Object[]> test_data_wilson() {
         List<Object[]> testData = new ArrayList<>();
-        testData.add(new Object[] {5, true});
-        testData.add(new Object[] {11, false});
-        testData.add(new Object[] {13, true});
-        testData.add(new Object[] {88, false});
-        testData.add(new Object[] {563, true});
+        testData.add(new Object[]{5, true});
+        testData.add(new Object[]{11, false});
+        testData.add(new Object[]{13, true});
+        testData.add(new Object[]{88, false});
+        testData.add(new Object[]{563, true});
         return combineData(testData, EIGHTS);
     }
 
 
     @DataProvider(name = "VolumeOfCuboid_validInputs")
-    public static Iterator<Object[]>VolumeOfCuboid_validInputs() {
+    public static Iterator<Object[]> VolumeOfCuboid_validInputs() {
         List<Object[]> inputs = new ArrayList<>();
-        inputs.add(new Object[]{1,2,2, 4});
-        inputs.add(new Object[]{10.5, 2,5,105});
+        inputs.add(new Object[]{1, 2, 2, 4});
+        inputs.add(new Object[]{10.5, 2, 5, 105});
         inputs.add(new Object[]{5.5, 1.2, 3.7, 24.42});
-        inputs.add(new Object[]{1,1,1,1});
+        inputs.add(new Object[]{1, 1, 1, 1});
         return combineData(inputs, EIGHTS);
     }
 
@@ -46,7 +47,7 @@ public class EightDataProvider extends AbstractDataProvider {
         inputs.add(new Object[]{0, 5.0, 6.0});
         inputs.add(new Object[]{2.5, -3.0, 4.0});
         inputs.add(new Object[]{-2.0, -3.0, 4.0});
-        inputs.add(new Object[]{-1,-2,-2});
+        inputs.add(new Object[]{-1, -2, -2});
         return combineData(inputs, EIGHTS);
     }
 

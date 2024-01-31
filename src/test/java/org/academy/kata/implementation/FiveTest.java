@@ -1,6 +1,7 @@
-package org.academy.kata.provider;
+package org.academy.kata.implementation;
 
 import org.academy.kata.Five;
+import org.academy.kata.provider.FiveDataProvider;
 import org.testng.annotations.Test;
 
 import java.util.Arrays;
@@ -15,7 +16,7 @@ public class FiveTest {
     }
 
     @Test(dataProvider = "test_data_zeros", dataProviderClass = FiveDataProvider.class)
-    public void test_zeros(Five impl, int n, int expected){
+    public void test_zeros(Five impl, int n, int expected) {
         assertEquals(impl.zeros(n), expected);
     }
 }
