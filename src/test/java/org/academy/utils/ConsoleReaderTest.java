@@ -2,9 +2,12 @@ package org.academy.utils;
 
 import org.academy.utils.ConsoleReader;
 import org.testng.Assert;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 import java.math.BigInteger;
 
 import static org.testng.Assert.assertEquals;
@@ -31,6 +34,11 @@ public class ConsoleReaderTest {
         ConsoleReader reader = new ConsoleReader();
         Assert.expectThrows(NullPointerException.class, () -> {
             reader.readDoubleArr();
+            PrintStream output = new PrintStream(new ByteArrayOutputStream());
+            System.setOut(output);
+            String expectedMessage="Input should be a double array.";
+            assertEquals(expectedMessage, output.toString()
+                    .trim());
         });
     }
 }
