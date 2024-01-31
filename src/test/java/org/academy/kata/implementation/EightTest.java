@@ -2,7 +2,6 @@ package org.academy.kata.implementation;
 
 import org.academy.kata.Eight;
 import org.academy.kata.provider.EightDataProvider;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;
