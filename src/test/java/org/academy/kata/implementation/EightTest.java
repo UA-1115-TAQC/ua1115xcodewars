@@ -22,4 +22,9 @@ public class EightTest {
     public void divisibleBy_validData_ok(Eight eight, int[] firstInput, int secondInput, int[] expected) {
         assertEquals(eight.divisibleBy(firstInput, secondInput), expected);
     }
+
+    @Test(dataProvider = "mpgToKpmValid", dataProviderClass = EightDataProvider.class)
+    public void mpgToKpm_ValidData_Ok(Eight eightImpl, float argument, float expected) {
+        assertEquals(eightImpl.mpgToKPM(argument), expected, 0.001f);
+    }
 }
