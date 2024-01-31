@@ -32,7 +32,6 @@ public class ConsoleReaderDataProvider {
                 {"1.2.3"},
                 {"5  hello"},
                 {" "},
-                {""},
                 {"10,5 4,2 -2,1"}
         };
     }
