@@ -27,4 +27,9 @@ public class EightTest {
     public void test_squareOrSquareRoot(Eight impl, int[] array, int[] expected) {
         assertEquals(impl.squareOrSquareRoot(array), expected);
     }
+
+    @Test(dataProvider = "countPositivesSumNegatives", dataProviderClass = EightDataProvider.class)
+    public void countPositivesSumNegativesTest(Eight eight, int[] input, int[] expected) {
+        assertEquals(eight.countPositivesSumNegatives(input), expected);
+    }
 }
