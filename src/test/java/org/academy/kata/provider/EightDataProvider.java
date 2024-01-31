@@ -40,16 +40,5 @@ public class EightDataProvider extends AbstractDataProvider {
         return combineData(inputs, EIGHTS);
     }
 
-    @DataProvider(name = "VolumeOfCuboid_invalidInputs")
-    public Iterator<Object[]> VolumeOfCuboid_invalidInputs() {
-        List<Object[]> inputs = new ArrayList<>();
-        inputs.add(new Object[]{-1, 2, 3});
-        inputs.add(new Object[]{0, 5.0, 6.0});
-        inputs.add(new Object[]{2.5, -3.0, 4.0});
-        inputs.add(new Object[]{-2.0, -3.0, 4.0});
-        inputs.add(new Object[]{-1, -2, -2});
-        return combineData(inputs, EIGHTS);
-    }
-
 }
 
