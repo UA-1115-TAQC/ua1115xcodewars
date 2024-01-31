@@ -26,18 +26,17 @@ public class MainController {
             9 perimeterSquares
             10 xForSum
             11 findSmallest
-            12 artificialRain
-            13 newAvg
-            14 seriesSum
-            15 keepHydrated
-            16 getVolumeOfCuboid
-            17 mpgToKPM
-            18 squareOrSquareRoot
-            19 countPositivesSumNegatives
-            20 stringToNumber
-            21 TwoDecimalPlaces
-            22 divisibleBy
-            23 am_i_wilson""";
+            12 newAvg
+            13 seriesSum
+            14 keepHydrated
+            15 getVolumeOfCuboid
+            16 mpgToKPM
+            17 squareOrSquareRoot
+            18 countPositivesSumNegatives
+            19 stringToNumber
+            20 TwoDecimalPlaces
+            21 divisibleBy
+            22 am_i_wilson""";
     private static MainController INSTANCE;
     private final ConsoleReader reader;
     private final SixService sixService;
@@ -62,11 +61,9 @@ public class MainController {
     }
 
     public void entryPoint() {
-
         boolean flag = false;
 
         System.out.println("Welcome to \"Code Warriors\"");
-
 
         while (!flag) {
             System.out.println("------------------------------");
@@ -79,7 +76,7 @@ public class MainController {
                 case 3 -> printTasks();
                 case 4 -> chooseTask(author);
                 case 0 -> flag = true;
-                default -> printActions();
+                default -> System.out.println("The action doesn't exist");
             }
         }
         System.out.println("The program is finished");
@@ -128,9 +125,9 @@ public class MainController {
 
     private void mapTask(int taskId, Author author) {
         if (taskId > 0 && taskId <= 6) sixService.callMethod(taskId, author, reader);
-        else if (taskId > 6 && taskId <= 12) fiveService.callMethod(taskId, author, reader);
-        else if (taskId >= 13 && taskId <= 14) sevenService.callMethod(taskId, author, reader);
-        else if (taskId > 14 && taskId <= 23) eightService.callMethod(taskId, author, reader);
+        else if (taskId > 6 && taskId <= 11) fiveService.callMethod(taskId, author, reader);
+        else if (taskId == 12 || taskId == 13) sevenService.callMethod(taskId, author, reader);
+        else if (taskId > 13 && taskId <= 22) eightService.callMethod(taskId, author, reader);
         else printExceptionMessage("Task", taskId);
     }
 

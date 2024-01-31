@@ -11,9 +11,11 @@ public class SevenService {
     public void callMethod(int id, Author author, ConsoleReader reader) {
         setImplByAuthor(author);
         setReader(reader);
-        switch (id) {
-            case 13 -> newAvg();
-            case 14 -> seriesSum();
+
+        if (id == 12) {
+            newAvg();
+        } else {
+            seriesSum();
         }
     }
 
@@ -41,14 +43,13 @@ public class SevenService {
         this.reader = reader;
     }
 
-    private void setSevenImpl(Seven sevenImpl) {
-        this.sevenImpl = sevenImpl;
-    }
-
     private void setImplByAuthor(Author author) {
         if (sevenImpl == null || sevenImpl.getClass() != author.getSeven().getClass()) {
             setSevenImpl(author.getSeven());
         }
     }
 
+    private void setSevenImpl(Seven sevenImpl) {
+        this.sevenImpl = sevenImpl;
+    }
 }
