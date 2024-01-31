@@ -2,15 +2,15 @@ package org.academy.utils.controller;
 
 import org.academy.utils.Author;
 import org.academy.utils.ConsoleReader;
+import org.academy.utils.service.EightService;
+import org.academy.utils.service.FiveService;
 import org.academy.utils.service.SevenService;
 import org.academy.utils.service.SixService;
-import org.academy.utils.service.FiveService;
 
 public class MainController {
-    private static MainController INSTANCE;
     private static final String ACTIONS = """
             1. show authors;
-            2. choose author;
+            2. choose author; %s
             3. show tasks;
             4. choose task;
             0. exit;""";
@@ -26,38 +26,48 @@ public class MainController {
             9 perimeterSquares
             10 xForSum
             11 findSmallest
-            12 artificialRain
-            13 newAvg
-            14 seriesSum""";
-
+            12 newAvg
+            13 seriesSum
+            14 keepHydrated
+            15 getVolumeOfCuboid
+            16 mpgToKPM
+            17 squareOrSquareRoot
+            18 countPositivesSumNegatives
+            19 stringToNumber
+            20 TwoDecimalPlaces
+            21 divisibleBy
+            22 am_i_wilson""";
+    private static MainController INSTANCE;
     private final ConsoleReader reader;
     private final SixService sixService;
-    private  final  FiveService fiveService;
-    private  final SevenService sevenService;
+    private final FiveService fiveService;
+    private final SevenService sevenService;
+    private final EightService eightService;
+    private Author author = null;
 
-    private MainController(ConsoleReader reader, SixService sixService, FiveService fiveService, SevenService sevenService) {
+    private MainController(ConsoleReader reader, SixService sixService, FiveService fiveService, SevenService sevenService, EightService eightService) {
         this.reader = reader;
         this.sixService = sixService;
         this.fiveService = fiveService;
         this.sevenService = sevenService;
+        this.eightService = eightService;
     }
 
     public static MainController getInstance() {
         if (INSTANCE == null) {
-            INSTANCE = new MainController(new ConsoleReader(), new SixService(), new FiveService(), new SevenService());
+            INSTANCE = new MainController(new ConsoleReader(), new SixService(), new FiveService(), new SevenService(), new EightService());
         }
         return INSTANCE;
     }
 
     public void entryPoint() {
-        Author author = null;
         boolean flag = false;
 
         System.out.println("Welcome to \"Code Warriors\"");
-        System.out.println("------------------------------");
-        printActions();
 
         while (!flag) {
+            System.out.println("------------------------------");
+            printActions();
             System.out.println("------------------------------");
             System.out.println("Input the number of an action:");
             switch (reader.readInt()) {
@@ -66,14 +76,14 @@ public class MainController {
                 case 3 -> printTasks();
                 case 4 -> chooseTask(author);
                 case 0 -> flag = true;
-                default -> printActions();
+                default -> System.out.println("The action doesn't exist");
             }
         }
         System.out.println("The program is finished");
     }
 
     private void printActions() {
-        System.out.println(ACTIONS);
+        System.out.printf(ACTIONS + "%n", author == null ? "" : author.toString());
     }
 
     private void printAuthors() {
@@ -114,15 +124,10 @@ public class MainController {
     }
 
     private void mapTask(int taskId, Author author) {
-        if (taskId > 0 && taskId <= 6)
-            sixService.callMethod(taskId, author, reader);
-        if (taskId > 6 && taskId <= 12)
-            fiveService.callMethod(taskId, author, reader);
-        if (taskId >= 13 && taskId <= 14)
-            sevenService.callMethod(taskId, author, reader);
-            // or else if(taskId > 6 && taskId <= 10)
-            // sevenController ....
-            // etc.
+        if (taskId > 0 && taskId <= 6) sixService.callMethod(taskId, author, reader);
+        else if (taskId > 6 && taskId <= 11) fiveService.callMethod(taskId, author, reader);
+        else if (taskId == 12 || taskId == 13) sevenService.callMethod(taskId, author, reader);
+        else if (taskId > 13 && taskId <= 22) eightService.callMethod(taskId, author, reader);
         else printExceptionMessage("Task", taskId);
     }
 

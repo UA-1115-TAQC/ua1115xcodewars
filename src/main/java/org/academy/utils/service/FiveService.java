@@ -1,10 +1,10 @@
 package org.academy.utils.service;
 
-import java.math.BigInteger;
-
 import org.academy.kata.Five;
 import org.academy.utils.Author;
 import org.academy.utils.ConsoleReader;
+
+import java.math.BigInteger;
 import java.util.Arrays;
 
 public class FiveService {
@@ -21,11 +21,10 @@ public class FiveService {
             case 9 -> perimeterSquares();
             case 10 -> xForSum();
             case 11 -> findSmallest();
-            case 12 -> artificialRain();
         }
     }
 
-private void gapInPrimes(){
+    private void gapInPrimes() {
         printChoiceMessage("Gap in Primes.");
         System.out.println("Enter an integer, which is greater than 2 or equals it. It will also indicate the gap we are looking for: ");
         int g = reader.readInt();
@@ -36,13 +35,13 @@ private void gapInPrimes(){
         System.out.println("You entered " + g + ", " + m + ", " + n + "\nResult of task: " + Arrays.toString(fiveImpl.gap(g, m, n)));
     }
 
-    private void trailingZeros(){
+    private void trailingZeros() {
         printChoiceMessage("Number of trailing zeros of N!");
         System.out.println("Enter an an integer, which will indicate the number, the number of trailing zeroes in the factorial of which we are looking for: ");
         int n = reader.readInt();
         System.out.println("You entered " + n + "\nResult of task: " + fiveImpl.zeros(n));
     }
-    
+
     private void perimeterSquares() {
         printChoiceMessage("Perimeter of squares.");
 
@@ -57,6 +56,14 @@ private void gapInPrimes(){
         System.out.println("Enter a positive double as a parameter: ");
         double param = reader.readDouble();
         System.out.println("You entered " + param + "\nResult of task: " + fiveImpl.solve(param));
+    }
+
+    private void findSmallest() {
+        printChoiceMessage("Find the smallest resulting integer along with the indices of the swapped digits");
+        System.out.println("Enter a long as a parameter: ");
+        long param = reader.readLong();
+        System.out.println("You've entered: " + param + "\n.");
+        System.out.println("Result: The smallest number is " + fiveImpl.smallest(param)[0] + ", digits " + fiveImpl.smallest(param)[1] + " and " + fiveImpl.smallest(param)[2] + " got swapped.");
     }
 
     private void printChoiceMessage(String task) {

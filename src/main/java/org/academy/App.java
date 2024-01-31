@@ -1,8 +1,10 @@
 package org.academy;
 
 
+import org.academy.utils.controller.MainController;
+
 public class App {
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        MainController.getInstance().entryPoint();
     }
 }
