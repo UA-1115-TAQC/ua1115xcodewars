@@ -11,4 +11,14 @@ public class EightTest {
         assertEquals(impl.am_i_wilson(n), expected);
     }
 
+    @Test (dataProvider = "VolumeOfCuboid_validInputs", dataProviderClass = EightDataProvider.class)
+    public void volumeOfCuboid_ValidInputsTest(Eight impl, double length, double width, double height, double expectedVolume) {
+        assertEquals((expectedVolume - impl.getVolumeOfCuboid(length,width,height) <= 0.0001),true);
+    }
+
+    @Test (dataProvider = "VolumeOfCuboid_invalidInputs", dataProviderClass = EightDataProvider.class, expectedExceptions = IllegalArgumentException.class)
+    public void volumeOfCuboid_InvalidInputsTest(Eight impl, double length, double width, double height, double expectedVolume) {
+        Assert.th((expectedVolume - impl.getVolumeOfCuboid(length,width,height) <= 0.0001),true);
+    }
+
 }
