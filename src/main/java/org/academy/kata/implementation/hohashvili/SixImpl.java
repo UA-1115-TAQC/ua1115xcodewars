@@ -113,55 +113,71 @@ public class SixImpl implements Six {
         }
     }
     public String nbaCup(String resultSheet, String toFind) {
-        if (toFind.equals("") ) {
-            return "";
-        }
-        boolean play = false;
+        if (toFind.equals("")) return "";
+        String[] teams = new String[]{"Los Angeles Clippers", "Dallas Mavericks", "New York Knicks", "Atlanta Hawks", "Indiana Pacers", "Memphis Grizzlies",
+                "Los Angeles Lakers", "Minnesota Timberwolves", "Phoenix Suns", "Portland Trail Blazers", "New Orleans Pelicans",
+                "Sacramento Kings", "Los Angeles Clippers", "Houston Rockets", "Denver Nuggets", "Cleveland Cavaliers", "Milwaukee Bucks",
+                "Oklahoma City Thunder", "San Antonio Spurs", "Boston Celtics", "Philadelphia 76ers", "Brooklyn Nets", "Chicago Bulls",
+                "Detroit Pistons", "Utah Jazz", "Miami Heat", "Charlotte Hornets", "Toronto Raptors", "Orlando Magic", "Washington Wizards",
+                "Golden State Warriors"};
+
+        if (!Arrays.asList(teams).contains(toFind)) return toFind + ":This team didn't play!";
+
+        String[] pairs = resultSheet.split(",");
         int wins = 0;
         int draws = 0;
-        int losses = 0;
+        int loses = 0;
         int scored = 0;
         int conceded = 0;
         int points = 0;
-        List<String> splitSheet = new ArrayList<String>(Arrays.asList(resultSheet.split(",")));
-
-        for(int i = 0; i < splitSheet.size(); i ++) {
-            if (splitSheet.get(i).contains(toFind + ' ')) {
-                play = true;
-                String[] splitValue = splitSheet.get(i).replace(toFind+' ', "").trim().split(" ");
-
-                int teamScore;
-                int oppScore;
-                if (isNumeric(splitValue[0])) {
-                    // first team == toFind
-                     teamScore = Integer.parseInt(splitValue[0]);
-                     oppScore = Integer.parseInt(splitValue[splitValue.length - 1]);
-                } else {
-                    // second team == toFind
-                    teamScore = Integer.parseInt(splitValue[splitValue.length - 1]);
-                    oppScore = Integer.parseInt(splitValue[splitValue.length - 2]);
+        for (String s : pairs) {
+            if (s.contains(".")) return "Error(float number):" + s;
+            if (s.contains(toFind)) {
+                int first = Integer.parseInt(s.substring(0, s.length() - 10).replaceAll("[\\D]", ""));
+                String reversed = new StringBuilder(s).reverse().toString();
+                StringBuilder sb = new StringBuilder();
+                for (int i = 0; i < reversed.length(); i++) {
+                    if (Character.isDigit(reversed.charAt(i))) {
+                        sb.insert(i, reversed.charAt(i));
+                    } else {
+                        break;
+                    }
                 }
-                if (teamScore > oppScore) {
-                    wins += 1;
-                    scored += teamScore;
-                    points += 3;
-                } else if (teamScore == oppScore) {
-                    draws += 1;
-                    points += 1;
-                } else {
-                    losses += 1;
-                    conceded += oppScore;
-                }
+                int second = Integer.parseInt(sb.reverse().toString());
 
+                if (s.contains(toFind + " " + first)) {
+                    scored += first;
+                    conceded += second;
+                    if (first > second) {
+                        points += 3;
+                        wins++;
+                    }
+                    if (first == second) {
+                        points += 1;
+                        draws++;
+                    }
+                    if (first < second) {
+                        loses++;
+                    }
+                }
+                if (s.contains(toFind + " " + second)) {
+                    scored += second;
+                    conceded += first;
+                    if (second > first) {
+                        points += 3;
+                        wins++;
+                    }
+                    if (first == second) {
+                        points += 1;
+                        draws++;
+                    }
+                    if (second < first) {
+                        loses++;
+                    }
+                }
             }
         }
-
-        String result = toFind + ":W=" + wins +";D=" +draws+";L="+ losses+";Scored="+scored+";Conceded="+conceded+";Points=" + points+"\n";
-        if (!play) {
-            return toFind + ":This team didn't play!";
-        }
-
-        return result;
+        return toFind + ":W=" + wins + ";D=" + draws + ";L=" + loses + ";Scored=" + scored + ";Conceded=" + conceded + ";Points=" + points;
     }
 
     public String stockSummary(String[] lstOfArt, String[] lstOf1stLetter) {
