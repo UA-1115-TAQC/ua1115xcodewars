@@ -20,4 +20,24 @@ public class SixDataProvider extends AbstractDataProvider{
         testData.add(new Object[] {2.4e-07, 1.1999999280000085e-07});
         return combineData(testData, SIXES);
     }
+
+    @DataProvider(name = "helpBookseller")
+    public Iterator<Object[]> helpBookseller(){
+        List<Object[]> inputs = new ArrayList<>();
+
+        inputs.add(new Object[]{new String[]{"ABAR 200", "CDXE 500", "BKWR 250", "BTSQ 890", "DRTY 600"},
+                new String[] {"A", "B"},
+                "(A : 200) - (B : 1140)"});
+        inputs.add(new Object[]{new String[]{"ABAR 200", "CDXE 500", "BKWR 250", "BTSQ 890", "DRTY 600"},
+                new String[] {"A", "B", "W"},
+                "(A : 200) - (B : 1140) - (W : 0)"});
+
+        inputs.add(new Object[]{null, new String[] {"A", "B"}, ""});
+        inputs.add(new Object[]{new String[]{"ABAR 200", "CDXE 500"}, null, ""});
+
+        inputs.add(new Object[]{new String[]{}, new String[] {"A", "B"}, ""});
+        inputs.add(new Object[]{new String[]{"ABAR 200", "CDXE 500"}, new String[]{}, ""});
+
+        return combineData(inputs, SIXES);
+    }
 }
