@@ -1,8 +1,8 @@
 package org.academy.kata.provider;
 
 import org.academy.kata.Eight;
+import org.testng.Assert;
 import org.testng.annotations.Test;
-
 import static org.testng.Assert.assertEquals;
 
 public class EightTest {
@@ -16,9 +16,11 @@ public class EightTest {
         assertEquals((expectedVolume - impl.getVolumeOfCuboid(length,width,height) <= 0.0001),true);
     }
 
-    @Test (dataProvider = "VolumeOfCuboid_invalidInputs", dataProviderClass = EightDataProvider.class, expectedExceptions = IllegalArgumentException.class)
-    public void volumeOfCuboid_InvalidInputsTest(Eight impl, double length, double width, double height, double expectedVolume) {
-        Assert.th((expectedVolume - impl.getVolumeOfCuboid(length,width,height) <= 0.0001),true);
+    @Test (dataProvider = "VolumeOfCuboid_invalidInputs", dataProviderClass = EightDataProvider.class)
+    public void volumeOfCuboid_InvalidInputsTest(Eight impl, double length, double width, double height) {
+        Assert.expectThrows(IllegalArgumentException.class, () ->{
+            impl.getVolumeOfCuboid(length,width,height);
+        });
     }
 
 }
