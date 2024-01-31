@@ -18,4 +18,8 @@ public class EightTest {
         assertEquals((expectedVolume - impl.getVolumeOfCuboid(length, width, height) <= 0.0001), true);
     }
 
+    @Test(dataProvider = "divisibleByData", dataProviderClass = EightDataProvider.class)
+    public void divisibleBy_validData_ok(Eight eight, int[] firstInput, int secondInput, int[] expected) {
+        assertEquals(eight.divisibleBy(firstInput, secondInput), expected);
+    }
 }
