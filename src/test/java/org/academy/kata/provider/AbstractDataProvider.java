@@ -1,6 +1,7 @@
 package org.academy.kata.provider;
 
 import org.academy.kata.Eight;
+import org.academy.kata.Six;
 import org.academy.kata.Five;
 
 import java.util.ArrayList;
@@ -23,6 +24,19 @@ public class AbstractDataProvider {
             new org.academy.kata.implementation.s_hrynus.EightImpl(),
             new org.academy.kata.implementation.ystankevych.EightImpl(),
             new org.academy.kata.implementation.Zakotiuk.EightImpl());
+    protected static final List<Six> SIXES = List.of(
+            new org.academy.kata.implementation.alevtyna30.SixImpl(),
+            new org.academy.kata.implementation.hohashvili.SixImpl(),
+            new org.academy.kata.implementation.Julyuk.SixImpl(),
+            new org.academy.kata.implementation.KhrystynaPavlikovska.SixImpl(),
+            new org.academy.kata.implementation.nasock.SixImpl(),
+            new org.academy.kata.implementation.Natalia62.SixImpl(),
+            new org.academy.kata.implementation.Natalsa566.SixImpl(),
+            new org.academy.kata.implementation.OksankaV.SixImpl(),
+            new org.academy.kata.implementation.Oleghon.SixImpl(),
+            new org.academy.kata.implementation.s_hrynus.SixImpl(),
+            new org.academy.kata.implementation.ystankevych.SixImpl(),
+            new org.academy.kata.implementation.Zakotiuk.SixImpl());
     protected static final List<Five> FIVES = List.of(
             new org.academy.kata.implementation.alevtyna30.FiveImpl(),
             new org.academy.kata.implementation.hohashvili.FiveImpl(),
