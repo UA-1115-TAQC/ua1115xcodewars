@@ -19,4 +19,15 @@ public class FiveDataProvider extends AbstractDataProvider {
 
         return combineData(inputs, FIVES);
     }
+
+    @DataProvider(name = "test_data_zeros")
+    private Iterator<Object[]> test_data_zeros(){
+        List<Object[]> testData = new ArrayList<>();
+        testData.add(new Object[] {0, 0});
+        testData.add(new Object[] {6, 1});
+        testData.add(new Object[] {14, 2});
+        testData.add(new Object[] {20, 4});
+        testData.add(new Object[] {100, 24});
+        return combineData(testData, FIVES);
+    }
 }
