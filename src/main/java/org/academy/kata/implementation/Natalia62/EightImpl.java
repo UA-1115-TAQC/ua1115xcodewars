@@ -16,7 +16,7 @@ public class EightImpl implements Eight {
     public float mpgToKPM(float mpg) {
         double MileToKilo = 1.609344;
         double GallonToLiter = 4.54609188;
-        return (float) (mpg * MileToKilo / GallonToLiter);
+        return (float) Math.round(mpg * MileToKilo / GallonToLiter * 100) / 100;
     }
 
     public int[] squareOrSquareRoot(int[] array) {
