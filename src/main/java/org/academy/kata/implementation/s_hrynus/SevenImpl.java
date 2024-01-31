@@ -7,7 +7,7 @@ import java.util.Arrays;
 public class SevenImpl implements Seven {
     public long newAvg(double[] arr, double navg) {
         double sum = Arrays.stream(arr).sum();
-        if (sum < navg) {
+        if (sum / arr.length > navg) {
             throw new IllegalArgumentException();
         }
         return (long) Math.ceil((navg * (arr.length + 1)) - sum);
