@@ -29,4 +29,13 @@ public class FiveDataProvider extends AbstractDataProvider {
         testData.add(new Object[]{100, 24});
         return combineData(testData, FIVES);
     }
+
+    @DataProvider(name = "which_x_for_that_sum")
+    private Iterator<Object[]> whichXForThatSumData() {
+        List<Object[]> inputs = new ArrayList<>();
+        inputs.add(new Object[]{2.00, 5.000000000000e-01});
+        inputs.add(new Object[]{4.00, 6.096117967978e-01});
+        inputs.add(new Object[]{5.00, 6.417424305044e-01});
+        return combineData(inputs, FIVES);
+    }
 }

@@ -7,6 +7,7 @@ import org.testng.annotations.Test;
 import java.util.Arrays;
 
 import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
 
 public class FiveTest {
 
@@ -18,5 +19,13 @@ public class FiveTest {
     @Test(dataProvider = "test_data_zeros", dataProviderClass = FiveDataProvider.class)
     public void test_zeros(Five impl, int n, int expected) {
         assertEquals(impl.zeros(n), expected);
+    }
+
+    @Test(dataProvider = "which_x_for_that_sum", dataProviderClass = FiveDataProvider.class)
+    public void whichXForThatSum_validData_ok(Five five, double input, double expected) {
+        double merr = 1e-12;
+        double actual = five.solve(input);
+        boolean inRange = Math.abs(actual - expected) <= merr;
+        assertTrue(inRange);
     }
 }
