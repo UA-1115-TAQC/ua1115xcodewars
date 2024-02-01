@@ -17,7 +17,6 @@ public class EightDataProvider extends AbstractDataProvider {
 
         return combineData(inputs, EIGHTS);
     }
-
     @DataProvider(name = "test_data_wilson")
     private Iterator<Object[]> test_data_wilson() {
         List<Object[]> testData = new ArrayList<>();
@@ -82,6 +81,14 @@ public class EightDataProvider extends AbstractDataProvider {
         inputs.add(new Object[]{new int[]{1, 2, 3, 4, 5, 6, 0}, new int[]{6, 0}});
         inputs.add(new Object[]{new int[]{-1, -2, -3, -4, 0}, new int[]{0, -10}});
         inputs.add(new Object[]{new int[]{0, 0, 0, 0, 0, 0}, new int[]{0, 0}});
+        return combineData(inputs, EIGHTS);
+    }
+
+    @DataProvider(name = "TwoDecimalPlacesData")
+    public Iterator<Object[]> TwoDecimalPlacesData(){
+        List<Object[]> inputs = new ArrayList<>();
+        inputs.add(new Object[]{4.659725356, 4.66});
+        inputs.add(new Object[]{173735326.3783732637948948, 173735326.38});
         return combineData(inputs, EIGHTS);
     }
 
