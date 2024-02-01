@@ -49,8 +49,13 @@ public class SixImpl implements Six {
     }
 
     private double[] getTempArray(String town, String strng) {
-        int indexStart = strng.indexOf(town + ":");
-        if (indexStart < 0) return new double[0];
+        int indexStart;
+        if (strng.startsWith(town + ":")) {
+            indexStart = 0;
+        } else {
+            indexStart = strng.indexOf("\n" + town + ":") + "\n".length();
+            if (indexStart == 0) return new double[0];
+        }
         int indexEnd = strng.indexOf("\n", indexStart);
         String townStr = (indexEnd < 0) ? strng.substring(indexStart) : strng.substring(indexStart, indexEnd);
         Pattern pattern = Pattern.compile("\\d+\\.?\\d*");
