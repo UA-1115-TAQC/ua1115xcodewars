@@ -65,4 +65,13 @@ public class ConsoleReaderDataProvider {
         };
         return result;
     }
+
+    @DataProvider(name = "readStringArr")
+    private Object[][] readStringArr(){
+        return new Object[][]{
+                {"Rachel, Chandler, Joey", new String[]{"Rachel", "Chandler", "Joey"}},
+                {"one, two, three", new String[]{"one", "two", "three"}},
+                {"alevtyna30, 43, Natalia62, !", new String[]{"alevtyna30", "43", "Natalia62", "!"}},
+        };
+    }
 }
