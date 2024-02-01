@@ -25,6 +25,7 @@ public class AbstractDataProvider {
             new org.academy.kata.implementation.s_hrynus.EightImpl(),
             new org.academy.kata.implementation.ystankevych.EightImpl(),
             new org.academy.kata.implementation.Zakotiuk.EightImpl());
+
     protected static final List<Six> SIXES = List.of(
             new org.academy.kata.implementation.alevtyna30.SixImpl(),
             new org.academy.kata.implementation.hohashvili.SixImpl(),
@@ -38,6 +39,7 @@ public class AbstractDataProvider {
             new org.academy.kata.implementation.s_hrynus.SixImpl(),
             new org.academy.kata.implementation.ystankevych.SixImpl(),
             new org.academy.kata.implementation.Zakotiuk.SixImpl());
+
     protected static final List<Five> FIVES = List.of(
             new org.academy.kata.implementation.alevtyna30.FiveImpl(),
             new org.academy.kata.implementation.hohashvili.FiveImpl(),

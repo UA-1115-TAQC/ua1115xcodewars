@@ -57,6 +57,18 @@ public class EightDataProvider extends AbstractDataProvider {
         return combineData(inputs, EIGHTS);
     }
 
+    @DataProvider(name = "liters_test")
+    public static Iterator<Object[]> liters_test_data() {
+        List<Object[]> inputs = new ArrayList<>();
+        inputs.add(new Object[]{2.0,1});
+        inputs.add(new Object[]{0.97,0});
+        inputs.add(new Object[]{14.64,7});
+        inputs.add(new Object[]{1600.20,800});
+        inputs.add(new Object[]{80,40});
+
+        return combineData(inputs, EIGHTS);
+    }
+
     @DataProvider(name = "countPositivesSumNegatives")
     public Iterator<Object[]> countPositivesSumNegatives() {
         List<Object[]> inputs = new ArrayList<>();

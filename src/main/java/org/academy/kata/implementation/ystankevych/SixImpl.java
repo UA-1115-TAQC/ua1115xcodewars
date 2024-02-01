@@ -40,7 +40,7 @@ public class SixImpl implements Six {
             report.append(" %s %.2f".formatted("Balance", balance - totalExpense));
         }
         return report.append(lineSeparator)
-                .append("%s  %.2f".formatted("Total expense", balance - totalExpense))
+                .append("%s  %.2f".formatted("Total expense", totalExpense))
                 .append(lineSeparator)
                 .append("%s  %.2f".formatted("Average expense", totalExpense / (bookArray.length - 1)))
                 .toString();
