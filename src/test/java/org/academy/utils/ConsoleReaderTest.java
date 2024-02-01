@@ -21,9 +21,11 @@ public class ConsoleReaderTest {
 
     @Test(dataProvider = "validDataForBigInt", dataProviderClass = ConsoleReaderDataProvider.class)
     public void testReadBigInteger(String inputString, BigInteger expected) {
+        InputStream originalIn = System.in;
         System.setIn(new ByteArrayInputStream(inputString.getBytes()));
         ConsoleReader reader = new ConsoleReader();
         assertEquals(reader.readBigInteger(), expected);
+        System.setIn(originalIn);
     }
 
     @Test(dataProvider = "invalidDataForBigInt", dataProviderClass = ConsoleReaderDataProvider.class)
@@ -35,9 +37,9 @@ public class ConsoleReaderTest {
         System.setOut(new PrintStream(testStream));
         ConsoleReader reader = new ConsoleReader();
         reader.readBigInteger();
+        assertEquals(testStream.toString(), expected);
         System.setIn(originalIn);
         System.setOut(originalOut);
-        assertEquals(testStream.toString(), expected);
     }
 
     @Test(dataProvider = "validDataForDoubleArr", dataProviderClass = ConsoleReaderDataProvider.class)
