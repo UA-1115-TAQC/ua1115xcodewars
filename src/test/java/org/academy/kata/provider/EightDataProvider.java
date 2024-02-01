@@ -50,5 +50,13 @@ public class EightDataProvider extends AbstractDataProvider {
         return combineData(inputs, EIGHTS);
     }
 
+    @DataProvider(name = "TwoDecimalPlacesData")
+    public Iterator<Object[]> TwoDecimalPlacesData(){
+        List<Object[]> inputs = new ArrayList<>();
+        inputs.add(new Object[]{4.659725356, 4.66});
+        inputs.add(new Object[]{173735326.3783732637948948, 173735326.38});
+        return combineData(inputs, EIGHTS);
+    }
+
 }
 
