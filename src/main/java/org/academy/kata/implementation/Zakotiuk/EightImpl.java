@@ -3,6 +3,8 @@ package org.academy.kata.implementation.Zakotiuk;
 import org.academy.kata.Eight;
 
 import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.util.Locale;
 
 public class EightImpl implements Eight {
     public int liters(double time) {
@@ -54,7 +56,7 @@ public class EightImpl implements Eight {
     }
 
     public double TwoDecimalPlaces(double number) {
-        DecimalFormat decimal = new DecimalFormat("#.##");
+        DecimalFormat decimal = new DecimalFormat("#.##", new DecimalFormatSymbols(Locale.US));
         return Double.parseDouble(decimal.format(number));
     }
 
