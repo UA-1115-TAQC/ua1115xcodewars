@@ -27,4 +27,10 @@ public class SixTest {
     public void helpBooksellerTest(Six six, String[] inputBooks, String[] inputLetters, String expected) {
         assertEquals(expected, six.stockSummary(inputBooks, inputLetters));
     }
+
+    @Test(dataProvider = "nbaCup", dataProviderClass = SixDataProvider.class)
+    public void nbaCup(Six impl, String resultSheet1, String resultSheet2, String toFind, String expected) {
+        String resultSheet = resultSheet1 + resultSheet2;
+        assertEquals(impl.nbaCup(resultSheet, toFind), expected);
+    }
 }
