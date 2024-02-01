@@ -74,7 +74,6 @@ public class EightImpl implements Eight {
         return n * factorial(n - 1);
     }
     public boolean am_i_wilson(double n) {
-        double result = (factorial(n-1) + 1) / (n*n);
-        return Math.ceil(result) == result;
+        return n== 5 || n == 13 || n ==563;
     }
 }
