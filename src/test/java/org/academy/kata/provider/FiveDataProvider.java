@@ -2,6 +2,7 @@ package org.academy.kata.provider;
 
 import org.testng.annotations.DataProvider;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -47,6 +48,14 @@ public class FiveDataProvider extends AbstractDataProvider {
         inputs.add(new Object[]{285365, new long[]{238565, 3, 1}});
         inputs.add(new Object[]{269045, new long[]{26945, 3, 0}});
         inputs.add(new Object[]{296837, new long[]{239687, 4, 1}});
+        return combineData(inputs, FIVES);
+    }
+    @DataProvider(name="perimeterData")
+    private Iterator<Object[]> perimeterData(){
+        List<Object[]> inputs = new ArrayList<>();
+        inputs.add(new Object[]{BigInteger.valueOf(5), BigInteger.valueOf(80)});
+        inputs.add(new Object[]{BigInteger.valueOf(7), BigInteger.valueOf(216)});
+        inputs.add(new Object[]{BigInteger.valueOf(30), BigInteger.valueOf(14098308)});
         return combineData(inputs, FIVES);
     }
 }
