@@ -30,8 +30,8 @@ public class ConsoleReaderDataProvider {
     @DataProvider(name = "invalidDataForBigInt")
     private Object[][] invalidDataForBigInt(){
         return new Object[][]{
-                {"", "Input should be a big integer.\n"},
-                {"asdfghjk", "Input should be a big integer.\n"},
+                {"", "Input should be a big integer." + System.lineSeparator()},
+                {"asdfghjk", "Input should be a big integer." + System.lineSeparator()},
         };
     }
 

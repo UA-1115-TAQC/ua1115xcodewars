@@ -32,7 +32,7 @@ public class ConsoleReaderTest {
     public void testInvalidReadBigInteger(String inputString, String expected) {
         InputStream originalIn = System.in;
         PrintStream originalOut = System.out;
-        System.setIn(new ByteArrayInputStream((inputString + "\n1").getBytes()));
+        System.setIn(new ByteArrayInputStream((inputString + System.lineSeparator() + "1").getBytes()));
         ByteArrayOutputStream testStream = new ByteArrayOutputStream();
         System.setOut(new PrintStream(testStream));
         ConsoleReader reader = new ConsoleReader();
