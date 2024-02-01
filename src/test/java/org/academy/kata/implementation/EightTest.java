@@ -2,7 +2,6 @@ package org.academy.kata.implementation;
 
 import org.academy.kata.Eight;
 import org.academy.kata.provider.EightDataProvider;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;
@@ -35,5 +34,10 @@ public class EightTest {
     @Test(dataProvider = "stringToNumber", dataProviderClass = EightDataProvider.class)
     public void convertStringToNumberTest(Eight eight, String input, int expected) {
         assertEquals(eight.stringToNumber(input), expected);
+    }
+
+    @Test (dataProvider = "liters_test", dataProviderClass = EightDataProvider.class)
+    public void liters_ValidInputsTest(Eight impl, double time, double expectedLiters) {
+        assertEquals((expectedLiters - impl.liters(time) <= 0.0001),true);
     }
 }

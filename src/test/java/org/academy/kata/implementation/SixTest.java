@@ -2,9 +2,8 @@ package org.academy.kata.implementation;
 
 import org.academy.kata.Six;
 import org.academy.kata.provider.SixDataProvider;
+import org.testng.Assert;
 import org.testng.annotations.Test;
-
-import java.text.DecimalFormat;
 
 import static org.testng.AssertJUnit.assertEquals;
 
@@ -32,5 +31,22 @@ public class SixTest {
     public void nbaCup(Six impl, String resultSheet1, String resultSheet2, String toFind, String expected) {
         String resultSheet = resultSheet1 + resultSheet2;
         assertEquals(impl.nbaCup(resultSheet, toFind), expected);
+    }
+
+    @Test(dataProvider = "balance_test", dataProviderClass = SixDataProvider.class)
+    public void balance_test(Six impl, String input1, String expected) {
+        String result = impl.balance(input1);
+        result = result.replaceAll("[\\r\\n\\s]+", " ");
+        result = result.replaceAll(",",".");
+        result = result.replaceAll("\\\\r", "");
+        result = result.replaceAll("\\\\n", "\n");
+        result = result.replaceAll("\n", " ");
+
+        expected = expected.replaceAll("[\\r\\n\\s]+", " ");
+        expected = expected.replaceAll("\\\\r", "");
+        expected = expected.replaceAll("\\\\n", "\n");
+        expected = expected.replaceAll("\n", " ");
+
+        Assert.assertEquals(result, expected);
     }
 }
