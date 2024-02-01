@@ -6,27 +6,32 @@ import java.math.BigInteger;
 
 public class FiveImpl implements Five {
     public long[] gap(int g, long m, long n) {
-        for (long i = m; i <= n - g; i++) {
-            if (isPrime(i) && isPrime(i + g)) {
-                return new long[]{i, i + g};
+        long last = Long.MIN_VALUE;
+        for (long i = m; i < n; i++) {
+            if (isPrime(i)) {
+                if (i - last == g) {
+                    return new long[]{last, i};
+                }
+                last = i;
             }
         }
         return null;
     }
-    private static boolean isPrime(long num) {
-        if (num < 2) {
-            return false;
-        }
-        for (long i = 2; i * i <= num; i++) {
-            if (num % i == 0) {
-                return false;
-            }
+
+    private static boolean isPrime(long i) {
+        for (long j = 2; j < i / 2; j++) {
+            if (i % j == 0) return false;
         }
         return true;
     }
 
     public int zeros(int n) {
-        return 0;
+        int zeros = 0;
+        while (n >= 5) {
+            n /= 5;
+            zeros += n;
+        }
+        return zeros;
     }
 
     public BigInteger perimeter(BigInteger n) {
@@ -45,20 +50,7 @@ public class FiveImpl implements Five {
     }
 
     public double solve(double m) {
-        if (m <= 0 || m >= 1) {
-            throw new IllegalArgumentException("m should be in the range (0, 1)");
-        }
-        double x = m / 2.0;
-        for (int i = 0; i < 1000; i++) {
-            double numerator = m * x;
-            double denominator = 1 + x;
-            double newX = numerator / denominator;
-            if (Math.abs(newX - x) < 1e-13) {
-                return newX;
-            }
-            x = newX;
-        }
-        return x;
+        return (2 * m + 1 - Math.sqrt(4 * m + 1)) / (2 * m);
     }
 
     public long[] smallest(long n) {
