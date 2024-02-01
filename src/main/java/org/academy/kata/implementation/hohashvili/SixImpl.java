@@ -2,6 +2,7 @@ package org.academy.kata.implementation.hohashvili;
 
 import org.academy.kata.Six;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -30,23 +31,36 @@ public class SixImpl implements Six {
         double origBalance = 0;
         double totalExpense = 0;
         for(String line:origSplit) {
+            line = line.replaceAll("[^0-9a-zA-Z.]", " ");
+            line = line.replaceAll("\\s+", " ");
+
             if (counter == 0) {
                 origBalance = Double.parseDouble(line);
-                result += "Original_Balance:_" + line + "\n";
+                result += "Original Balance: " + line.trim() + "\\r" + "\n";
             } else {
                 String[] itemSplit = line.split(" ");
                 List<String> newItem = new ArrayList<>(Arrays.asList(itemSplit));
-                newItem.add(2, "Balance");
-                totalExpense += Double.parseDouble(newItem.get(3));
-                newItem.set(3, String.valueOf(origBalance-totalExpense));
+                List<String> resultItem = new ArrayList<String>();
+                resultItem.add(0, newItem.get(0) );
+                resultItem.add(1, newItem.get(1) );
 
-                String newItemString = String.join("_", newItem) + '\n';
+                resultItem.add(2, newItem.get(2));
+                resultItem.add(3, "Balance");
+                totalExpense += Double.parseDouble(newItem.get(2));
+
+                DecimalFormat decimalFormatDouble = new DecimalFormat("0.00");
+                String formattedNumber = decimalFormatDouble.format(origBalance-totalExpense);
+
+                resultItem.add(4, formattedNumber);
+
+                String newItemString = String.join(" ", resultItem) + "\\r" + "\n";
                 result += newItemString;
+
             }
             counter++;
         }
-        result += "Total_expense__" + String.format(Locale.US,"%.2f",totalExpense) + '\n';
-        result += "Average_expense__" + String.format(Locale.US,"%.2f",totalExpense/(counter-1)) + '\n';
+        result += "Total expense  " + String.format(Locale.US,"%.2f",totalExpense) + "\\r" + '\n';
+        result += "Average expense  " + String.format(Locale.US,"%.2f",totalExpense/(counter-1));
         return result;
     }
 
