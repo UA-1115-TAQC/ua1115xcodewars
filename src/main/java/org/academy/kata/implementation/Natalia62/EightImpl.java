@@ -16,15 +16,19 @@ public class EightImpl implements Eight {
     public float mpgToKPM(float mpg) {
         double MileToKilo = 1.609344;
         double GallonToLiter = 4.54609188;
-        return (float) (mpg * MileToKilo / GallonToLiter);
+        return (float) Math.round(mpg * MileToKilo / GallonToLiter * 100) / 100;
     }
 
     public int[] squareOrSquareRoot(int[] array) {
-        for (int i = 0; i < array.length; i++) {
-            if (Math.sqrt(array[i]) % 1 == 0) array[i] = (int) Math.sqrt(array[i]);
-            else array[i] = (int) Math.pow(array[i],2);
+        int result[] = new int[array.length];
+        for(int i = 0; i < array.length; i++){
+            if(Math.sqrt(array[i])==(int)Math.sqrt(array[i])){
+                result[i] = (int)(Math.sqrt(array[i]));
+            }else{
+                result[i] = (int)(Math.pow(array[i], 2));
+            }
         }
-        return array;
+        return result;
     }
 
     public int[] countPositivesSumNegatives(int[] input) {

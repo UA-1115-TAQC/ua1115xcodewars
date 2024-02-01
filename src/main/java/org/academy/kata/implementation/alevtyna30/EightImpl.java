@@ -1,27 +1,27 @@
 package org.academy.kata.implementation.alevtyna30;
 
 import org.academy.kata.Eight;
+
+import java.math.BigInteger;
 import java.util.Arrays;
 
-import java.util.Arrays;
-
-import java.util.Arrays;
 
 public class EightImpl implements Eight {
     private static final double MILES_TO_KM = 1.609344;
     private static final double GALLONS_TO_LITERS = 4.54609188;
     private static final double WATER_PER_HOUR = 0.5;
+
     public int liters(double time) {
 
         return (int) (time * WATER_PER_HOUR);
     }
 
     public double getVolumeOfCuboid(double length, double width, double height) {
-        return length*width*height;
+        return length * width * height;
     }
 
     public float mpgToKPM(float mpg) {
-        return (float) (mpg * MILES_TO_KM / GALLONS_TO_LITERS);
+        return (float) Math.round (100 * (mpg * MILES_TO_KM / GALLONS_TO_LITERS)) / 100;
     }
 
     public int[] squareOrSquareRoot(int[] array) {
@@ -50,7 +50,7 @@ public class EightImpl implements Eight {
 
     public double TwoDecimalPlaces(double number) {
 
-        return Math.round(number*100.0)/100.0;
+        return Math.round(number * 100.0) / 100.0;
     }
 
     public int[] divisibleBy(int[] numbers, int divider) {
@@ -60,14 +60,16 @@ public class EightImpl implements Eight {
     }
 
     public boolean am_i_wilson(double n) {
-        if (n <= 1) {
-            return false;
-        }
-        double factorial = 1;
-        for (int i = 2; i < n; i++) {
-            factorial = (factorial * i) % n;
-        }
-        return (factorial + 1) % n == 0;
+        if (n <= 1) return false;
+        BigInteger number = new BigInteger(String.valueOf((int) n));
+        return (factorial(n - 1).add(BigInteger.valueOf(1))).remainder(number.pow(2)).equals(BigInteger.ZERO);
+    }
 
+    public BigInteger factorial(double a) {
+        BigInteger number = new BigInteger(String.valueOf(1));
+        for (int i = 1; i <= a; i++) {
+            number = number.multiply(BigInteger.valueOf(i));
+        }
+        return number;
     }
 }

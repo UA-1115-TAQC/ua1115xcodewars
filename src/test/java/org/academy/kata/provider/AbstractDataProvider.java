@@ -1,6 +1,7 @@
 package org.academy.kata.provider;
 
 import org.academy.kata.Eight;
+import org.academy.kata.Seven;
 import org.academy.kata.Six;
 import org.academy.kata.Five;
 
@@ -24,6 +25,7 @@ public class AbstractDataProvider {
             new org.academy.kata.implementation.s_hrynus.EightImpl(),
             new org.academy.kata.implementation.ystankevych.EightImpl(),
             new org.academy.kata.implementation.Zakotiuk.EightImpl());
+
     protected static final List<Six> SIXES = List.of(
             new org.academy.kata.implementation.alevtyna30.SixImpl(),
             new org.academy.kata.implementation.hohashvili.SixImpl(),
@@ -37,6 +39,7 @@ public class AbstractDataProvider {
             new org.academy.kata.implementation.s_hrynus.SixImpl(),
             new org.academy.kata.implementation.ystankevych.SixImpl(),
             new org.academy.kata.implementation.Zakotiuk.SixImpl());
+
     protected static final List<Five> FIVES = List.of(
             new org.academy.kata.implementation.alevtyna30.FiveImpl(),
             new org.academy.kata.implementation.hohashvili.FiveImpl(),
@@ -50,6 +53,20 @@ public class AbstractDataProvider {
             new org.academy.kata.implementation.s_hrynus.FiveImpl(),
             new org.academy.kata.implementation.ystankevych.FiveImpl(),
             new org.academy.kata.implementation.Zakotiuk.FiveImpl());
+
+    protected static final List<Seven> SEVEN = List.of(
+            new org.academy.kata.implementation.alevtyna30.SevenImpl(),
+            new org.academy.kata.implementation.hohashvili.SevenImpl(),
+            new org.academy.kata.implementation.Julyuk.SevenImpl(),
+            new org.academy.kata.implementation.KhrystynaPavlikovska.SevenImpl(),
+            new org.academy.kata.implementation.nasock.SevenImpl(),
+            new org.academy.kata.implementation.Natalia62.SevenImpl(),
+            new org.academy.kata.implementation.Natalsa566.SevenImpl(),
+            new org.academy.kata.implementation.OksankaV.SevenImpl(),
+            new org.academy.kata.implementation.Oleghon.SevenImpl(),
+            new org.academy.kata.implementation.s_hrynus.SevenImpl(),
+            new org.academy.kata.implementation.ystankevych.SevenImpl(),
+            new org.academy.kata.implementation.Zakotiuk.SevenImpl());
 
     protected static Iterator<Object[]> combineData(List<Object[]> objects, List impls) {
         ArrayList<Object[]> data = new ArrayList<>();
