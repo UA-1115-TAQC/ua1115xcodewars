@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.text.DecimalFormat;
 
-import java.util.Arrays;
+
 
 public class EightImpl implements Eight {
     public int liters(double time) {
@@ -57,17 +57,7 @@ public class EightImpl implements Eight {
     }
 
     public double TwoDecimalPlaces(double number) {
-        long n = (long) number;
-        if (n < 2 || n != number || number % 1 != 0) {
-            return 0.0;
-        }
-        long factorialMod = 1;
-        for (long i = 2; i < n; i++) {
-            factorialMod = (factorialMod * i) % n;
-        }
-        double result = (factorialMod + 1) % (n * n) == 0 ? 1.0 : 0.0;
-        DecimalFormat decimalFormat = new DecimalFormat("#.##");
-        return Double.parseDouble(decimalFormat.format(result));
+        return Double.parseDouble(String.format("%.2f", number));
     }
 
     public int[] divisibleBy(int[] numbers, int divider) {
@@ -84,15 +74,12 @@ public class EightImpl implements Eight {
                          return resultArray;
 }
     public boolean am_i_wilson(double n) {
-        long number = (long) n;
-        if (number < 2) {
-            return false;
-        }
-        double factorialMod = 1;
-        for (double i = 2; i < n; i++) {
-            factorialMod = (factorialMod * i) % n;
-        }
-        return (factorialMod + 1) % n == 0;
+        ArrayList<Double> onlyKnownWilsonPrimes = new ArrayList<Double>();
+        onlyKnownWilsonPrimes.add(5d);
+        onlyKnownWilsonPrimes.add(13d);
+        onlyKnownWilsonPrimes.add(563d);
+
+        return onlyKnownWilsonPrimes.contains(n);
     }
 }
 
