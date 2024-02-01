@@ -22,5 +22,8 @@ public class EightTest {
             impl.getVolumeOfCuboid(length,width,height);
         });
     }
-
+    @Test (dataProvider = "TwoDecimalPlacesData", dataProviderClass = EightDataProvider.class)
+    public void TwoDecimalPlacesTest(Eight impl, double number, double expected){
+        assertEquals(impl.TwoDecimalPlaces(number), expected);
+    }
 }
