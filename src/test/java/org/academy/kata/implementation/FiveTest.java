@@ -4,6 +4,7 @@ import org.academy.kata.Five;
 import org.academy.kata.provider.FiveDataProvider;
 import org.testng.annotations.Test;
 
+import java.math.BigInteger;
 import java.util.Arrays;
 
 import static org.testng.Assert.assertEquals;
@@ -31,5 +32,9 @@ public class FiveTest {
     @Test(dataProvider = "Find the smallest value", dataProviderClass = FiveDataProvider.class)
     public void returnTheSmallestNumber(Five five, long givenNumber, long[] expectedNumber){
         assertEquals(expectedNumber, five.smallest(givenNumber));
+    }
+    @Test(dataProvider = "perimeterData", dataProviderClass = FiveDataProvider.class)
+    public void perimeterTest(Five five, BigInteger number, BigInteger expected){
+        assertEquals(five.perimeter(number), expected);
     }
 }
