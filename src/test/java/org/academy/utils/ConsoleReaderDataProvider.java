@@ -59,10 +59,27 @@ public class ConsoleReaderDataProvider {
     @DataProvider(name = "readFloatPositiveTest")
     public Object[][] readFloatPositive(){
         Object[][] result = new Object[][]{
+                new Object[]{"1.11f", 1.11f},
+                new Object[]{"1.11F", 1.11f},
+
                 new Object[]{"1", 1.0f},
-                new Object[]{"1.11", 1.11F},
-                new Object[]{"1.11f", 1.11F},
-                new Object[]{"1.11F", 1.11F},
+                new Object[]{"1.11", 1.11f},
+                new Object[]{"1.247e2", 1.247e2f},
+                new Object[]{"-1.247e2", -1.247e2f},
+
+                new Object[]{"340282356779733661637539395458142568447", Float.MAX_VALUE},
+                new Object[]{"340282356779733661637539395458142568448", Float.POSITIVE_INFINITY},
+                new Object[]{"-340282356779733661637539395458142568448", Float.NEGATIVE_INFINITY},
+        };
+        return result;
+    }
+
+    @DataProvider(name = "readFloatNegativeTest")
+    public Object[][] readFloatNegative(){
+        Object[][] result = new Object[][]{
+                new Object[]{"" + System.lineSeparator(), "Input should be a float."},
+                new Object[]{" " + System.lineSeparator(), "Input should be a float."},
+                new Object[]{"1.247c2", "Input should be a float."}
         };
         return result;
     }
