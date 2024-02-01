@@ -84,5 +84,17 @@ public class EightDataProvider extends AbstractDataProvider {
         inputs.add(new Object[]{new int[]{0, 0, 0, 0, 0, 0}, new int[]{0, 0}});
         return combineData(inputs, EIGHTS);
     }
+
+    @DataProvider(name = "mpgToKpmValid")
+    public Iterator<Object[]> mpgToKpmValid() {
+        List<Object[]> testData = List.of(
+                new Object[] {10, 3.54f},
+                new Object[] {20, 7.08f},
+                new Object[] {30, 10.62f},
+                new Object[] {10.05f, 3.56f},
+                new Object[] {0, 0}
+        );
+        return combineData(testData, EIGHTS);
+    }
 }
 

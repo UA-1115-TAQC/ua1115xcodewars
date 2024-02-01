@@ -40,4 +40,9 @@ public class EightTest {
     public void liters_ValidInputsTest(Eight impl, double time, double expectedLiters) {
         assertEquals((expectedLiters - impl.liters(time) <= 0.0001),true);
     }
+
+    @Test(dataProvider = "mpgToKpmValid", dataProviderClass = EightDataProvider.class)
+    public void mpgToKpm_ValidData_Ok(Eight eightImpl, float argument, float expected) {
+        assertEquals(eightImpl.mpgToKPM(argument), expected, 0.001f);
+    }
 }
