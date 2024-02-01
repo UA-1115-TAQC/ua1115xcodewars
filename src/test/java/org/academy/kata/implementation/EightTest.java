@@ -45,4 +45,9 @@ public class EightTest {
     public void mpgToKpm_ValidData_Ok(Eight eightImpl, float argument, float expected) {
         assertEquals(eightImpl.mpgToKPM(argument), expected, 0.001f);
     }
+
+    @Test(dataProvider = "TwoDecimalPlacesData", dataProviderClass = EightDataProvider.class)
+    public void TwoDecimalPlacesTest(Eight impl, double number, double expected){
+        assertEquals(impl.TwoDecimalPlaces(number), expected);
+    }
 }
