@@ -14,6 +14,12 @@ import static org.testng.Assert.assertEquals;
 import static org.testng.FileAssert.fail;
 
 public class ConsoleReaderTest {
+    @Test(dataProvider = "validDataForIntArr", dataProviderClass = ConsoleReaderDataProvider.class)
+    public void testReadIntArr(String inputString, int[] expected){
+        System.setIn(new ByteArrayInputStream(inputString.getBytes()));
+        ConsoleReader reader = new ConsoleReader();
+        assertEquals(reader.readIntArr(), expected);
+    }
 
     @Test(dataProvider = "validDataForBigInt", dataProviderClass = ConsoleReaderDataProvider.class)
     public void testReadBigInteger(String inputString, BigInteger expected){
