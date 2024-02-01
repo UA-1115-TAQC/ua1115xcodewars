@@ -13,7 +13,6 @@ public class SevenImpl implements Seven {
         if (nextDonation <= 0) {
             throw new IllegalArgumentException("Last donation should be a positive number.");
         }
-
         return nextDonation;
     }
 

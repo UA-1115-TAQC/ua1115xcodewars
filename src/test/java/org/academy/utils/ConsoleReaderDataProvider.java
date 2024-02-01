@@ -5,13 +5,33 @@ import org.testng.annotations.DataProvider;
 import java.math.BigInteger;
 
 public class ConsoleReaderDataProvider {
+    @DataProvider(name = "validDataForIntArr")
+    private Object[][] validDataForIntArr(){
+        return new Object[][]{
+                {"0", new int[]{0}},
+                {"2 4 6 8", new int[]{2, 4, 6, 8}},
+                {"11 24 -3", new int[]{11, 24, -3}},
+                {"-5  -10  -15", new int[]{-5, -10, -15}},
+                {"100 200 300", new int[]{100, 200, 300}},
+                {"-1 0 1", new int[]{-1, 0, 1}},
+                {"999 -999", new int[]{999, -999}},
+        };
+    }
 
     @DataProvider(name = "validDataForBigInt")
     private Object[][] validDataForBigInt(){
         return new Object[][]{
-                {"43653664", new BigInteger("43653664")},
-                {"67648656565474858", new BigInteger("67648656565474858")},
+                {"0", new BigInteger("0")},
+                {"-255", new BigInteger("-255")},
                 {"9597957656756756788655685656", new BigInteger("9597957656756756788655685656")},
+        };
+    }
+
+    @DataProvider(name = "invalidDataForBigInt")
+    private Object[][] invalidDataForBigInt(){
+        return new Object[][]{
+                {"", "Input should be a big integer.\n"},
+                {"asdfghjk", "Input should be a big integer.\n"},
         };
     }
 

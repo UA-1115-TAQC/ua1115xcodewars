@@ -28,4 +28,8 @@ public class FiveTest {
         boolean inRange = Math.abs(actual - expected) <= merr;
         assertTrue(inRange);
     }
+    @Test(dataProvider = "Find the smallest value", dataProviderClass = FiveDataProvider.class)
+    public void returnTheSmallestNumber(Five five, long givenNumber, long[] expectedNumber){
+        assertEquals(expectedNumber, five.smallest(givenNumber));
+    }
 }

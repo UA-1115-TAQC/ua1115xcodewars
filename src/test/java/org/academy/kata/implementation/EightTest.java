@@ -32,6 +32,15 @@ public class EightTest {
     public void countPositivesSumNegativesTest(Eight eight, int[] input, int[] expected) {
         assertEquals(expected, eight.countPositivesSumNegatives(input));
     }
+    @Test(dataProvider = "stringToNumber", dataProviderClass = EightDataProvider.class)
+    public void convertStringToNumberTest(Eight eight, String input, int expected) {
+        assertEquals(eight.stringToNumber(input), expected);
+    }
+
+    @Test (dataProvider = "liters_test", dataProviderClass = EightDataProvider.class)
+    public void liters_ValidInputsTest(Eight impl, double time, double expectedLiters) {
+        assertEquals((expectedLiters - impl.liters(time) <= 0.0001),true);
+    }
 
     @Test(dataProvider = "mpgToKpmValid", dataProviderClass = EightDataProvider.class)
     public void mpgToKpm_ValidData_Ok(Eight eightImpl, float argument, float expected) {
