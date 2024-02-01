@@ -105,5 +105,38 @@ public class SixDataProvider extends AbstractDataProvider{
                 "Boston Celt", "Boston Celt:This team didn't play!"});
         return combineData(inputs, SIXES);
     }
-}
 
+    @DataProvider(name = "rainfall_mean_valid")
+    public static Iterator<Object[]> rainfallMeanValidData() {
+        List<Object[]> list = List.of(
+                new Object[] {"London", dataForRainFall().get(0), 51.199999999999996},
+                new Object[] {"New London", dataForRainFall().get(0), 52.416666666666664},
+                new Object[] {"Rome", dataForRainFall().get(0), 0},
+                new Object[] {"London", dataForRainFall().get(1), -1}
+        );
+
+        return combineData(list, SIXES);
+    }
+
+    @DataProvider(name = "rainfall_variance_valid")
+    public static Iterator<Object[]> rainfallVarianceValidData() {
+        List<Object[]> list = List.of(
+                new Object[] {"London", dataForRainFall().get(0), 57.42833333333374},
+                new Object[] {"New London", dataForRainFall().get(0), 4808.37138888889},
+                new Object[] {"Rome", dataForRainFall().get(0), 0},
+                new Object[] {"London", dataForRainFall().get(1), -1}
+        );
+
+        return combineData(list, SIXES);
+    }
+
+    private static List<String> dataForRainFall() {
+        return List.of(
+                """
+                        Rome:Jan 0.0,Feb 0.0,Mar 0.0,Apr 0.0,May 0.0,Jun 0.0,Jul 0.0,Aug 0.0,Sep 0.0,Oct 0.0,Nov 0.0,Dec 0.0
+                        London:Jan 48.0,Feb 38.9,Mar 39.9,Apr 42.2,May 47.3,Jun 52.1,Jul 59.5,Aug 57.2,Sep 55.4,Oct 62.0,Nov 59.0,Dec 52.9
+                        New London:Jan 3.9,Feb 4.7,Mar 8.2,Apr 18.4,May 33.0,Jun 78.1,Jul 224.3,Aug 170.0,Sep 58.4,Oct 18.0,Nov 9.3,Dec 2.7""",
+                "New London:Jan 3.9,Feb 4.7,Mar 8.2,Apr 18.4,May 33.0,Jun 78.1,Jul 224.3,Aug 170.0,Sep 58.4,Oct 18.0,Nov 9.3,Dec 2.7"
+        );
+    }
+}

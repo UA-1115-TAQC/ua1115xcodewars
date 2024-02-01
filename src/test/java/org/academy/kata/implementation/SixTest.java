@@ -49,4 +49,18 @@ public class SixTest {
 
         Assert.assertEquals(result, expected);
     }
+
+    @Test(dataProvider = "rainfall_mean_valid", dataProviderClass = SixDataProvider.class)
+    public void mean_TestValidData_Ok(Six six, String town, String data, double expected) {
+        double actual = six.mean(town, data);
+        assertEquals("abs(actual - expected) must be <= 1e-2. Expected was " + expected +", but got " + actual,
+                expected, actual, 1e-2);
+    }
+
+    @Test(dataProvider = "rainfall_variance_valid", dataProviderClass = SixDataProvider.class)
+    public void variance_TestValidData_Ok(Six six, String town, String data, double expected) {
+        double actual = six.variance(town, data);
+        assertEquals("abs(actual - expected) must be <= 1e-2. Expected was " + expected +", but got " + actual,
+                expected, actual, 1e-2);
+    }
 }
