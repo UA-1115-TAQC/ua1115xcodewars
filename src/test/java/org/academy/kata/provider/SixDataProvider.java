@@ -34,6 +34,15 @@ public class SixDataProvider extends AbstractDataProvider{
 
         inputs.add(new Object[]{new String[]{}, new String[] {"A", "B"}, ""});
         inputs.add(new Object[]{new String[]{"ABAR 200", "CDXE 500"}, new String[]{}, ""});
+        inputs.add(new Object[]{new String[]{"ABAR %200", "CDXE 500", "BKWR 250", "BTSQ 890"}, new String[] {"A", "B"}, "(A : 200) - (B : 1140)"});
+        inputs.add(new Object[]{new String[]{"%ABAR 200", "CDXE 500", "BKWR 250", "BTSQ 890"}, new String[] {"A", "B"}, "(A : 0) - (B : 1140)"});
+        inputs.add(new Object[]{new String[]{"ABAR", "CDXE 500", "BKWR 250", "BTSQ 890"}, new String[] {"A", "B"}, "(A : 0) - (B : 1140)"});
+        inputs.add(new Object[]{new String[]{"200", "CDXE 500", "BKWR 250", "BTSQ 890"}, new String[] {"A", "B"}, "(A : 0) - (B : 1140)"});
+        inputs.add(new Object[]{new String[]{"", "CDXE 500", "BKWR 250", "BTSQ 890"}, new String[] {"A", "B"}, "(A : 0) - (B : 1140)"});
+
+        inputs.add(new Object[]{new String[]{"ABAR 200", "CDXE 500", "BKWR 250", "BTSQ 890"}, new String[] {"%A", "B"}, "(A : 0) - (B : 1140)"});
+        inputs.add(new Object[]{new String[]{"ABAR 200", "CDXE 500", "BKWR 250", "BTSQ 890"}, new String[] {"", "B"}, "(B : 1140)"});
+
         return combineData(inputs, SIXES);
     }
 
@@ -50,16 +59,6 @@ public class SixDataProvider extends AbstractDataProvider{
 
         inputs.add(new Object[]{b1, b1sol}); // input1, result
         inputs.add(new Object[]{b2, b2sol});  // input1, result
-
-        inputs.add(new Object[]{new String[]{"ABAR %200", "CDXE 500", "BKWR 250", "BTSQ 890"}, new String[] {"A", "B"}, "(A : 200) - (B : 1140)"});
-        inputs.add(new Object[]{new String[]{"%ABAR 200", "CDXE 500", "BKWR 250", "BTSQ 890"}, new String[] {"A", "B"}, "(A : 0) - (B : 1140)"});
-        inputs.add(new Object[]{new String[]{"ABAR", "CDXE 500", "BKWR 250", "BTSQ 890"}, new String[] {"A", "B"}, "(A : 0) - (B : 1140)"});
-        inputs.add(new Object[]{new String[]{"200", "CDXE 500", "BKWR 250", "BTSQ 890"}, new String[] {"A", "B"}, "(A : 0) - (B : 1140)"});
-        inputs.add(new Object[]{new String[]{"", "CDXE 500", "BKWR 250", "BTSQ 890"}, new String[] {"A", "B"}, "(A : 0) - (B : 1140)"});
-
-        inputs.add(new Object[]{new String[]{"ABAR 200", "CDXE 500", "BKWR 250", "BTSQ 890"}, new String[] {"%A", "B"}, "(A : 0) - (B : 1140)"});
-        inputs.add(new Object[]{new String[]{"ABAR 200", "CDXE 500", "BKWR 250", "BTSQ 890"}, new String[] {"", "B"}, "(B : 1140)"});
-
         return combineData(inputs, SIXES);
     }
 
