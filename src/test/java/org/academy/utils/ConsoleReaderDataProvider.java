@@ -57,8 +57,9 @@ public class ConsoleReaderDataProvider {
     }
 
     @DataProvider(name = "readFloatPositiveTest")
-    public Object[][] readFloatPos(){
+    public Object[][] readFloatPositive(){
         Object[][] result = new Object[][]{
+                new Object[]{"1", 1.0f},
                 new Object[]{"1.11", 1.11F},
                 new Object[]{"1.11f", 1.11F},
                 new Object[]{"1.11F", 1.11F},
