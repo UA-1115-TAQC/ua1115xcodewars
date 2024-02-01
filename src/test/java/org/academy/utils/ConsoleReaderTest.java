@@ -48,4 +48,11 @@ public class ConsoleReaderTest {
         }
 
     }
+
+    @Test(dataProvider = "readFloatPositiveTest", dataProviderClass = ConsoleReaderDataProvider.class)
+    public void readFloatTestPositive(String input, float expected) {
+        System.setIn(new ByteArrayInputStream(input.getBytes()));
+        ConsoleReader cr = new ConsoleReader();
+        assertEquals(expected, cr.readFloat());
+    }
 }

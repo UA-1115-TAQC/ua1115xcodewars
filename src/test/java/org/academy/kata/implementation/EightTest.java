@@ -2,6 +2,7 @@ package org.academy.kata.implementation;
 
 import org.academy.kata.Eight;
 import org.academy.kata.provider.EightDataProvider;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;
@@ -25,6 +26,11 @@ public class EightTest {
     @Test(dataProvider = "squareOrSquareRoot", dataProviderClass = EightDataProvider.class)
     public void test_squareOrSquareRoot(Eight impl, int[] array, int[] expected) {
         assertEquals(impl.squareOrSquareRoot(array), expected);
+    }
+
+    @Test(dataProvider = "countPositivesSumNegatives", dataProviderClass = EightDataProvider.class)
+    public void countPositivesSumNegativesTest(Eight eight, int[] input, int[] expected) {
+        assertEquals(expected, eight.countPositivesSumNegatives(input));
     }
 
     @Test(dataProvider = "mpgToKpmValid", dataProviderClass = EightDataProvider.class)

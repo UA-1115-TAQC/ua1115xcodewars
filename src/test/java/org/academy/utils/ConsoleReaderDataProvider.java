@@ -35,4 +35,14 @@ public class ConsoleReaderDataProvider {
                 {"10,5 4,2 -2,1"}
         };
     }
+
+    @DataProvider(name = "readFloatPositiveTest")
+    public Object[][] readFloatPos(){
+        Object[][] result = new Object[][]{
+                new Object[]{"1.11", 1.11F},
+                new Object[]{"1.11f", 1.11F},
+                new Object[]{"1.11F", 1.11F},
+        };
+        return result;
+    }
 }

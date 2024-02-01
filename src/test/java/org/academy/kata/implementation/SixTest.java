@@ -22,4 +22,9 @@ public class SixTest {
       }
       assertEquals(true, inrange);
     }
+
+    @Test(dataProvider = "helpBookseller", dataProviderClass = SixDataProvider.class)
+    public void helpBooksellerTest(Six six, String[] inputBooks, String[] inputLetters, String expected) {
+        assertEquals(expected, six.stockSummary(inputBooks, inputLetters));
+    }
 }
