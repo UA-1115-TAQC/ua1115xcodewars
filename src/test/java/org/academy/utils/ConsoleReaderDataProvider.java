@@ -21,9 +21,17 @@ public class ConsoleReaderDataProvider {
     @DataProvider(name = "validDataForBigInt")
     private Object[][] validDataForBigInt(){
         return new Object[][]{
-                {"43653664", new BigInteger("43653664")},
-                {"67648656565474858", new BigInteger("67648656565474858")},
+                {"0", new BigInteger("0")},
+                {"-255", new BigInteger("-255")},
                 {"9597957656756756788655685656", new BigInteger("9597957656756756788655685656")},
+        };
+    }
+
+    @DataProvider(name = "invalidDataForBigInt")
+    private Object[][] invalidDataForBigInt(){
+        return new Object[][]{
+                {"", "Input should be a big integer.\n"},
+                {"asdfghjk", "Input should be a big integer.\n"},
         };
     }
 

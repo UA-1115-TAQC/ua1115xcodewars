@@ -5,9 +5,7 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
+import java.io.*;
 import java.math.BigInteger;
 
 import static org.testng.Assert.assertEquals;
@@ -22,14 +20,28 @@ public class ConsoleReaderTest {
     }
 
     @Test(dataProvider = "validDataForBigInt", dataProviderClass = ConsoleReaderDataProvider.class)
-    public void testReadBigInteger(String inputString, BigInteger expected){
+    public void testReadBigInteger(String inputString, BigInteger expected) {
         System.setIn(new ByteArrayInputStream(inputString.getBytes()));
         ConsoleReader reader = new ConsoleReader();
         assertEquals(reader.readBigInteger(), expected);
     }
 
+    @Test(dataProvider = "invalidDataForBigInt", dataProviderClass = ConsoleReaderDataProvider.class)
+    public void testInvalidReadBigInteger(String inputString, String expected) {
+        InputStream originalIn = System.in;
+        PrintStream originalOut = System.out;
+        System.setIn(new ByteArrayInputStream((inputString + "\n1").getBytes()));
+        ByteArrayOutputStream testStream = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(testStream));
+        ConsoleReader reader = new ConsoleReader();
+        reader.readBigInteger();
+        System.setIn(originalIn);
+        System.setOut(originalOut);
+        assertEquals(testStream.toString(), expected);
+    }
+
     @Test(dataProvider = "validDataForDoubleArr", dataProviderClass = ConsoleReaderDataProvider.class)
-    public void testReadDoubleArr_validInputs(String inputString, double[] expected){
+    public void testReadDoubleArr_validInputs(String inputString, double[] expected) {
         System.setIn(new ByteArrayInputStream(inputString.getBytes()));
         ConsoleReader reader = new ConsoleReader();
         assertEquals(reader.readDoubleArr(), expected);
@@ -37,7 +49,7 @@ public class ConsoleReaderTest {
 
 
     @Test(dataProvider = "invalidDataForDoubleArr", dataProviderClass = ConsoleReaderDataProvider.class)
-    public void testReadDoubleArr_invalidInputs(String inputString){
+    public void testReadDoubleArr_invalidInputs(String inputString) {
         System.setIn(new ByteArrayInputStream(inputString.getBytes()));
         ConsoleReader reader = new ConsoleReader();
         ByteArrayOutputStream testOut = new ByteArrayOutputStream();
