@@ -75,4 +75,11 @@ public class ConsoleReaderTest {
         ConsoleReader cr = new ConsoleReader();
         assertEquals(expected, cr.readFloat());
     }
+
+    @Test(dataProvider = "readStringArr", dataProviderClass = ConsoleReaderDataProvider.class)
+    public void readStringArr(String inputString, String[] expected) {
+        System.setIn(new ByteArrayInputStream(inputString.getBytes()));
+        ConsoleReader reader = new ConsoleReader();
+        assertEquals(reader.readStringArr(), expected);
+    }
 }
