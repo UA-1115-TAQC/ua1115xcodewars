@@ -3,6 +3,7 @@ package org.academy.kata.implementation.nasock;
 import org.academy.kata.Eight;
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.math.RoundingMode;
 
 public class EightImpl implements Eight {
@@ -10,17 +11,10 @@ public class EightImpl implements Eight {
     private static float MILE_TO_KM = 1.609344F;
 
     public int liters(double time) {
-        if (time < 0) {
-            throw new IllegalArgumentException();
-        }
         return (int) time / 2;
     }
 
     public double getVolumeOfCuboid(double length, double width, double height) {
-        if (length <= 0 || width <= 0 || height <= 0) {
-            throw new IllegalArgumentException();
-        }
-
         double volume  = length * width * height;
         BigDecimal bd = new BigDecimal(volume);
         bd = bd.setScale(2, RoundingMode.HALF_UP);
@@ -28,10 +22,6 @@ public class EightImpl implements Eight {
     }
 
     public float mpgToKPM(float mpg) {
-        if (mpg < 0) {
-            throw new IllegalArgumentException();
-        }
-
         float kpl  = mpg * MILE_TO_KM / GALON_TO_LITERS;
         BigDecimal bd = BigDecimal.valueOf(kpl);
         bd = bd.setScale(2, RoundingMode.HALF_UP);
@@ -39,9 +29,8 @@ public class EightImpl implements Eight {
     }
 
     private boolean hasSqRt(int num){
-        double sqrt = Math.sqrt(num);
-        Double decimalPart = sqrt - (int)sqrt;
-        return Double.valueOf(0.0).equals(decimalPart);
+        int sqrt = (int) Math.sqrt(num);
+        return sqrt*sqrt == num;
     }
 
     public int[] squareOrSquareRoot(int[] array) {
@@ -133,16 +122,6 @@ public class EightImpl implements Eight {
         return decimalPart == 0;
     }
 
-    private boolean isNatural(BigDecimal n){
-        BigDecimal zero = BigDecimal.valueOf(0);
-        if (n.compareTo(zero) <= 0){
-            return false;
-        }
-        BigDecimal scaled = n.setScale(0, RoundingMode.HALF_UP);
-        BigDecimal result = n.subtract(scaled);
-        return (result.compareTo(zero) == 0);
-    }
-
     private boolean isPrime(double n){
         if(!isNatural(n) || n == 1){
             return false;
@@ -156,10 +135,10 @@ public class EightImpl implements Eight {
         return true;
     }
 
-    private BigDecimal factorial(double n){
-        BigDecimal f = BigDecimal.valueOf(n);
+    private BigInteger factorial(double n){
+        BigInteger f = BigInteger.valueOf((long)n);
         for(int i = 1; i < n; i++){
-            f = f.multiply(BigDecimal.valueOf(n - i));
+            f = f.multiply(BigInteger.valueOf((long)n - i));
         }
         return f;
     }
@@ -168,10 +147,10 @@ public class EightImpl implements Eight {
         if(!isPrime(n)){
             return false;
         }
-        double sqr = n*n;
-        BigDecimal fct = factorial(n-1).add(BigDecimal.valueOf(1));
-        BigDecimal div = fct.divide(BigDecimal.valueOf(sqr));
-        return isNatural(div);
+        BigInteger sq = BigInteger.valueOf((long)n).multiply(BigInteger.valueOf((long)n));
+        BigInteger fct = factorial(n-1).add(BigInteger.valueOf(1));
+        BigInteger reminder = fct.remainder(sq);
+        return reminder.equals(BigInteger.valueOf(0));
     }
     
 }
