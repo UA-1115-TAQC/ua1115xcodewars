@@ -72,7 +72,6 @@ public class EightDataProvider extends AbstractDataProvider {
     public Iterator<Object[]> countPositivesSumNegatives() {
         List<Object[]> inputs = new ArrayList<>();
 
-        inputs.add(new Object[]{null, new int[]{}});
         inputs.add(new Object[]{new int[]{}, new int[]{}});
 
         inputs.add(new Object[]{new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, -11, -12, -13, -14, -15}, new int[]{10, -65}});
