@@ -70,10 +70,34 @@ public class ConsoleReaderTest {
     }
 
     @Test(dataProvider = "readFloatPositiveTest", dataProviderClass = ConsoleReaderDataProvider.class)
-    public void readFloatTestPositive(String input, float expected) {
+    public void readFloatPositiveTest(String input, float expected) {
+        InputStream originalIn = System.in;
         System.setIn(new ByteArrayInputStream(input.getBytes()));
         ConsoleReader cr = new ConsoleReader();
-        assertEquals(expected, cr.readFloat());
+        assertEquals(cr.readFloat(), expected);
+        System.setIn(originalIn);
+    }
+
+    @Test(dataProvider = "readFloatNegativeTest", dataProviderClass = ConsoleReaderDataProvider.class)
+    public void readFloatNegativeTest(String input, String expected) {
+        InputStream originalIn = System.in;
+        PrintStream originalOut = System.out;
+
+        System.setIn(new ByteArrayInputStream(input.getBytes()));
+        ByteArrayOutputStream tempOut = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(tempOut));
+
+        try {
+            ConsoleReader cr = new ConsoleReader();
+            cr.readFloat();
+            fail("NullPointerException is expected");
+        } catch (NullPointerException e){
+            String str = tempOut.toString().trim();
+            assertEquals(str, expected);
+        } finally {
+            System.setIn(originalIn);
+            System.setOut(originalOut);
+        }
     }
 
     @Test(dataProvider = "readStringArr", dataProviderClass = ConsoleReaderDataProvider.class)
