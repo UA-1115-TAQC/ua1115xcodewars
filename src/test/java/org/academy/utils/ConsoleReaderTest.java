@@ -100,4 +100,14 @@ public class ConsoleReaderTest {
         ConsoleReader reader = new ConsoleReader();
         assertEquals(reader.readStringArr(), expected);
     }
+
+    @Test(dataProvider = "readLong", dataProviderClass = ConsoleReaderDataProvider.class)
+    public void readLongTest(String input, long expected) {
+        InputStream inputStream = System.in;
+        System.setIn(inputStream);
+        System.setIn(new ByteArrayInputStream(input.getBytes()));
+
+        ConsoleReader reader = new ConsoleReader();
+        assertEquals(reader.readLong(), expected);
+    }
 }

@@ -1,5 +1,6 @@
 package org.academy.kata.implementation.Natalsa566;
 
+import org.academy.kata.Base;
 import org.academy.kata.Six;
 
 import java.util.Arrays;
@@ -7,7 +8,7 @@ import java.util.stream.Stream;
 import java.util.HashMap;
 import java.util.Map;
 
-public class SixImpl implements Six {
+public class SixImpl extends Base implements Six {
 
     public long findNb(long m) {
         long n = (long) Math.sqrt(2 * Math.sqrt(m));
