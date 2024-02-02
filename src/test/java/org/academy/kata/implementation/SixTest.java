@@ -28,8 +28,7 @@ public class SixTest {
     }
 
     @Test(dataProvider = "nbaCup", dataProviderClass = SixDataProvider.class)
-    public void nbaCup(Six impl, String resultSheet1, String resultSheet2, String toFind, String expected) {
-        String resultSheet = resultSheet1 + resultSheet2;
+    public void nbaCup(Six impl, String resultSheet, String toFind, String expected) {
         assertEquals(impl.nbaCup(resultSheet, toFind), expected);
     }
 
