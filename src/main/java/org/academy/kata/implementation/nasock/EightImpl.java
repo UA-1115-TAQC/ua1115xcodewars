@@ -1,12 +1,13 @@
 package org.academy.kata.implementation.nasock;
 
+import org.academy.kata.Base;
 import org.academy.kata.Eight;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.math.RoundingMode;
 
-public class EightImpl implements Eight {
+public class EightImpl extends Base implements Eight {
     private static float GALON_TO_LITERS = 4.54609188F;
     private static float MILE_TO_KM = 1.609344F;
 

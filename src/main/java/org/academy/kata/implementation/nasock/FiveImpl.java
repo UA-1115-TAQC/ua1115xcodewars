@@ -1,5 +1,6 @@
 package org.academy.kata.implementation.nasock;
 
+import org.academy.kata.Base;
 import org.academy.kata.Five;
 
 import java.math.BigDecimal;
@@ -7,7 +8,7 @@ import java.math.BigInteger;
 import java.math.MathContext;
 import java.math.RoundingMode;
 
-public class FiveImpl implements Five {
+public class FiveImpl extends Base implements Five {
     private boolean isPrime(long n){
         for(long i = 2; i <= Math.sqrt(n); i++){
             long d = n % i;
@@ -164,10 +165,6 @@ public class FiveImpl implements Five {
         } else {
             return moveBigger(digits, indexOfBigger);
         }
-    }
-    
-    public int artificialRain(int[] v) {
-        return 0;
     }
     
 }

@@ -1,9 +1,10 @@
 package org.academy.kata.implementation.nasock;
 
+import org.academy.kata.Base;
 import org.academy.kata.Seven;
 
 
-public class SevenImpl implements Seven {
+public class SevenImpl extends Base implements Seven {
     public long newAvg(double[] arr, double navg) {
         if (arr == null || navg < 0) {
             throw new IllegalArgumentException ();
@@ -25,10 +26,6 @@ public class SevenImpl implements Seven {
             sum = sum + num;
         }
         return String.format("%.2f", sum);
-    }
-
-    public int whereIsHe(int p, int bef, int aft) {
-        return 0;
     }
 
 }

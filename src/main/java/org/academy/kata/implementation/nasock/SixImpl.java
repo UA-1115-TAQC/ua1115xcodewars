@@ -1,12 +1,13 @@
 package org.academy.kata.implementation.nasock;
 
+import org.academy.kata.Base;
 import org.academy.kata.Six;
 
 
 import java.util.Arrays;
 
 
-public class SixImpl implements Six {
+public class SixImpl extends Base implements Six {
     private boolean isInteger(double num){
         double decimalPart = num - (int)num;
         return Double.valueOf(0L).equals(decimalPart);
