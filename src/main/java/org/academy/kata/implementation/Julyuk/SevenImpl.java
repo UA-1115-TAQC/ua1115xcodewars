@@ -32,7 +32,4 @@ public class SevenImpl implements Seven {
         return n == 0 ? "0.00" : String.format("%.2f", result);
     }
 
-    public int whereIsHe(int p, int bef, int aft) {
-        return 0;
-    }
 }
