@@ -67,11 +67,7 @@ public class SixImpl implements Six {
                 double[] v = new double[nm.length];
                 for (int i2 = 0; i2 < nm.length; i2++) {
                     String[] parts = nm[i2].split(" ");
-                    if (parts.length == 2) {
-                        v[i2] = Double.parseDouble(parts[1]);
-                    } else {
-                        return null;
-                    }
+                    if (parts.length == 2) v[i2] = Double.parseDouble(parts[1]);
                 }
                 return v;
             }
@@ -93,27 +89,17 @@ public class SixImpl implements Six {
         for (String value : nba) {
             if (value.contains(toFind)) {
                 Matcher matcher = pattern.matcher(value);
-                String firstScore = "";
-                String secondScore = "";
                 if (matcher.find()) {
-                    if (matcher.group(2).contains(".") || matcher.group(4).contains(".") )
-                        return "Error(float number):" + value;
-                    if (matcher.group(1).equals(toFind)) {
-                        firstScore = matcher.group(2);
-                        secondScore = matcher.group(4);
-                    } else {
-                        firstScore = matcher.group(4);
-                        secondScore = matcher.group(2);
-                    }
-
+                    String firstScore, secondScore;
+                    firstScore = (matcher.group(1).equals(toFind)) ? matcher.group(2) : matcher.group(4);
+                    secondScore = (matcher.group(1).equals(toFind)) ? matcher.group(4) : matcher.group(2);
                     int firstScoreInt = Integer.parseInt(firstScore);
                     int secondScoreInt = Integer.parseInt(secondScore);
                     scored += firstScoreInt;
                     conceded += secondScoreInt;
-
-                    if (firstScoreInt > secondScoreInt) w++;
-                    else if (firstScoreInt == secondScoreInt) d++;
-                    else l++;
+                    w += (firstScoreInt > secondScoreInt) ? 1 : 0;
+                    d += (firstScoreInt == secondScoreInt) ? 1 : 0;
+                    l += (firstScoreInt < secondScoreInt) ? 1 : 0;
                 }
             }
         }
