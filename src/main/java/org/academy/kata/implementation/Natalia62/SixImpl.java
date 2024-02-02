@@ -43,30 +43,36 @@ public class SixImpl implements Six {
     }
 
     public double mean(String town, String strng) {
-        if(!strng.contains(town+":")) return -1;
         double[] v = doubAr(town, strng);
+        if(v == null) return -1;
         double sum = 0;
-        for(int i=0; i<v.length; i++) sum += v[i];
-        return sum/v.length;
+        for(int i = 0; i < v.length; i++) sum += v[i];
+        return sum / v.length;
     }
 
     public double variance(String town, String strng) {
-        if(!strng.contains(town+":")) return -1;
         double[] v = doubAr(town, strng);
+        if(v == null) return -1;
         double mean = mean(town, strng);
         double temp = 0;
-        for(double a :v)  temp += (mean-a)*(mean-a);
-        return temp/v.length;
+        for(double a : v)  temp += (mean - a) * (mean - a);
+        return temp / v.length;
     }
 
     private static double[] doubAr(String town, String strng) {
         String[] s = strng.split("\n");
-        for(int i=0; i<s.length; i++)
+        for(int i = 0; i < s.length; i++)
             if(s[i].split(":")[0].equals(town)) {
                 String[] nm = s[i].split(":")[1].split(",");
                 double[] v = new double[nm.length];
-                for(int i2=0; i2<nm.length; i2++)
-                    v[i2] = Double.parseDouble(nm[i2].split(" ")[1]);
+                for(int i2 = 0; i2 < nm.length; i2++) {
+                    try {
+                        v[i2] = Double.parseDouble(nm[i2].split(" ")[1]);
+                    } catch (NumberFormatException e) {
+                        e.printStackTrace();
+                        return null;
+                    }
+                }
                 return v;
             }
         return null;
