@@ -77,10 +77,16 @@ public class ConsoleReaderDataProvider {
     @DataProvider(name = "readFloatNegativeTest")
     public Object[][] readFloatNegative() {
         Object[][] result = new Object[][]{
-                new Object[]{"" + System.lineSeparator(), "Input should be a float."},
-                new Object[]{" " + System.lineSeparator(), "Input should be a float."},
-                new Object[]{"1.247c2", "Input should be a float."}
+                new Object[]{"" + System.lineSeparator() + "1.0",
+                        "Input should be a float."},
+                new Object[]{" " + System.lineSeparator() + "1.0",
+                        "Input should be a float."},
+                new Object[]{"1.247c2" + System.lineSeparator() + "1.0",
+                        "Input should be a float."},
+                new Object[]{"1.247c2" + System.lineSeparator() + "1.247c2" + System.lineSeparator() + "1.0",
+                        "Input should be a float." + System.lineSeparator() + "Input should be a float."}
         };
+
         return result;
     }
 
