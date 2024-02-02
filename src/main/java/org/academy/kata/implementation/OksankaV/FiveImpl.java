@@ -73,7 +73,4 @@ public class FiveImpl implements Five {
         return resultArr;
     }
 
-    public int artificialRain(int[] v) {
-        return 0;
-    }
 }
