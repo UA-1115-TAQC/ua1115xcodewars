@@ -40,12 +40,10 @@ public class FiveImpl implements Five {
 
         for (BigInteger i = BigInteger.ZERO; i.compareTo(n) <= 0; i = i.add(BigInteger.ONE)) {
             sum = sum.add(a.multiply(BigInteger.valueOf(4)));
-
             BigInteger newfib = a.add(b);
             a = b;
             b = newfib;
         }
-
         return sum;
     }
 
@@ -64,13 +62,11 @@ public class FiveImpl implements Five {
 
             StringBuilder modifiedNumber = new StringBuilder(numberStr);
             modifiedNumber.deleteCharAt(i);
-
             for (int j = 0; j <= modifiedNumber.length(); j++) {
                 StringBuilder temp = new StringBuilder(modifiedNumber);
                 temp.insert(j, digit);
 
                 long modifiedLong = Long.parseLong(temp.toString());
-
                 if (modifiedLong < smallestNum) {
                     smallestNum = modifiedLong;
                     digitIndex = i;
@@ -78,9 +74,6 @@ public class FiveImpl implements Five {
                 }
             }
         }
-
         return new long[]{smallestNum, digitIndex, insertIndex};
     }
-
-
 }
