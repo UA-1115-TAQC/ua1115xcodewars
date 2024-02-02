@@ -5,5 +5,4 @@ public interface Seven {
 
     String seriesSum(int n);
 
-    int whereIsHe(int p, int bef, int aft);
 }

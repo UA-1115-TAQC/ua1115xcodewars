@@ -123,7 +123,4 @@ public class FiveImpl implements Five {
         return Long.parseLong(sb.toString());
     }
 
-    public int artificialRain(int[] v) {
-        return 0;
-    }
 }

@@ -100,7 +100,4 @@ public class FiveImpl implements Five {
         throw new IllegalArgumentException();
     }
 
-    public int artificialRain(int[] v) {
-        return 0;
-    }
 }

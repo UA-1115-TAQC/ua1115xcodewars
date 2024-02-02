@@ -13,5 +13,4 @@ public interface Five {
 
     long[] smallest(long n);
 
-    int artificialRain(final int[] v);
 }

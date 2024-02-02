@@ -87,7 +87,4 @@ public class FiveImpl implements Five {
         return new long[]{smallest, iNum, jNum};
     }
 
-    public int artificialRain(int[] v) {
-        return 0;
-    }
 }
