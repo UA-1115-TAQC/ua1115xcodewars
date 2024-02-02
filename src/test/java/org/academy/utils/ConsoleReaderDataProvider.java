@@ -107,4 +107,16 @@ public class ConsoleReaderDataProvider {
                 {"1", 1},
         };
     }
+
+    @DataProvider(name = "string_data")
+    private Object[][] readStringValid() {
+        return new Object[][] {
+                {"abc", "abc"},
+                {"1", "1"},
+                {" ", ""},
+                {"this is string..", "this is string.."},
+                {"some string\nsome", "some string"},
+                {System.lineSeparator(), ""}
+        };
+    }
 }

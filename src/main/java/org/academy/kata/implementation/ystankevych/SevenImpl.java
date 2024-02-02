@@ -20,8 +20,4 @@ public class SevenImpl implements Seven {
             sum += 1.0 / (1 + 3 * i);
         return String.format("%.2f", sum);
     }
-
-    public int whereIsHe(int p, int bef, int aft) {
-        return 0;
-    }
 }

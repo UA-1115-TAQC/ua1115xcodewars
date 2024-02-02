@@ -11,7 +11,6 @@ import java.io.PrintStream;
 import java.math.BigInteger;
 
 import static org.testng.Assert.assertEquals;
-import static org.testng.FileAssert.fail;
 
 public class ConsoleReaderTest {
     InputStream originalIn;
@@ -106,5 +105,13 @@ public class ConsoleReaderTest {
 
         ConsoleReader reader = new ConsoleReader();
         assertEquals(reader.readLong(), expected);
+    }
+
+    @Test(dataProvider = "string_data", dataProviderClass = ConsoleReaderDataProvider.class)
+    public void readString_ValidData_Ok(String input, String expected) {
+        System.setIn(new ByteArrayInputStream(input.getBytes()));
+
+        ConsoleReader reader = new ConsoleReader();
+        assertEquals(reader.readString(), expected);
     }
 }

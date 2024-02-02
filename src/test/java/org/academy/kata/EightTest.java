@@ -1,11 +1,7 @@
 package org.academy.kata;
 
-import org.academy.kata.Eight;
 import org.academy.kata.provider.EightDataProvider;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-
-import java.util.Locale;
 
 import static org.testng.Assert.assertEquals;
 
@@ -35,6 +31,7 @@ public class EightTest extends BaseTestRunner {
     public void countPositivesSumNegativesTest(Eight eight, int[] input, int[] expected) {
         assertEquals(eight.countPositivesSumNegatives(input), expected);
     }
+
     @Test(dataProvider = "stringToNumber", dataProviderClass = EightDataProvider.class)
     public void convertStringToNumberTest(Eight eight, String input, int expected) {
         assertEquals(eight.stringToNumber(input), expected);
