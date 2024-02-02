@@ -6,7 +6,7 @@ import java.math.BigInteger;
 
 public class ConsoleReaderDataProvider {
     @DataProvider(name = "validDataForIntArr")
-    private Object[][] validDataForIntArr(){
+    private Object[][] validDataForIntArr() {
         return new Object[][]{
                 {"0", new int[]{0}},
                 {"2 4 6 8", new int[]{2, 4, 6, 8}},
@@ -19,7 +19,7 @@ public class ConsoleReaderDataProvider {
     }
 
     @DataProvider(name = "validDataForBigInt")
-    private Object[][] validDataForBigInt(){
+    private Object[][] validDataForBigInt() {
         return new Object[][]{
                 {"0", new BigInteger("0")},
                 {"-255", new BigInteger("-255")},
@@ -28,7 +28,7 @@ public class ConsoleReaderDataProvider {
     }
 
     @DataProvider(name = "invalidDataForBigInt")
-    private Object[][] invalidDataForBigInt(){
+    private Object[][] invalidDataForBigInt() {
         return new Object[][]{
                 {"", "Input should be a big integer." + System.lineSeparator()},
                 {"asdfghjk", "Input should be a big integer." + System.lineSeparator()},
@@ -36,7 +36,7 @@ public class ConsoleReaderDataProvider {
     }
 
     @DataProvider(name = "validDataForDoubleArr")
-    private Object[][] validDataForDoubleArr(){
+    private Object[][] validDataForDoubleArr() {
         return new Object[][]{
                 {"1 2 3", new double[]{1.0, 2.0, 3.0}},
                 {"10.5 4.2 -2.1", new double[]{10.5, 4.2, -2.1}},
@@ -46,7 +46,7 @@ public class ConsoleReaderDataProvider {
     }
 
     @DataProvider(name = "invalidDataForDoubleArr")
-    private Object[][] invalidDataForDoubleArr(){
+    private Object[][] invalidDataForDoubleArr() {
         return new Object[][]{
                 {"a b c"},
                 {"1.2.3"},
@@ -57,7 +57,7 @@ public class ConsoleReaderDataProvider {
     }
 
     @DataProvider(name = "readFloatPositiveTest")
-    public Object[][] readFloatPositive(){
+    public Object[][] readFloatPositive() {
         Object[][] result = new Object[][]{
                 new Object[]{"1.11f", 1.11f},
                 new Object[]{"1.11F", 1.11f},
@@ -75,7 +75,7 @@ public class ConsoleReaderDataProvider {
     }
 
     @DataProvider(name = "readFloatNegativeTest")
-    public Object[][] readFloatNegative(){
+    public Object[][] readFloatNegative() {
         Object[][] result = new Object[][]{
                 new Object[]{"" + System.lineSeparator(), "Input should be a float."},
                 new Object[]{" " + System.lineSeparator(), "Input should be a float."},
@@ -85,11 +85,20 @@ public class ConsoleReaderDataProvider {
     }
 
     @DataProvider(name = "readStringArr")
-    private Object[][] readStringArr(){
+    private Object[][] readStringArr() {
         return new Object[][]{
                 {"Rachel, Chandler, Joey", new String[]{"Rachel", "Chandler", "Joey"}},
                 {"one, two, three", new String[]{"one", "two", "three"}},
                 {"alevtyna30, 43, Natalia62, !", new String[]{"alevtyna30", "43", "Natalia62", "!"}},
+        };
+    }
+
+    @DataProvider(name = "readLong")
+    private Object[][] readLongData() {
+        return new Object[][]{
+                {"688768", 688768},
+                {"10", 10},
+                {"1", 1},
         };
     }
 }

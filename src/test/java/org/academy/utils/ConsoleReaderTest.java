@@ -1,19 +1,21 @@
 package org.academy.utils;
 
-import org.academy.utils.ConsoleReader;
-import org.testng.Assert;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-import java.io.*;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
+import java.io.PrintStream;
 import java.math.BigInteger;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.FileAssert.fail;
 
 public class ConsoleReaderTest {
+
+
     @Test(dataProvider = "validDataForIntArr", dataProviderClass = ConsoleReaderDataProvider.class)
-    public void testReadIntArr(String inputString, int[] expected){
+    public void testReadIntArr(String inputString, int[] expected) {
         System.setIn(new ByteArrayInputStream(inputString.getBytes()));
         ConsoleReader reader = new ConsoleReader();
         assertEquals(reader.readIntArr(), expected);
@@ -91,7 +93,7 @@ public class ConsoleReaderTest {
             ConsoleReader cr = new ConsoleReader();
             cr.readFloat();
             fail("NullPointerException is expected");
-        } catch (NullPointerException e){
+        } catch (NullPointerException e) {
             String str = tempOut.toString().trim();
             assertEquals(str, expected);
         } finally {
@@ -105,5 +107,15 @@ public class ConsoleReaderTest {
         System.setIn(new ByteArrayInputStream(inputString.getBytes()));
         ConsoleReader reader = new ConsoleReader();
         assertEquals(reader.readStringArr(), expected);
+    }
+
+    @Test(dataProvider = "readLong", dataProviderClass = ConsoleReaderDataProvider.class)
+    public void readLongTest(String input, long expected) {
+        InputStream inputStream = System.in;
+        System.setIn(inputStream);
+        System.setIn(new ByteArrayInputStream(input.getBytes()));
+
+        ConsoleReader reader = new ConsoleReader();
+        assertEquals(reader.readLong(), expected);
     }
 }
