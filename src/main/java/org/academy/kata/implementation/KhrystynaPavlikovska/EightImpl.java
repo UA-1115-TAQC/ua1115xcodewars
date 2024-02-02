@@ -2,9 +2,9 @@ package org.academy.kata.implementation.KhrystynaPavlikovska;
 
 import org.academy.kata.Eight;
 import java.text.DecimalFormat;
-
-
 import java.util.Arrays;
+import java.math.BigInteger;
+import java.lang.Math;
 
 public class EightImpl implements Eight {
     public int liters(double time) {
@@ -77,6 +77,25 @@ public class EightImpl implements Eight {
     }
 
     public boolean am_i_wilson(double n) {
-        return false;
+
+        if (n == 0 || n == 1) {
+            return false;
+        }
+
+        for (int divisor = 2; divisor * divisor <= (n / 2); divisor++) {
+            if (n % divisor == 0) {
+                return false;
+            }
+        }
+
+        BigInteger factorial = BigInteger.ONE;
+        for (long i = 2; i <= n - 1; i++) {
+            factorial = factorial.multiply(BigInteger.valueOf(i));
+        }
+
+        BigInteger wilsonCondition = factorial.add(BigInteger.ONE)
+                .mod(BigInteger.valueOf((long) (n * n)));
+        return wilsonCondition.equals(BigInteger.ZERO);
     }
+
 }
