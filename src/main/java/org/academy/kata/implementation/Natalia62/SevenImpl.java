@@ -11,8 +11,7 @@ public class SevenImpl implements Seven {
         double dons = navg * (arr.length + 1) - sum_arr;
         if (dons > 0) {
             return (int) Math.ceil(dons);
-        }
-        else throw new IllegalArgumentException();
+        } else throw new IllegalArgumentException();
     }
 
     public String seriesSum(int n) {
@@ -21,9 +20,5 @@ public class SevenImpl implements Seven {
             result += 1.0 / (i * 3 + 1);
         }
         return String.format("%.2f", result);
-    }
-
-    public int whereIsHe(int p, int bef, int aft) {
-        return 0;
     }
 }
