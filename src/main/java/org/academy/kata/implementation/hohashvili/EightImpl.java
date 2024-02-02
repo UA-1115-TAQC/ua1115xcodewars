@@ -42,9 +42,9 @@ public class EightImpl implements Eight {
             return result;
         }
         for (int value: input) {
-            if (value >= 0) {
+            if (value > 0) {
                 countPositives += 1;
-            } else {
+            } else if (value < 0) {
                 sumNegatives += value;
             }
         }
