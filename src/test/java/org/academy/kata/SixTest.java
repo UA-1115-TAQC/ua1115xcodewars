@@ -1,12 +1,10 @@
 package org.academy.kata;
 
-import org.academy.kata.Six;
 import org.academy.kata.provider.SixDataProvider;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import static org.testng.AssertJUnit.assertEquals;
-
 
 public class SixTest extends BaseTestRunner {
     @Test(dataProvider = "floatingPoint", dataProviderClass = SixDataProvider.class)

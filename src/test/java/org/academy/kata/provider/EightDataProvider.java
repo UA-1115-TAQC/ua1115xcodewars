@@ -98,7 +98,8 @@ public class EightDataProvider extends AbstractDataProvider {
                 new Object[] {20, 7.08f},
                 new Object[] {30, 10.62f},
                 new Object[] {10.05f, 3.56f},
-                new Object[] {0, 0}
+                new Object[] {0, 0},
+                new Object[] {-10, -3.54f}
         );
         return combineData(testData, EIGHTS);
     }
