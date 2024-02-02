@@ -84,14 +84,11 @@ public class ConsoleReaderTest {
         System.setIn(new ByteArrayInputStream(input.getBytes()));
         ByteArrayOutputStream tempOut = new ByteArrayOutputStream();
         System.setOut(new PrintStream(tempOut));
-        try {
-            ConsoleReader cr = new ConsoleReader();
-            cr.readFloat();
-            fail("NullPointerException is expected");
-        } catch (NullPointerException e) {
-            String str = tempOut.toString().trim();
-            assertEquals(str, expected);
-        }
+
+        ConsoleReader cr = new ConsoleReader();
+        cr.readFloat();
+        String str = tempOut.toString().trim();
+        assertEquals(str, expected);
     }
 
     @Test(dataProvider = "readStringArr", dataProviderClass = ConsoleReaderDataProvider.class)
