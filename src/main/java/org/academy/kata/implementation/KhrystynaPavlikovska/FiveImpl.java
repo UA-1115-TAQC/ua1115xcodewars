@@ -18,7 +18,8 @@ public class FiveImpl implements Five {
     }
 
     public double solve(double m) {
-        return 0;
+        double squareRootTerm = Math.sqrt(4 * m + 1);
+        return (1 - squareRootTerm) / (2 * m) + 1;
     }
 
     public long[] smallest(long n) {
