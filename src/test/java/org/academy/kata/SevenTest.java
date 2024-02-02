@@ -1,4 +1,4 @@
-package org.academy.kata.implementation;
+package org.academy.kata;
 
 import org.academy.kata.Seven;
 import org.academy.kata.provider.SevenDataProvider;
@@ -7,7 +7,7 @@ import org.testng.annotations.Test;
 import static org.testng.Assert.expectThrows;
 import static org.testng.AssertJUnit.assertEquals;
 
-public class SevenTest {
+public class SevenTest extends BaseTestRunner {
 
     @Test(dataProvider = "newAvgSuccess", dataProviderClass = SevenDataProvider.class)
     public void findAverageOfTheNextDonationSuccess(Seven seven, double[] donations, double averageDonation, long expectedDonation) {

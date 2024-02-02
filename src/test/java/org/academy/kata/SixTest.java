@@ -1,4 +1,4 @@
-package org.academy.kata.implementation;
+package org.academy.kata;
 
 import org.academy.kata.Six;
 import org.academy.kata.provider.SixDataProvider;
@@ -8,7 +8,7 @@ import org.testng.annotations.Test;
 import static org.testng.AssertJUnit.assertEquals;
 
 
-public class SixTest {
+public class SixTest extends BaseTestRunner {
     @Test(dataProvider = "floatingPoint", dataProviderClass = SixDataProvider.class)
     public void floatingPointTest(Six impl, double x, double expected) {
         double aberr = 1e-12;

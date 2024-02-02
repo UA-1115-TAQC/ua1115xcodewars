@@ -48,11 +48,11 @@ public class ConsoleReaderDataProvider {
     @DataProvider(name = "invalidDataForDoubleArr")
     private Object[][] invalidDataForDoubleArr(){
         return new Object[][]{
-                {"a b c"},
-                {"1.2.3"},
-                {"5  hello"},
-                {" "},
-                {"10,5 4,2 -2,1"}
+                {"a b c\n a b c \n1", "Input should be a double array."+ System.lineSeparator()+"Input should be a double array.", new double[]{1}},
+                {"1.2.3 \n1", "Input should be a double array.", new double[]{1}},
+                {"5  hello\n1", "Input should be a double array.", new double[]{1}},
+                {" \n1", "Input should be a double array.", new double[]{1}},
+                {"10,5 4,2 -2,1\n1", "Input should be a double array.", new double[]{1}}
         };
     }
 

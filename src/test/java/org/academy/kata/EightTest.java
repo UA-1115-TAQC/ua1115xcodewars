@@ -1,12 +1,16 @@
-package org.academy.kata.implementation;
+package org.academy.kata;
 
 import org.academy.kata.Eight;
 import org.academy.kata.provider.EightDataProvider;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+
+import java.util.Locale;
 
 import static org.testng.Assert.assertEquals;
 
-public class EightTest {
+public class EightTest extends BaseTestRunner {
+
     @Test(dataProvider = "test_data_wilson", dataProviderClass = EightDataProvider.class)
     public void test_am_i_wilson(Eight impl, double n, boolean expected) {
         assertEquals(impl.am_i_wilson(n), expected);

@@ -69,7 +69,7 @@ public class AbstractDataProvider {
             new org.academy.kata.implementation.Zakotiuk.SevenImpl());
 
     protected static Iterator<Object[]> combineData(List<Object[]> objects, List impls) {
-        ArrayList<Object[]> data = new ArrayList<>();
+        List<Object[]> data = new ArrayList<>();
         for (Object impl : impls) {
             objects.forEach(o -> data.add(Stream.concat(Stream.of(impl), Arrays.stream(o)).toArray()));
         }

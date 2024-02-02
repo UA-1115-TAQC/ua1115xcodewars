@@ -1,19 +1,36 @@
 package org.academy.utils;
 
-import org.academy.utils.ConsoleReader;
-import org.testng.Assert;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import java.io.*;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
+import java.io.PrintStream;
 import java.math.BigInteger;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.FileAssert.fail;
 
 public class ConsoleReaderTest {
+    InputStream originalIn;
+    PrintStream originalOut;
+
+    @BeforeMethod
+    public void beforeMethod() {
+        originalIn = System.in;
+        originalOut = System.out;
+    }
+
+    @AfterMethod
+    public void afterMethod() {
+        System.setIn(originalIn);
+        System.setOut(originalOut);
+    }
+
     @Test(dataProvider = "validDataForIntArr", dataProviderClass = ConsoleReaderDataProvider.class)
-    public void testReadIntArr(String inputString, int[] expected){
+    public void testReadIntArr(String inputString, int[] expected) {
         System.setIn(new ByteArrayInputStream(inputString.getBytes()));
         ConsoleReader reader = new ConsoleReader();
         assertEquals(reader.readIntArr(), expected);
@@ -21,25 +38,19 @@ public class ConsoleReaderTest {
 
     @Test(dataProvider = "validDataForBigInt", dataProviderClass = ConsoleReaderDataProvider.class)
     public void testReadBigInteger(String inputString, BigInteger expected) {
-        InputStream originalIn = System.in;
         System.setIn(new ByteArrayInputStream(inputString.getBytes()));
         ConsoleReader reader = new ConsoleReader();
         assertEquals(reader.readBigInteger(), expected);
-        System.setIn(originalIn);
     }
 
     @Test(dataProvider = "invalidDataForBigInt", dataProviderClass = ConsoleReaderDataProvider.class)
     public void testInvalidReadBigInteger(String inputString, String expected) {
-        InputStream originalIn = System.in;
-        PrintStream originalOut = System.out;
         System.setIn(new ByteArrayInputStream((inputString + System.lineSeparator() + "1").getBytes()));
         ByteArrayOutputStream testStream = new ByteArrayOutputStream();
         System.setOut(new PrintStream(testStream));
         ConsoleReader reader = new ConsoleReader();
         reader.readBigInteger();
         assertEquals(testStream.toString(), expected);
-        System.setIn(originalIn);
-        System.setOut(originalOut);
     }
 
     @Test(dataProvider = "validDataForDoubleArr", dataProviderClass = ConsoleReaderDataProvider.class)
@@ -51,52 +62,35 @@ public class ConsoleReaderTest {
 
 
     @Test(dataProvider = "invalidDataForDoubleArr", dataProviderClass = ConsoleReaderDataProvider.class)
-    public void testReadDoubleArr_invalidInputs(String inputString) {
+    public void testReadDoubleArr_invalidInputs(String inputString, String expectedMessage, double[] expectedArr) {
         System.setIn(new ByteArrayInputStream(inputString.getBytes()));
         ConsoleReader reader = new ConsoleReader();
         ByteArrayOutputStream testOut = new ByteArrayOutputStream();
-        PrintStream originalOut = System.out;
         System.setOut(new PrintStream(testOut));
-        try {
-            reader.readDoubleArr();
-            fail("Expected NullPointerException to be thrown");
-        } catch (NullPointerException e) {
-            String expectedMessage = "Input should be a double array.";
-            assertEquals(testOut.toString().trim(), expectedMessage);
-        } finally {
-            System.setOut(originalOut);
-        }
-
+        double[] arr = reader.readDoubleArr();
+        assertEquals(testOut.toString().trim(), expectedMessage);
+        assertEquals(arr, expectedArr);
     }
 
     @Test(dataProvider = "readFloatPositiveTest", dataProviderClass = ConsoleReaderDataProvider.class)
     public void readFloatPositiveTest(String input, float expected) {
-        InputStream originalIn = System.in;
         System.setIn(new ByteArrayInputStream(input.getBytes()));
         ConsoleReader cr = new ConsoleReader();
         assertEquals(cr.readFloat(), expected);
-        System.setIn(originalIn);
     }
 
     @Test(dataProvider = "readFloatNegativeTest", dataProviderClass = ConsoleReaderDataProvider.class)
     public void readFloatNegativeTest(String input, String expected) {
-        InputStream originalIn = System.in;
-        PrintStream originalOut = System.out;
-
         System.setIn(new ByteArrayInputStream(input.getBytes()));
         ByteArrayOutputStream tempOut = new ByteArrayOutputStream();
         System.setOut(new PrintStream(tempOut));
-
         try {
             ConsoleReader cr = new ConsoleReader();
             cr.readFloat();
             fail("NullPointerException is expected");
-        } catch (NullPointerException e){
+        } catch (NullPointerException e) {
             String str = tempOut.toString().trim();
             assertEquals(str, expected);
-        } finally {
-            System.setIn(originalIn);
-            System.setOut(originalOut);
         }
     }
 

@@ -1,4 +1,4 @@
-package org.academy.kata.implementation;
+package org.academy.kata;
 
 import org.academy.kata.Five;
 import org.academy.kata.provider.FiveDataProvider;
@@ -10,7 +10,7 @@ import java.util.Arrays;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
-public class FiveTest {
+public class FiveTest  extends BaseTestRunner{
 
     @Test(dataProvider = "gap", dataProviderClass = FiveDataProvider.class)
     public void gapTest(Five impl, int input1, long input2, long input3, long[] expected) {
