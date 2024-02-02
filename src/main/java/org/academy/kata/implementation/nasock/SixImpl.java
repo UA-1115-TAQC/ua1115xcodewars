@@ -7,19 +7,19 @@ import java.util.Arrays;
 
 
 public class SixImpl implements Six {
-    private boolean isReal(double num){
-        double decimalPart = (num - (int)num);
+    private boolean isInteger(double num){
+        double decimalPart = num - (int)num;
         return Double.valueOf(0L).equals(decimalPart);
     }
 
     public long findNb(long m) {
         double sqrt = Math.sqrt(m);
-        if(!isReal(sqrt)) {
+        if(!isInteger(sqrt)) {
             return -1L;
         }
 
         double sqrtDeterminant = Math.sqrt(8 * sqrt + 1);
-        if(!isReal(sqrtDeterminant)){
+        if(!isInteger(sqrtDeterminant)){
             return -1L;
         }
         return (long) (sqrtDeterminant - 1)/2;
@@ -172,7 +172,8 @@ public class SixImpl implements Six {
     private String getTownString(String town, String strng){
         String[] strs = strng.split("\n");
         for(String str : strs){
-            if(str.contains(town+":")){
+            str = str.trim();
+            if(str.startsWith(town+":")){
                 return str;
             }
         }
@@ -346,6 +347,9 @@ public class SixImpl implements Six {
     }
 
     public String stockSummary(String[] lstOfArt, String[] lstOf1stLetter) {
+        if(lstOfArt == null || lstOfArt.length == 0 || lstOf1stLetter == null || lstOf1stLetter.length == 0 ){
+            return "";
+        }
         Arrays.sort(lstOfArt);
         String result = "";
         for(String letter : lstOf1stLetter) {
