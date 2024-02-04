@@ -17,7 +17,6 @@ public class SixImpl implements Six {
     }
 
     public  String balance(String book) {
-        if (book != null && !book.isEmpty()) {
             DecimalFormat df = new DecimalFormat("0.00");
             String[] lines = book.split("\n");
             double originalBalance = getOriginalBalance(lines);
@@ -48,9 +47,6 @@ public class SixImpl implements Six {
             result.append("Average expense  ").append(df.format(averageExpense));
 
             return result.toString();
-        }
-
-        throw new IllegalArgumentException();
     }
 
     private static double getOriginalBalance(String[] lines) {
@@ -75,7 +71,7 @@ public class SixImpl implements Six {
     }
 
     public double mean(String town, String strng) {
-        if (!town.isEmpty() && !strng.isEmpty()) {
+
             double sum = 0;
             int count = 0;
 
@@ -91,13 +87,10 @@ public class SixImpl implements Six {
             } else {
                 return -1.0;
             }
-        }
 
-        throw new IllegalArgumentException("Invalid input");
     }
 
     public double variance(String town, String strng) {
-        if (!town.isEmpty() && !strng.isEmpty()) {
             String[] monthData = monthsValues(town, strng);
             double mean = mean(town, strng);
             double countOfObserv = 0;
@@ -115,9 +108,6 @@ public class SixImpl implements Six {
             } else {
                 return -1.0;
             }
-        }
-
-        throw new IllegalArgumentException("Invalid input");
     }
 
     private static String[] monthsValues(String town, String strng) {
@@ -141,59 +131,56 @@ public class SixImpl implements Six {
     public  String nbaCup(String resultSheet, String toFind) {
         if (toFind.isEmpty()) return "";
 
-        if (!resultSheet.isEmpty()) {
-            if(!resultSheet.contains(toFind+" ")) return toFind+":This team didn't play!";
-            String[] lines = resultSheet.split(",");
+        if(!resultSheet.contains(toFind+" ")) return toFind+":This team didn't play!";
+        String[] lines = resultSheet.split(",");
 
-            int matchesWon = 0;
-            int matchesInDraw = 0;
-            int matchesLost = 0;
-            int scoredPoints = 0;
-            int concededPoints = 0;
+        int matchesWon = 0;
+        int matchesInDraw = 0;
+        int matchesLost = 0;
+        int scoredPoints = 0;
+        int concededPoints = 0;
 
-            for (String line: lines) {
+        for (String line: lines) {
 
-                if (line.contains(toFind)) {
-                    String[] lineArray = line.replaceAll(toFind, "teamINeed").split(" ");
-                    String pointsInString1;
-                    String pointsInString2;
-                    if(lineArray[0].equals("teamINeed")){
-                        pointsInString1=lineArray[1];
-                        pointsInString2=lineArray[lineArray.length-1];
-                    }else{
-                        pointsInString1=lineArray[lineArray.length-1];
-                        pointsInString2=lineArray[lineArray.length-3];
-                    }
-                    int points1, points2;
-
-                    try{
-                        points1 = Integer.parseInt(pointsInString1);
-                        points2 = Integer.parseInt(pointsInString2);
-                    }
-                    catch(Exception e){
-                        return  "Error(float number):" +line;
-                    }
-                    if (points1 > points2) {
-                        matchesWon++;
-                    }
-                    else if (points1 < points2) {
-                        matchesLost++;
-                    }
-                    else {
-                        matchesInDraw++;
-                    }
-
-                    scoredPoints += points1;
-                    concededPoints += points2;
+            if (line.contains(toFind)) {
+                String[] lineArray = line.replaceAll(toFind, "teamINeed").split(" ");
+                String pointsInString1;
+                String pointsInString2;
+                if(lineArray[0].equals("teamINeed")){
+                    pointsInString1=lineArray[1];
+                    pointsInString2=lineArray[lineArray.length-1];
+                }else{
+                    pointsInString1=lineArray[lineArray.length-1];
+                    pointsInString2=lineArray[lineArray.length-3];
                 }
-            }
+                int points1, points2;
 
-            return String.format("%s:W=%d;D=%d;L=%d;Scored=%d;Conceded=%d;Points=%d",
-                    toFind, matchesWon, matchesInDraw, matchesLost, scoredPoints, concededPoints,
-                    ((matchesWon * 3) + matchesInDraw));
+                try{
+                    points1 = Integer.parseInt(pointsInString1);
+                    points2 = Integer.parseInt(pointsInString2);
+                }
+                catch(Exception e){
+                    return  "Error(float number):" +line;
+                }
+                if (points1 > points2) {
+                    matchesWon++;
+                }
+                else if (points1 < points2) {
+                    matchesLost++;
+                }
+                else {
+                    matchesInDraw++;
+                }
+
+                scoredPoints += points1;
+                concededPoints += points2;
+            }
         }
 
-        throw new IllegalArgumentException();
+        return String.format("%s:W=%d;D=%d;L=%d;Scored=%d;Conceded=%d;Points=%d",
+                toFind, matchesWon, matchesInDraw, matchesLost, scoredPoints, concededPoints,
+                ((matchesWon * 3) + matchesInDraw));
+
     }
 
 

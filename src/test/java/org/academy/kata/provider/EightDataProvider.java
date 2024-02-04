@@ -34,6 +34,7 @@ public class EightDataProvider extends AbstractDataProvider {
         inputs.add(new Object[]{1, 2, 2, 4});
         inputs.add(new Object[]{10.5, 2, 5, 105});
         inputs.add(new Object[]{5.5, 1.2, 3.7, 24.42});
+        inputs.add(new Object[]{0, 0, 0, 0});
         inputs.add(new Object[]{1, 1, 1, 1});
         return combineData(inputs, EIGHTS);
     }
