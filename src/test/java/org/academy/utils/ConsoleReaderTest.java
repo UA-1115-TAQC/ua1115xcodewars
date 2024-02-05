@@ -114,4 +114,23 @@ public class ConsoleReaderTest {
         ConsoleReader reader = new ConsoleReader();
         assertEquals(reader.readString(), expected);
     }
+
+    @Test(dataProvider = "validDataForInt", dataProviderClass = ConsoleReaderDataProvider.class)
+    public void readIntValidInput(String inputString, int expected) {
+        System.setIn(new ByteArrayInputStream(inputString.getBytes()));
+        ConsoleReader reader = new ConsoleReader();
+        assertEquals(reader.readInt(), expected);
+    }
+
+    @Test(dataProvider = "invalidDataForInt", dataProviderClass = ConsoleReaderDataProvider.class)
+    public void readIntInvalidInput(String inputString, String expectedMessage, int expected) {
+        System.setIn(new ByteArrayInputStream(inputString.getBytes()));
+        ByteArrayOutputStream testOut = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(testOut));
+        ConsoleReader reader = new ConsoleReader();
+        int actual = reader.readInt();
+        assertEquals(testOut.toString().trim(), expectedMessage);
+        assertEquals(expected, actual);
+    }
+
 }
