@@ -23,4 +23,17 @@ public class SevenDataProvider extends AbstractDataProvider {
         inputs.add(new Object[]{new double[]{14, 30, 5, 7, 9, 11, 15}, 2});
         return combineData(inputs, SEVEN);
     }
+    @DataProvider(name = "seriesSum")
+    private Iterator<Object[]> seriesSum() {
+        List<Object[]> inputs = new ArrayList<>();
+        inputs.add(new Object[]{1, "1.00"});
+        inputs.add(new Object[]{2, "1.25"});
+        inputs.add(new Object[]{3, "1.39"});
+        inputs.add(new Object[]{5, "1.57"});
+        inputs.add(new Object[]{9, "1.77"});
+        inputs.add(new Object[]{15, "1.94"});
+        inputs.add(new Object[]{0, "0.00"});
+
+        return combineData(inputs, SEVEN);
+    };
 }

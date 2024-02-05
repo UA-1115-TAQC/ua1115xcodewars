@@ -18,4 +18,10 @@ public class SevenTest extends BaseTestRunner {
     public void findAverageOfTheNextDonationException(Seven seven, double[] donations, double averageDonation) {
         expectThrows(IllegalArgumentException.class, () -> seven.newAvg(donations, averageDonation));
     }
+
+    @Test(dataProvider = "seriesSum", dataProviderClass = SevenDataProvider.class)
+    public void returnSeriesSum(Seven seven, int input, String expected) {
+        assertEquals(seven.seriesSum(input), expected);
+
+    }
 }
