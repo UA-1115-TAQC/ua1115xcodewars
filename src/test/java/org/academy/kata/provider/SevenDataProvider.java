@@ -23,6 +23,7 @@ public class SevenDataProvider extends AbstractDataProvider {
         inputs.add(new Object[]{new double[]{14, 30, 5, 7, 9, 11, 15}, 2});
         return combineData(inputs, SEVEN);
     }
+
     @DataProvider(name = "seriesSum")
     private Iterator<Object[]> seriesSum() {
         List<Object[]> inputs = new ArrayList<>();
