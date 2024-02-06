@@ -1,10 +1,11 @@
 package org.academy.kata.implementation.s_hrynus;
 
+import org.academy.kata.Base;
 import org.academy.kata.Seven;
 
 import java.util.Arrays;
 
-public class SevenImpl implements Seven {
+public class SevenImpl extends Base implements Seven {
     public long newAvg(double[] arr, double navg) {
         double sum = Arrays.stream(arr).sum();
         if (sum / arr.length > navg) {

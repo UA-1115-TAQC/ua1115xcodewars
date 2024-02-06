@@ -1,15 +1,17 @@
 package org.academy.kata.implementation.s_hrynus;
 
+import org.academy.kata.Base;
 import org.academy.kata.Six;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.OptionalDouble;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.DoubleStream;
 import java.util.stream.Stream;  
 
-public class SixImpl implements Six {
+public class SixImpl extends Base implements Six {
     public static final int SCORES = 0;
     public static final int CONCEDED = 1;
     public static final int WIN = 2;
@@ -74,11 +76,11 @@ public class SixImpl implements Six {
     }
 
     public double mean(String town, String strng) {
-        double sumOfRainfallData = Stream.of(strng.split(LINE_SEPARATOR))
+        OptionalDouble sumOfRainfallData = Stream.of(strng.split(LINE_SEPARATOR))
                 .filter(citiesData -> citiesData.startsWith(town + ":"))
                 .mapToDouble(SixImpl::getRainfallDataByMonths)
-                .sum();
-        return sumOfRainfallData != 0 ? sumOfRainfallData / 12 : - 1.0;
+                .findFirst();
+        return sumOfRainfallData.isEmpty() ? -1.0 : sumOfRainfallData.getAsDouble() / 12;
     }
 
     public double variance(String town, String strng) {

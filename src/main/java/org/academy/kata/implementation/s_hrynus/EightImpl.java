@@ -1,11 +1,12 @@
 package org.academy.kata.implementation.s_hrynus;
 
+import org.academy.kata.Base;
 import org.academy.kata.Eight;
 
 import java.math.BigInteger;
 import java.util.stream.IntStream;
 
-public class EightImpl implements Eight {
+public class EightImpl extends Base implements Eight {
     public static final float ONE_IMPERIAL_GALLON = 4.54609188f;
     public static final float ONE_KM = 1.609344f;
 
