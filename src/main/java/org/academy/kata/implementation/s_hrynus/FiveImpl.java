@@ -1,5 +1,6 @@
 package org.academy.kata.implementation.s_hrynus;
 
+import org.academy.kata.Base;
 import org.academy.kata.Five;
 
 import java.math.BigInteger;
@@ -7,7 +8,7 @@ import java.util.function.LongPredicate;
 
 import static java.util.stream.LongStream.range;
 
-public class FiveImpl implements Five {
+public class FiveImpl extends Base implements Five {
     public long[] gap(int g, long m, long n) {
         LongPredicate prime = l -> BigInteger.valueOf(l).isProbablePrime(9);
         return range(m, n - g)
