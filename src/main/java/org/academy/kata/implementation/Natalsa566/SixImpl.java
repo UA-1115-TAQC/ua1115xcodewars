@@ -20,29 +20,24 @@ public class SixImpl extends Base implements Six {
     }
   
     public String balance(String book) {
-         StringBuilder result = new StringBuilder();
-         double balance = 0.0;
-         double totalExpense = 0.0;
-         int expenseCount = 0;
-         String[] lines = book.split("\n");
-            for (String line : lines) {
-                if (!line.trim().isEmpty()) {
-                    String cleanedLine = line.replaceAll("[^a-zA-Z0-9.\\s]", "");
-                    String[] parts = cleanedLine.split("\\s+");
-                        if (parts.length > 0 && parts[0].matches("\\d+")) {
-                            int checkNumber = Integer.parseInt(parts[0]);
-                            double checkAmount = Double.parseDouble(parts[1]);
-                            balance -= checkAmount;
-                            totalExpense += checkAmount;
-                            expenseCount++;
-                       result.append(String.format("%d %s %.2f Balance %.2f%n", checkNumber, parts[2], checkAmount, balance));
-                        }
-                    }
-            }
-        result.append(String.format("Total expense  %.2f%n", totalExpense));
-        result.append(String.format("Average expense  %.2f", totalExpense / expenseCount));
+        String t = book.replaceAll("([^\\n. \\da-zA-Z])", "");
+        String[] arr = t.split("[\\n]+");
+        double current = Double.parseDouble(arr[0]);
+        double total = 0;
+        int count = 0;
+        StringBuilder result = new StringBuilder();
+        result.append("Original Balance: " + arr[0]);
+        for (int i = 1; i < arr.length; i++) {
+            count++;
+            String[] line = arr[i].split("[ ]+");
+            current -= Double.parseDouble(line[2]);
+            total += Double.parseDouble(line[2]);
+            String u = String.format("\\r\\n%s %s %s Balance %.2f", line[0], line[1], line[2], current);
+            result.append(u);
+        }
+        result.append(String.format("\\r\\nTotal expense  %.2f\\r\\nAverage expense  %.2f", total, total / count));
         return result.toString();
-}
+    }
 
     public double f(double x) {
         return x / 2.0 - x * x / 8.0 + x * x * x / 16.0 - 5.0 * x * x * x * x / 128.0;
