@@ -3,6 +3,7 @@ package org.academy.utils;
 import org.testng.annotations.DataProvider;
 
 import java.math.BigInteger;
+import java.util.Arrays;
 
 public class ConsoleReaderDataProvider {
     @DataProvider(name = "validDataForIntArr")
@@ -117,6 +118,23 @@ public class ConsoleReaderDataProvider {
                 {"this is string..", "this is string.."},
                 {"some string\nsome", "some string"},
                 {System.lineSeparator(), ""}
+        };
+    }
+    @DataProvider(name = "validDataForInt")
+    public Object[][] readIntValidInput() {
+        return new Object[][]{
+                {"123\n", 123},
+                {"0\n", 0},
+                {"-42\n", -42},
+        };
+    }
+    @DataProvider(name = "invalidDataForInt")
+    public Object[][] readIntInvalidInput() {
+        return new Object[][]{
+                {"a b c\n a b c \n1", "Input should be an integer." + System.lineSeparator() + "Input should be an integer.", 1},
+                {"14.39 \n1", "Input should be an integer.", 1},
+                {"12,8 \n1", "Input should be an integer.", 1},
+                {" \n1", "Input should be an integer.", 1},
         };
     }
 }
