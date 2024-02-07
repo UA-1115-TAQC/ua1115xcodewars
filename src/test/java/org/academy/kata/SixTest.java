@@ -60,4 +60,10 @@ public class SixTest extends BaseTestRunner {
         assertEquals("abs(actual - expected) must be <= 1e-2. Expected was " + expected +", but got " + actual,
                 expected, actual, 1e-2);
     }
+
+    @Test(dataProvider = "findNb", dataProviderClass = SixDataProvider.class)
+    public void findNb(Six six, long m, long expected) {
+        long actual = six.findNb(m);
+        assertEquals("For m = " + m, expected, actual);
+    }
 }
