@@ -112,4 +112,20 @@ public class SixDataProvider extends AbstractDataProvider{
                 "New London:Jan 3.9,Feb 4.7,Mar 8.2,Apr 18.4,May 33.0,Jun 78.1,Jul 224.3,Aug 170.0,Sep 58.4,Oct 18.0,Nov 9.3,Dec 2.7"
         );
     }
-}
+
+    @DataProvider(name = "findNb")
+    public static Iterator<Object[]> findNb() {
+        List<Object[]> data = new ArrayList<>();
+        data.add(new Object[]{4183059834009L, 2022});
+        data.add(new Object[]{135440716410000L, 4824});
+        data.add(new Object[]{24723578342962L, -1});
+        data.add(new Object[]{40539911473216L, 3568});
+        data.add(new Object[]{26825883955641L, 3218});
+        data.add(new Object[]{41364076483082L, -1});
+        data.add(new Object[]{4L, -1});
+        data.add(new Object[]{16L, -1});
+        return combineData(data, SIXES);
+        }
+
+    }
+
